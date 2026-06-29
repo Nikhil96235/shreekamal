@@ -56,6 +56,23 @@
 </head>
 <body>
 
+<script>
+  // Agar Firebase/script load na ho to silent na rahe — message dikhao
+  window.addEventListener('error', function(e){
+    var el=document.getElementById('loginErr');
+    if(el) el.textContent='Load error: '+((e&&e.message)||'script fail')+'. Live link se kholें + firebase-config.js upload karein.';
+  });
+  window.__adminReady=false;
+  setTimeout(function(){
+    if(!window.__adminReady){
+      var el=document.getElementById('loginErr');
+      if(el && !el.textContent){
+        el.textContent='Firebase load nahi hua. (1) Live website link se kholें (computer file se nahi). (2) firebase-config.js bhi upload karein.';
+      }
+    }
+  },5000);
+</script>
+
 <!-- LOGIN -->
 <div id="loginView">
   <h1>Admin Login</h1>
@@ -343,6 +360,9 @@ async function removeAdmin(uid,email){
 }
 
 function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// Sab load ho gaya — handlers attach ho gaye
+window.__adminReady = true;
 
 // Photo ko chhota (compress) karke data-URL banata hai — Storage ki zaroorat nahi
 function compressToDataURL(file, maxSize, quality){
