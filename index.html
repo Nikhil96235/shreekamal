@@ -450,24 +450,30 @@
       <h2 class="section-title">Success Stories<br/>From Our Customers</h2>
       <p class="section-desc">Lakhs of farmers and dairy owners trust our feed every day. Here's what some of them have to say.</p>
     </div>
-    <div class="testi-grid">
+    <div class="testi-grid" id="testiGrid">
 
       <div class="testi-card reveal">
-        <img class="testi-photo" src="images/customer1.jpg?v=2" alt="Customer"/>
-        <div class="testi-quote-mark">&#8220;</div>
-        <p class="testi-text">राधा गोविन्द बिनौला खल खिलाने से मेरी गायों का दूध बढ़ा और सेहत भी अच्छी रही।</p>
+        <div class="testi-photo-wrap"><img class="testi-photo" src="images/customer1.jpg?v=2" alt="Customer"/></div>
+        <div class="testi-content">
+          <div class="testi-quote-mark">&#8220;</div>
+          <p class="testi-text">राधा गोविन्द बिनौला खल खिलाने से मेरी गायों का दूध बढ़ा और सेहत भी अच्छी रही।</p>
+        </div>
       </div>
 
       <div class="testi-card reveal">
-        <img class="testi-photo" src="images/customer2.jpg?v=2" alt="Customer"/>
-        <div class="testi-quote-mark">&#8220;</div>
-        <p class="testi-text">पंचरत्न श्री खल की क्वालिटी बेहतरीन है — पशु तंदुरुस्त और दूध भी ज़्यादा।</p>
+        <div class="testi-photo-wrap"><img class="testi-photo" src="images/customer2.jpg?v=2" alt="Customer"/></div>
+        <div class="testi-content">
+          <div class="testi-quote-mark">&#8220;</div>
+          <p class="testi-text">पंचरत्न श्री खल की क्वालिटी बेहतरीन है — पशु तंदुरुस्त और दूध भी ज़्यादा।</p>
+        </div>
       </div>
 
       <div class="testi-card reveal">
-        <img class="testi-photo" src="images/customer3.jpg?v=2" alt="Customer"/>
-        <div class="testi-quote-mark">&#8220;</div>
-        <p class="testi-text">कई साल से यही खल इस्तेमाल कर रहा हूँ — नतीजा हमेशा शानदार, दूध और घी दोनों बढ़े।</p>
+        <div class="testi-photo-wrap"><img class="testi-photo" src="images/customer3.jpg?v=2" alt="Customer"/></div>
+        <div class="testi-content">
+          <div class="testi-quote-mark">&#8220;</div>
+          <p class="testi-text">कई साल से यही खल इस्तेमाल कर रहा हूँ — नतीजा हमेशा शानदार, दूध और घी दोनों बढ़े।</p>
+        </div>
       </div>
 
     </div>
@@ -589,5 +595,33 @@
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+// Load customer reviews from Firebase (if set up). Warna static cards rahenge.
+try{
+  const { firebaseConfig } = await import("./firebase-config.js");
+  if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, collection, getDocs, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const snap = await getDocs(query(collection(db,"testimonials"), orderBy("order")));
+    if(!snap.empty){
+      const grid = document.getElementById("testiGrid");
+      grid.innerHTML = "";
+      snap.forEach(d=>{
+        const t = d.data();
+        const esc = s => (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const card = document.createElement("div");
+        card.className = "testi-card reveal";
+        card.innerHTML =
+          '<div class="testi-photo-wrap"><img class="testi-photo" src="'+esc(t.photoURL)+'" alt="Customer"/></div>'+
+          '<div class="testi-content"><div class="testi-quote-mark">&#8220;</div>'+
+          '<p class="testi-text">'+esc(t.text)+'</p></div>';
+        grid.appendChild(card);
+      });
+    }
+  }
+}catch(e){ /* Firebase set nahi / error -> static reviews hi rahenge */ }
+</script>
 </body>
 </html>

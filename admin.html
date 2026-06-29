@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Admin Panel — Shreekamal Oil Industries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--gd:#0f3a1c;--gm:#1d6630;--gy:#e0a82e;--bg:#0a2613;--card:#ffffff;--tt:#3a463c;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+  body{background:linear-gradient(160deg,#0f3a1c,#071a0d);min-height:100vh;color:#1a2a1e;}
+  h1,h2,h3{font-family:'Playfair Display',serif;}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 16px 60px;}
+  /* login */
+  #loginView{max-width:380px;margin:8vh auto;background:#fff;border-radius:18px;padding:34px 30px;box-shadow:0 20px 50px rgba(0,0,0,.35);}
+  #loginView h1{font-size:24px;color:var(--gm);text-align:center;margin-bottom:6px;}
+  #loginView p{text-align:center;color:#888;font-size:13px;margin-bottom:22px;}
+  label{display:block;font-size:12px;font-weight:600;color:#555;margin:14px 0 5px;letter-spacing:.3px;}
+  input,textarea,select{width:100%;padding:11px 13px;border:1px solid #d7d7d7;border-radius:10px;font-size:14px;}
+  input:focus,textarea:focus{outline:none;border-color:var(--gm);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:10px;padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:.2s;}
+  .btn-primary{background:var(--gm);color:#fff;width:100%;margin-top:20px;}
+  .btn-primary:hover{background:#15531f;}
+  .btn-gold{background:var(--gy);color:#1a2a1e;}
+  .btn-sm{padding:7px 12px;font-size:12.5px;}
+  .btn-ghost{background:#eee;color:#444;}
+  .btn-danger{background:#e23b3b;color:#fff;}
+  .err{color:#d32f2f;font-size:13px;margin-top:12px;text-align:center;min-height:18px;}
+  /* app */
+  #appView{display:none;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:16px;padding:16px 22px;box-shadow:0 10px 30px rgba(0,0,0,.25);margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+  .topbar h1{font-size:20px;color:var(--gm);}
+  .role-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px;margin-left:8px;letter-spacing:.5px;vertical-align:middle;}
+  .role-master{background:#fff3d6;color:#a9760a;border:1px solid var(--gy);}
+  .role-admin{background:#e3f1e6;color:var(--gm);border:1px solid var(--gm);}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .tab{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;}
+  .tab.active{background:var(--gy);color:#1a2a1e;border-color:var(--gy);}
+  .panel{display:none;background:#fff;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.2);}
+  .panel.active{display:block;}
+  .panel h2{font-size:19px;color:var(--gm);margin-bottom:4px;}
+  .panel .sub{color:#888;font-size:13px;margin-bottom:18px;}
+  .form-card{background:#f7f5ef;border:1px solid #ece6d8;border-radius:12px;padding:18px;margin-bottom:22px;}
+  .list-item{display:flex;gap:16px;align-items:flex-start;background:#fafafa;border:1px solid #eee;border-radius:12px;padding:14px;margin-bottom:12px;}
+  .list-item img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--gy);flex-shrink:0;background:#e8f0e8;}
+  .list-item .it-body{flex:1;}
+  .list-item .it-text{font-size:14px;color:#333;line-height:1.5;}
+  .row-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+  .muted{color:#999;font-size:13px;}
+  .note{background:#fff8e6;border:1px solid #f0dca0;border-radius:10px;padding:14px;color:#7a5b10;font-size:13px;line-height:1.6;}
+  .hide{display:none!important;}
+  .small{font-size:12px;color:#888;margin-top:5px;}
+  .ok{color:var(--gm);font-size:13px;min-height:18px;margin-top:8px;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginView">
+  <h1>Admin Login</h1>
+  <p>Shreekamal Oil Industries</p>
+  <label>Email</label>
+  <input id="email" type="email" placeholder="admin@example.com" autocomplete="username"/>
+  <label>Password</label>
+  <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+  <button class="btn btn-primary" id="loginBtn">Login</button>
+  <div class="err" id="loginErr"></div>
+</div>
+
+<!-- APP -->
+<div id="appView">
+ <div class="wrap">
+  <div class="topbar">
+    <h1>Admin Panel <span class="role-badge" id="roleBadge"></span></h1>
+    <div>
+      <span class="muted" id="whoami" style="margin-right:12px;"></span>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="reviews">Customer Reviews</button>
+    <button class="tab" data-tab="products">Products</button>
+    <button class="tab masterOnly" data-tab="admins">Manage Admins</button>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="panel active" id="panel-reviews">
+    <h2>Customer Reviews</h2>
+    <div class="sub">Add ya edit karein. Photo + customer ke words.</div>
+
+    <div class="form-card">
+      <input type="hidden" id="rev-id"/>
+      <label>Customer Photo</label>
+      <input id="rev-photo" type="file" accept="image/*"/>
+      <div class="small">Edit karte waqt photo na chunne par purani photo rahegi.</div>
+      <label>Words (jo customer ne kaha)</label>
+      <textarea id="rev-text" rows="3" placeholder="Jaise: इस खल से दूध बढ़ गया..."></textarea>
+      <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" style="width:auto;margin:0;" id="rev-save">Save Review</button>
+        <button class="btn btn-ghost btn-sm hide" id="rev-cancel">Cancel</button>
+        <span class="ok" id="rev-msg"></span>
+      </div>
+    </div>
+
+    <div id="rev-list"><p class="muted">Loading…</p></div>
+  </div>
+
+  <!-- PRODUCTS (view only for admin, edit coming for master) -->
+  <div class="panel" id="panel-products">
+    <h2>Products &amp; Brands</h2>
+    <div class="sub">Yahan products/brands dikhte hain.</div>
+    <div class="note adminNote">Aap (Admin) products ko sirf <b>dekh</b> sakte hain, change nahi kar sakte.</div>
+    <div class="note masterOnly" style="margin-top:10px;">Master Admin: products/brands ko edit/add/delete karne ka option <b>agle update</b> mein jod diya jaayega. (Phase 2)</div>
+    <ul id="prod-list" style="margin-top:16px;line-height:2;color:#333;padding-left:18px;">
+      <li>Cattle Feed Cake (Binola Khal)</li>
+      <li>Cotton Seed</li>
+      <li>Brands: Radha Govind, Shreekamal, Panchratan, Radha Kaithal, Gaiyya, Butter Milk, Amrit Kalash</li>
+    </ul>
+  </div>
+
+  <!-- MANAGE ADMINS (master only) -->
+  <div class="panel masterOnly" id="panel-admins">
+    <h2>Manage Admins</h2>
+    <div class="sub">Sirf Master Admin. Admin add/remove karein.</div>
+    <div class="note">
+      <b>Naya admin add karne ka tareeka:</b><br/>
+      1) Firebase Console → Authentication → "Add user" se uska email + password banao.<br/>
+      2) Wahi user ka <b>UID</b> copy karo (Authentication list mein dikhta hai).<br/>
+      3) Neeche UID + email daal kar role chuno aur "Add" karo.
+    </div>
+    <div class="form-card" style="margin-top:16px;">
+      <label>User UID</label>
+      <input id="adm-uid" placeholder="Firebase Authentication se UID"/>
+      <label>Email</label>
+      <input id="adm-email" type="email" placeholder="naya-admin@example.com"/>
+      <label>Role</label>
+      <select id="adm-role">
+        <option value="admin">Admin (sirf reviews)</option>
+        <option value="master">Master Admin (sab kuch)</option>
+      </select>
+      <div style="display:flex;gap:10px;margin-top:14px;align-items:center;">
+        <button class="btn btn-primary" style="width:auto;margin:0;" id="adm-add">Add / Update</button>
+        <span class="ok" id="adm-msg"></span>
+      </div>
+    </div>
+    <div id="adm-list"><p class="muted">Loading…</p></div>
+  </div>
+
+ </div>
+</div>
+
+<script type="module">
+import { firebaseConfig } from "./firebase-config.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+let myRole = null;
+
+// ---------- LOGIN ----------
+$("loginBtn").onclick = async () => {
+  $("loginErr").textContent = "";
+  try{
+    await signInWithEmailAndPassword(auth, $("email").value.trim(), $("password").value);
+  }catch(e){
+    $("loginErr").textContent = "Login fail: " + (e.code||e.message);
+  }
+};
+$("password").addEventListener("keydown", e=>{ if(e.key==="Enter") $("loginBtn").click(); });
+$("logoutBtn").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, async (user) => {
+  if(!user){
+    $("loginView").style.display="block";
+    $("appView").style.display="none";
+    return;
+  }
+  // get role
+  try{
+    const snap = await getDoc(doc(db,"admins",user.uid));
+    if(!snap.exists()){
+      $("loginErr").textContent = "Aapko access nahi diya gaya. Master Admin se role set karwayein.";
+      await signOut(auth);
+      return;
+    }
+    myRole = snap.data().role || "admin";
+  }catch(e){
+    $("loginErr").textContent = "Role check fail: "+(e.code||e.message);
+    await signOut(auth); return;
+  }
+  // show app
+  $("loginView").style.display="none";
+  $("appView").style.display="block";
+  $("whoami").textContent = user.email;
+  const badge=$("roleBadge");
+  if(myRole==="master"){ badge.textContent="MASTER"; badge.className="role-badge role-master"; }
+  else { badge.textContent="ADMIN"; badge.className="role-badge role-admin"; }
+  // master-only elements
+  document.querySelectorAll(".masterOnly").forEach(el=> el.classList.toggle("hide", myRole!=="master"));
+  document.querySelectorAll(".adminNote").forEach(el=> el.classList.toggle("hide", myRole==="master"));
+  loadReviews();
+  if(myRole==="master") loadAdmins();
+});
+
+// ---------- TABS ----------
+document.querySelectorAll(".tab").forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    $("panel-"+t.dataset.tab).classList.add("active");
+  };
+});
+
+// ---------- REVIEWS ----------
+async function loadReviews(){
+  const list=$("rev-list"); list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const q=query(collection(db,"testimonials"), orderBy("order"));
+    const snap=await getDocs(q);
+    if(snap.empty){ list.innerHTML='<p class="muted">Abhi koi review nahi. Upar se add karein.</p>'; return; }
+    list.innerHTML="";
+    snap.forEach(d=>{
+      const t=d.data();
+      const canDelete = (myRole==="master");
+      const div=document.createElement("div");
+      div.className="list-item";
+      div.innerHTML=`
+        <img src="${t.photoURL||''}" alt=""/>
+        <div class="it-body">
+          <div class="it-text">${escapeHtml(t.text||'')}</div>
+          <div class="row-actions">
+            <button class="btn btn-gold btn-sm">Edit</button>
+            ${canDelete?'<button class="btn btn-danger btn-sm">Delete</button>':''}
+          </div>
+        </div>`;
+      div.querySelector(".btn-gold").onclick=()=>editReview(d.id,t);
+      if(canDelete) div.querySelector(".btn-danger").onclick=()=>deleteReview(d.id);
+      list.appendChild(div);
+    });
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; }
+}
+
+function editReview(id,t){
+  $("rev-id").value=id;
+  $("rev-text").value=t.text||"";
+  $("rev-cancel").classList.remove("hide");
+  $("rev-msg").textContent="Editing… (photo optional)";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("rev-cancel").onclick=()=>resetRevForm();
+function resetRevForm(){
+  $("rev-id").value=""; $("rev-text").value=""; $("rev-photo").value="";
+  $("rev-cancel").classList.add("hide"); $("rev-msg").textContent="";
+}
+
+$("rev-save").onclick=async()=>{
+  const id=$("rev-id").value;
+  const text=$("rev-text").value.trim();
+  const file=$("rev-photo").files[0];
+  $("rev-msg").textContent="";
+  if(!text){ $("rev-msg").textContent="Words likhein."; return; }
+  $("rev-save").disabled=true; $("rev-msg").textContent="Saving…";
+  try{
+    let photoURL=null;
+    if(file){
+      photoURL = await compressToDataURL(file, 420, 0.8);
+      if(photoURL.length > 900000){ // ~900KB safety (Firestore doc limit ~1MB)
+        photoURL = await compressToDataURL(file, 320, 0.7);
+      }
+    }
+    if(id){
+      const upd={text}; if(photoURL) upd.photoURL=photoURL;
+      await updateDoc(doc(db,"testimonials",id),upd);
+    }else{
+      if(!photoURL){ $("rev-msg").textContent="Nayi review ke liye photo chunein."; $("rev-save").disabled=false; return; }
+      await addDoc(collection(db,"testimonials"),{text,photoURL,order:Date.now(),createdAt:serverTimestamp()});
+    }
+    resetRevForm(); $("rev-msg").textContent="Saved ✓"; loadReviews();
+  }catch(e){ $("rev-msg").textContent="Save fail: "+(e.code||e.message); }
+  $("rev-save").disabled=false;
+};
+
+async function deleteReview(id){
+  if(!confirm("Yeh review delete karein?")) return;
+  try{ await deleteDoc(doc(db,"testimonials",id)); loadReviews(); }
+  catch(e){ alert("Delete fail: "+(e.code||e.message)); }
+}
+
+// ---------- MANAGE ADMINS (master) ----------
+async function loadAdmins(){
+  const list=$("adm-list"); list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const snap=await getDocs(collection(db,"admins"));
+    list.innerHTML="";
+    snap.forEach(d=>{
+      const a=d.data();
+      const div=document.createElement("div");
+      div.className="list-item";
+      const isMe = (auth.currentUser && auth.currentUser.uid===d.id);
+      div.innerHTML=`
+        <div class="it-body">
+          <div class="it-text"><b>${escapeHtml(a.email||'(no email)')}</b>
+            <span class="role-badge ${a.role==='master'?'role-master':'role-admin'}">${(a.role||'admin').toUpperCase()}</span></div>
+          <div class="small">UID: ${d.id}</div>
+          <div class="row-actions">
+            ${isMe?'<span class="muted">(aap khud)</span>':'<button class="btn btn-danger btn-sm">Remove</button>'}
+          </div>
+        </div>`;
+      if(!isMe){ const b=div.querySelector(".btn-danger"); if(b) b.onclick=()=>removeAdmin(d.id,a.email); }
+      list.appendChild(div);
+    });
+    if(snap.empty) list.innerHTML='<p class="muted">Koi admin nahi.</p>';
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; }
+}
+
+$("adm-add").onclick=async()=>{
+  const uid=$("adm-uid").value.trim();
+  const email=$("adm-email").value.trim();
+  const role=$("adm-role").value;
+  $("adm-msg").textContent="";
+  if(!uid||!email){ $("adm-msg").textContent="UID aur email dono daalein."; return; }
+  try{
+    await setDoc(doc(db,"admins",uid),{email,role});
+    $("adm-uid").value=""; $("adm-email").value="";
+    $("adm-msg").textContent="Saved ✓"; loadAdmins();
+  }catch(e){ $("adm-msg").textContent="Fail: "+(e.code||e.message); }
+};
+
+async function removeAdmin(uid,email){
+  if(!confirm("Admin hata dein: "+email+" ?")) return;
+  try{ await deleteDoc(doc(db,"admins",uid)); loadAdmins(); }
+  catch(e){ alert("Remove fail: "+(e.code||e.message)); }
+}
+
+function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// Photo ko chhota (compress) karke data-URL banata hai — Storage ki zaroorat nahi
+function compressToDataURL(file, maxSize, quality){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    const reader=new FileReader();
+    reader.onload=()=>{ img.src=reader.result; };
+    reader.onerror=reject;
+    img.onload=()=>{
+      let{width:w,height:h}=img;
+      const scale=Math.min(1, maxSize/Math.max(w,h));
+      w=Math.round(w*scale); h=Math.round(h*scale);
+      const c=document.createElement("canvas"); c.width=w; c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      resolve(c.toDataURL("image/jpeg", quality));
+    };
+    img.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+</script>
+</body>
+</html>
