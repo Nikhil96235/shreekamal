@@ -368,13 +368,24 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .hero-dots{position:absolute;bottom:16px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:9px;}
 .hero-dots .hdot{width:32px;height:4px;border-radius:3px;background:rgba(255,255,255,0.55);cursor:pointer;transition:background .3s;box-shadow:0 1px 5px rgba(0,0,0,0.45);}
 .hero-dots .hdot.active{background:var(--gy);}
-.hero-logo{position:absolute;top:124px;left:16px;z-index:4;display:flex;align-items:center;gap:8px;background:rgba(8,22,12,0.5);backdrop-filter:blur(5px);padding:6px 13px 6px 8px;border-radius:30px;border:1px solid rgba(245,192,48,0.35);}
+.hero-badge{position:absolute;top:124px;left:16px;z-index:4;display:flex;flex-direction:column;align-items:flex-start;gap:8px;}
+.hero-logo{display:flex;align-items:center;gap:8px;background:rgba(8,22,12,0.5);backdrop-filter:blur(5px);padding:6px 13px 6px 8px;border-radius:30px;border:1px solid rgba(245,192,48,0.35);}
 .hero-logo svg{width:26px;height:26px;flex-shrink:0;}
 .hero-logo-txt{display:flex;flex-direction:column;line-height:1.05;}
 .hero-logo-txt b{font-family:'Playfair Display',serif;color:#fff;font-size:14px;font-weight:700;}
-.hero-logo-txt span{font-size:7.5px;letter-spacing:1.5px;color:var(--gy);}
+.hero-logo-txt span{font-size:7.5px;letter-spacing:1px;color:var(--gy);white-space:nowrap;}
+.hero-badge-btns{display:flex;gap:7px;}
+.hbtn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;text-decoration:none;font-family:'Poppins',sans-serif;border:1px solid transparent;white-space:nowrap;line-height:1;transition:.2s;}
+.hbtn svg{width:12px;height:12px;flex-shrink:0;}
+.hbtn-gold{background:linear-gradient(135deg,#fdd85a,#f5c030);color:#143a1c;}
+.hbtn-gold:hover{filter:brightness(1.06);}
+.hbtn-wa{background:rgba(8,22,12,0.55);backdrop-filter:blur(5px);color:#25D366;border-color:rgba(37,211,102,.55);}
+.hbtn-wa:hover{background:rgba(8,22,12,0.7);}
 @media(max-width:860px){
-  .hero-logo{top:102px;left:10px;padding:5px 10px 5px 6px;}
+  .hero-logo{top:auto;left:auto;padding:5px 10px 5px 6px;}
+  .hero-badge{top:102px;left:10px;gap:6px;}
+  .hbtn{font-size:9.5px;padding:5px 9px;gap:4px;}
+  .hbtn svg{width:10px;height:10px;}
   .hero-logo svg{width:21px;height:21px;}
   .hero-logo-txt b{font-size:12px;}
   .hero-logo-txt span{font-size:6.5px;}
