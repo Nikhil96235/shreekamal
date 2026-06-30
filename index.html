@@ -115,7 +115,7 @@
       <h2 class="section-title">Pure Quality,<br/>Straight from Our Mill</h2>
       <p class="section-desc">Every product is carefully processed and quality-checked. No compromise on purity, ever.</p>
     </div>
-    <div class="products-grid">
+    <div class="products-grid" id="productsGrid">
       <a href="cattle-feed-cake.html" class="product-card reveal">
         <div class="product-icon pi-g">🐄</div>
         <div class="product-name">Cattle Feed Cake</div>
@@ -653,6 +653,26 @@ try{
           card.innerHTML='<div class="testi-photo-wrap"><img class="testi-photo" src="'+esc(t.photoURL)+'" alt="Customer"/></div>'+
             '<div class="testi-content"><div class="testi-quote-mark">&#8220;</div><p class="testi-text">'+esc(t.text)+'</p></div>';
           grid.appendChild(card); });
+      }
+    }catch(e){}
+
+    // load products (agar database mein hain to)
+    try{
+      const ps = await getDocs(query(collection(db,"products"), orderBy("order")));
+      if(!ps.empty){
+        const grid=document.getElementById("productsGrid");
+        if(grid){
+          grid.innerHTML="";
+          const arrow='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+          ps.forEach(d=>{ const p=d.data(); const a=document.createElement("a");
+            a.className="product-card reveal"; a.href=p.link||"#";
+            a.innerHTML='<div class="product-icon '+esc(p.iconClass||"pi-g")+'">'+esc(p.icon||"📦")+'</div>'+
+              '<div class="product-name">'+esc(p.name)+'</div>'+
+              '<p class="product-desc">'+esc(p.desc||"")+'</p>'+
+              '<span class="product-cta">View Details '+arrow+'</span>';
+            grid.appendChild(a);
+          });
+        }
       }
     }catch(e){}
 

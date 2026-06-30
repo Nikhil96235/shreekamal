@@ -133,17 +133,33 @@
     <div id="pend-list"><p class="muted">Loading…</p></div>
   </div>
 
-  <!-- PRODUCTS (view only for admin, edit coming for master) -->
+  <!-- PRODUCTS -->
   <div class="panel" id="panel-products">
-    <h2>Products &amp; Brands</h2>
-    <div class="sub">Yahan products/brands dikhte hain.</div>
-    <div class="note adminNote">Aap (Admin) products ko sirf <b>dekh</b> sakte hain, change nahi kar sakte.</div>
-    <div class="note masterOnly" style="margin-top:10px;">Brands ab "Brands" tab se edit ho sakte hain. Products (sirf 2) editing baad mein jod sakte hain — bata dena.</div>
-    <ul id="prod-list" style="margin-top:16px;line-height:2;color:#333;padding-left:18px;">
-      <li>Cattle Feed Cake (Binola Khal)</li>
-      <li>Cotton Seed</li>
-      <li>Brands: Radha Govind, Shreekamal, Panchratan, Radha Kaithal, Gaiyya, Butter Milk, Amrit Kalash</li>
-    </ul>
+    <h2>Products</h2>
+    <div class="sub">Homepage ke product cards. Master add/edit/delete kar sakta hai.</div>
+
+    <div class="masterOnly">
+      <div class="form-card">
+        <input type="hidden" id="prod-id"/>
+        <label>Product Name</label>
+        <input id="prod-name" placeholder="Jaise: Cattle Feed Cake"/>
+        <label>Description</label>
+        <textarea id="prod-desc" rows="2" placeholder="Product ke baare mein chhoti line"></textarea>
+        <label>Icon (emoji)</label>
+        <input id="prod-icon" placeholder="🐄  ya  🌱" maxlength="4"/>
+        <label>Detail Page Link (optional)</label>
+        <input id="prod-link" placeholder="cattle-feed-cake.html"/>
+        <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" style="width:auto;margin:0;" id="prod-save">Save Product</button>
+          <button class="btn btn-ghost btn-sm hide" id="prod-cancel">Cancel</button>
+          <button class="btn btn-gold btn-sm" id="prod-seed">Import current products</button>
+          <span class="ok" id="prod-msg"></span>
+        </div>
+      </div>
+    </div>
+    <div class="note adminNote">Aap (Admin) products sirf <b>dekh</b> sakte hain, change nahi.</div>
+
+    <div id="prod-list"><p class="muted">Loading…</p></div>
   </div>
 
   <!-- BRANDS -->
@@ -263,6 +279,7 @@ onAuthStateChanged(auth, async (user) => {
   document.querySelectorAll(".adminNote").forEach(el=> el.classList.toggle("hide", myRole==="master"));
   loadReviews();
   loadPending();
+  loadProducts();
   loadBrands();
   if(myRole==="master") loadAdmins();
 });
@@ -530,6 +547,81 @@ if(brandSeedBtn) brandSeedBtn.onclick=async()=>{
     $("brand-msg").textContent="Imported ✓"; loadBrands();
   }catch(e){ $("brand-msg").textContent="Import fail: "+(e.code||e.message); }
   brandSeedBtn.disabled=false;
+};
+
+// ---------- PRODUCTS ----------
+async function loadProducts(){
+  const list=$("prod-list"); list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const snap=await getDocs(query(collection(db,"products"), orderBy("order")));
+    const seedBtn=$("prod-seed");
+    if(snap.empty){
+      list.innerHTML='<p class="muted">Abhi koi product database mein nahi. '+(myRole==="master"?'"Import current products" dabao ya naya add karo.':'')+'</p>';
+      if(seedBtn) seedBtn.style.display=(myRole==="master")?"inline-flex":"none";
+      return;
+    }
+    if(seedBtn) seedBtn.style.display="none";
+    list.innerHTML="";
+    snap.forEach(d=>{
+      const p=d.data();
+      const div=document.createElement("div"); div.className="list-item";
+      div.innerHTML=`
+        <div style="font-size:38px;width:56px;text-align:center;">${escapeHtml(p.icon||'📦')}</div>
+        <div class="it-body">
+          <div class="it-text"><b>${escapeHtml(p.name||'')}</b><br><span class="muted">${escapeHtml(p.desc||'')}</span></div>
+          ${myRole==="master"?`<div class="row-actions">
+            <button class="btn btn-gold btn-sm">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button></div>`:''}
+        </div>`;
+      if(myRole==="master"){
+        div.querySelector(".btn-gold").onclick=()=>editProduct(d.id,p);
+        div.querySelector(".btn-danger").onclick=()=>deleteProduct(d.id,p.name);
+      }
+      list.appendChild(div);
+    });
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; }
+}
+function editProduct(id,p){
+  $("prod-id").value=id; $("prod-name").value=p.name||""; $("prod-desc").value=p.desc||"";
+  $("prod-icon").value=p.icon||""; $("prod-link").value=p.link||"";
+  $("prod-cancel").classList.remove("hide"); $("prod-msg").textContent="Editing…";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+const prodCancelBtn=$("prod-cancel"); if(prodCancelBtn) prodCancelBtn.onclick=()=>resetProdForm();
+function resetProdForm(){ $("prod-id").value=""; $("prod-name").value=""; $("prod-desc").value=""; $("prod-icon").value=""; $("prod-link").value=""; $("prod-cancel").classList.add("hide"); $("prod-msg").textContent=""; }
+
+const prodSaveBtn=$("prod-save");
+if(prodSaveBtn) prodSaveBtn.onclick=async()=>{
+  const id=$("prod-id").value, name=$("prod-name").value.trim(), desc=$("prod-desc").value.trim();
+  const icon=$("prod-icon").value.trim()||"📦", link=$("prod-link").value.trim();
+  $("prod-msg").textContent="";
+  if(!name){ $("prod-msg").textContent="Product name likhein."; return; }
+  prodSaveBtn.disabled=true; $("prod-msg").textContent="Saving…";
+  try{
+    if(id){ await updateDoc(doc(db,"products",id),{name,desc,icon,link}); }
+    else{ await addDoc(collection(db,"products"),{name,desc,icon,link,iconClass:"pi-g",order:Date.now(),createdAt:serverTimestamp()}); }
+    resetProdForm(); $("prod-msg").textContent="Saved ✓"; loadProducts();
+  }catch(e){ $("prod-msg").textContent="Save fail: "+(e.code||e.message); }
+  prodSaveBtn.disabled=false;
+};
+async function deleteProduct(id,name){
+  if(!confirm("Product delete karein: "+name+" ?")) return;
+  try{ await deleteDoc(doc(db,"products",id)); loadProducts(); }
+  catch(e){ alert("Delete fail: "+(e.code||e.message)); }
+}
+const prodSeedBtn=$("prod-seed");
+if(prodSeedBtn) prodSeedBtn.onclick=async()=>{
+  if(!confirm("Website ke current products database mein import karein?")) return;
+  const defs=[
+    {name:"Cattle Feed Cake", desc:"High-protein cattle feed cake for better animal health and increased milk production. Nutritious, palatable and cost-effective for farmers.", icon:"🐄", iconClass:"pi-g", link:"cattle-feed-cake.html"},
+    {name:"Cotton Seed", desc:"Premium quality cotton seed for oil extraction and animal feed. Consistent quality and competitive pricing for businesses of all sizes.", icon:"🌱", iconClass:"pi-p", link:"cotton-seed.html"}
+  ];
+  prodSeedBtn.disabled=true; $("prod-msg").textContent="Importing…";
+  try{
+    for(let i=0;i<defs.length;i++){ await addDoc(collection(db,"products"),{...defs[i], order:i+1, createdAt:serverTimestamp()}); }
+    $("prod-msg").textContent="Imported ✓"; loadProducts();
+  }catch(e){ $("prod-msg").textContent="Import fail: "+(e.code||e.message); }
+  prodSeedBtn.disabled=false;
 };
 
 function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
