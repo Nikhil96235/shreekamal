@@ -98,6 +98,7 @@
 
   <div class="tabs">
     <button class="tab active" data-tab="reviews">Customer Reviews</button>
+    <button class="tab" data-tab="pending">Pending <span id="pendCount" class="role-badge role-master" style="display:none;"></span></button>
     <button class="tab" data-tab="products">Products</button>
     <button class="tab masterOnly" data-tab="admins">Manage Admins</button>
   </div>
@@ -122,6 +123,13 @@
     </div>
 
     <div id="rev-list"><p class="muted">Loading…</p></div>
+  </div>
+
+  <!-- PENDING (customer submitted, approve/reject) -->
+  <div class="panel" id="panel-pending">
+    <h2>Pending Reviews</h2>
+    <div class="sub">Customers ne website se submit kiye. Approve karoge to hi live dikhega.</div>
+    <div id="pend-list"><p class="muted">Loading…</p></div>
   </div>
 
   <!-- PRODUCTS (view only for admin, edit coming for master) -->
@@ -225,6 +233,7 @@ onAuthStateChanged(auth, async (user) => {
   document.querySelectorAll(".masterOnly").forEach(el=> el.classList.toggle("hide", myRole!=="master"));
   document.querySelectorAll(".adminNote").forEach(el=> el.classList.toggle("hide", myRole==="master"));
   loadReviews();
+  loadPending();
   if(myRole==="master") loadAdmins();
 });
 
@@ -357,6 +366,54 @@ async function removeAdmin(uid,email){
   if(!confirm("Admin hata dein: "+email+" ?")) return;
   try{ await deleteDoc(doc(db,"admins",uid)); loadAdmins(); }
   catch(e){ alert("Remove fail: "+(e.code||e.message)); }
+}
+
+// ---------- PENDING (customer submitted) ----------
+async function loadPending(){
+  const list=$("pend-list"); list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const snap=await getDocs(query(collection(db,"pendingReviews"), orderBy("createdAt")));
+    const badge=$("pendCount");
+    if(snap.empty){
+      list.innerHTML='<p class="muted">Koi naya review nahi.</p>';
+      badge.style.display="none";
+      return;
+    }
+    badge.style.display="inline-block"; badge.textContent=snap.size;
+    list.innerHTML="";
+    snap.forEach(d=>{
+      const t=d.data();
+      const div=document.createElement("div");
+      div.className="list-item";
+      div.innerHTML=`
+        <img src="${t.photoURL||''}" alt=""/>
+        <div class="it-body">
+          <div class="it-text">${escapeHtml(t.text||'')}</div>
+          <div class="row-actions">
+            <button class="btn btn-primary btn-sm" style="width:auto;margin:0;">✓ Approve</button>
+            <button class="btn btn-danger btn-sm">✕ Reject</button>
+          </div>
+        </div>`;
+      div.querySelector(".btn-primary").onclick=()=>approvePending(d.id,t);
+      div.querySelector(".btn-danger").onclick=()=>rejectPending(d.id);
+      list.appendChild(div);
+    });
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; }
+}
+
+async function approvePending(id,t){
+  try{
+    await addDoc(collection(db,"testimonials"),{
+      text:t.text||"", photoURL:t.photoURL||"", order:Date.now(), createdAt:serverTimestamp()
+    });
+    await deleteDoc(doc(db,"pendingReviews",id));
+    loadPending(); loadReviews();
+  }catch(e){ alert("Approve fail: "+(e.code||e.message)); }
+}
+async function rejectPending(id){
+  if(!confirm("Yeh review reject (delete) karein?")) return;
+  try{ await deleteDoc(doc(db,"pendingReviews",id)); loadPending(); }
+  catch(e){ alert("Reject fail: "+(e.code||e.message)); }
 }
 
 function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}

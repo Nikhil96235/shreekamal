@@ -477,9 +477,27 @@
       </div>
 
     </div>
+
+    <div class="testi-cta">
+      <button id="openReviewBtn" class="testi-add-btn">★ Apna Review Dein</button>
+    </div>
+    <div id="reviewForm" class="review-form" style="display:none;">
+      <div class="rf-inner">
+        <h3>Apna Review Dein</h3>
+        <p class="rf-note">Aapka review approve hone ke baad website par dikhega.</p>
+        <label>Apni Photo</label>
+        <input type="file" id="cust-photo" accept="image/*"/>
+        <label>Aapka anubhav (review)</label>
+        <textarea id="cust-text" rows="3" placeholder="Jaise: इस खल से मेरी गाय का दूध बढ़ गया..."></textarea>
+        <div class="rf-actions">
+          <button id="cust-submit" class="testi-add-btn">Submit</button>
+          <button id="cust-cancel" class="rf-cancel">Cancel</button>
+          <span id="cust-msg"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
 <!-- CONTACT + MAP -->
 <section class="contact-section" id="contact">
   <div class="section-inner">
@@ -596,32 +614,71 @@
 
 <script src="script.js"></script>
 <script type="module">
-// Load customer reviews from Firebase (if set up). Warna static cards rahenge.
+// Reviews load karein + customer submit form chalu karein (Firebase)
+function compressToDataURL(file, maxSize, quality){
+  return new Promise((resolve,reject)=>{
+    const img=new Image(), reader=new FileReader();
+    reader.onload=()=>{ img.src=reader.result; }; reader.onerror=reject;
+    img.onload=()=>{ let w=img.width,h=img.height; const s=Math.min(1,maxSize/Math.max(w,h));
+      w=Math.round(w*s); h=Math.round(h*s); const c=document.createElement("canvas");
+      c.width=w; c.height=h; c.getContext("2d").drawImage(img,0,0,w,h);
+      resolve(c.toDataURL("image/jpeg",quality)); };
+    img.onerror=reject; reader.readAsDataURL(file);
+  });
+}
+const esc = s => (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Form open/close (Firebase ke bina bhi chale)
+const openBtn=document.getElementById("openReviewBtn");
+const form=document.getElementById("reviewForm");
+const cancelBtn=document.getElementById("cust-cancel");
+if(openBtn) openBtn.onclick=()=>{ form.style.display="block"; openBtn.style.display="none"; form.scrollIntoView({behavior:"smooth",block:"center"}); };
+if(cancelBtn) cancelBtn.onclick=()=>{ form.style.display="none"; if(openBtn) openBtn.style.display="inline-block"; };
+
 try{
   const { firebaseConfig } = await import("./firebase-config.js");
   if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-    const { getFirestore, collection, getDocs, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const { getFirestore, collection, getDocs, addDoc, query, orderBy, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const snap = await getDocs(query(collection(db,"testimonials"), orderBy("order")));
-    if(!snap.empty){
-      const grid = document.getElementById("testiGrid");
-      grid.innerHTML = "";
-      snap.forEach(d=>{
-        const t = d.data();
-        const esc = s => (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-        const card = document.createElement("div");
-        card.className = "testi-card reveal";
-        card.innerHTML =
-          '<div class="testi-photo-wrap"><img class="testi-photo" src="'+esc(t.photoURL)+'" alt="Customer"/></div>'+
-          '<div class="testi-content"><div class="testi-quote-mark">&#8220;</div>'+
-          '<p class="testi-text">'+esc(t.text)+'</p></div>';
-        grid.appendChild(card);
-      });
+
+    // load approved reviews
+    try{
+      const snap = await getDocs(query(collection(db,"testimonials"), orderBy("order")));
+      if(!snap.empty){
+        const grid = document.getElementById("testiGrid"); grid.innerHTML="";
+        snap.forEach(d=>{ const t=d.data(); const card=document.createElement("div");
+          card.className="testi-card reveal";
+          card.innerHTML='<div class="testi-photo-wrap"><img class="testi-photo" src="'+esc(t.photoURL)+'" alt="Customer"/></div>'+
+            '<div class="testi-content"><div class="testi-quote-mark">&#8220;</div><p class="testi-text">'+esc(t.text)+'</p></div>';
+          grid.appendChild(card); });
+      }
+    }catch(e){}
+
+    // customer submit -> pendingReviews
+    const submitBtn=document.getElementById("cust-submit");
+    if(submitBtn){
+      submitBtn.onclick=async()=>{
+        const text=document.getElementById("cust-text").value.trim();
+        const file=document.getElementById("cust-photo").files[0];
+        const msg=document.getElementById("cust-msg");
+        if(!text){ msg.style.color="#d32f2f"; msg.textContent="Review likhein."; return; }
+        submitBtn.disabled=true; msg.style.color="#1d6630"; msg.textContent="Bhej rahe hain…";
+        try{
+          let photoURL="";
+          if(file){ photoURL=await compressToDataURL(file,420,0.8);
+            if(photoURL.length>900000) photoURL=await compressToDataURL(file,320,0.7); }
+          await addDoc(collection(db,"pendingReviews"),{text,photoURL,createdAt:serverTimestamp()});
+          form.innerHTML='<div class="rf-inner" style="text-align:center;padding:10px 0;"><h3>Dhanyavaad! 🙏</h3><p class="rf-note">Aapka review mil gaya. Approve hone ke baad website par dikhega.</p></div>';
+        }catch(e){ msg.style.color="#d32f2f"; msg.textContent="Fail: "+(e.code||e.message); submitBtn.disabled=false; }
+      };
     }
+  } else {
+    // Firebase set nahi -> form button hide (taaki submit na ho)
+    if(openBtn) openBtn.style.display="none";
   }
-}catch(e){ /* Firebase set nahi / error -> static reviews hi rahenge */ }
+}catch(e){ if(openBtn) openBtn.style.display="none"; }
 </script>
 </body>
 </html>
