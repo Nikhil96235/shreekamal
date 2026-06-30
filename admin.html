@@ -100,6 +100,7 @@
     <button class="tab active" data-tab="reviews">Customer Reviews</button>
     <button class="tab" data-tab="pending">Pending <span id="pendCount" class="role-badge role-master" style="display:none;"></span></button>
     <button class="tab" data-tab="products">Products</button>
+    <button class="tab" data-tab="brands">Brands</button>
     <button class="tab masterOnly" data-tab="admins">Manage Admins</button>
   </div>
 
@@ -137,12 +138,40 @@
     <h2>Products &amp; Brands</h2>
     <div class="sub">Yahan products/brands dikhte hain.</div>
     <div class="note adminNote">Aap (Admin) products ko sirf <b>dekh</b> sakte hain, change nahi kar sakte.</div>
-    <div class="note masterOnly" style="margin-top:10px;">Master Admin: products/brands ko edit/add/delete karne ka option <b>agle update</b> mein jod diya jaayega. (Phase 2)</div>
+    <div class="note masterOnly" style="margin-top:10px;">Brands ab "Brands" tab se edit ho sakte hain. Products (sirf 2) editing baad mein jod sakte hain — bata dena.</div>
     <ul id="prod-list" style="margin-top:16px;line-height:2;color:#333;padding-left:18px;">
       <li>Cattle Feed Cake (Binola Khal)</li>
       <li>Cotton Seed</li>
       <li>Brands: Radha Govind, Shreekamal, Panchratan, Radha Kaithal, Gaiyya, Butter Milk, Amrit Kalash</li>
     </ul>
+  </div>
+
+  <!-- BRANDS -->
+  <div class="panel" id="panel-brands">
+    <h2>Brands</h2>
+    <div class="sub">Website ke brand cards. Master add/edit/delete kar sakta hai.</div>
+
+    <div class="masterOnly">
+      <div class="form-card">
+        <input type="hidden" id="brand-id"/>
+        <label>Brand Name</label>
+        <input id="brand-name" placeholder="Jaise: Radha Govind"/>
+        <label>Short Description</label>
+        <textarea id="brand-desc" rows="2" placeholder="Chhoti line brand ke baare mein"></textarea>
+        <label>Brand Photo (bag)</label>
+        <input id="brand-photo" type="file" accept="image/*"/>
+        <div class="small">Edit karte waqt photo na chunne par purani photo rahegi.</div>
+        <div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" style="width:auto;margin:0;" id="brand-save">Save Brand</button>
+          <button class="btn btn-ghost btn-sm hide" id="brand-cancel">Cancel</button>
+          <button class="btn btn-gold btn-sm" id="brand-seed">Import current brands</button>
+          <span class="ok" id="brand-msg"></span>
+        </div>
+      </div>
+    </div>
+    <div class="note adminNote">Aap (Admin) brands sirf <b>dekh</b> sakte hain, change nahi.</div>
+
+    <div id="brand-list"><p class="muted">Loading…</p></div>
   </div>
 
   <!-- MANAGE ADMINS (master only) -->
@@ -234,6 +263,7 @@ onAuthStateChanged(auth, async (user) => {
   document.querySelectorAll(".adminNote").forEach(el=> el.classList.toggle("hide", myRole==="master"));
   loadReviews();
   loadPending();
+  loadBrands();
   if(myRole==="master") loadAdmins();
 });
 
@@ -415,6 +445,92 @@ async function rejectPending(id){
   try{ await deleteDoc(doc(db,"pendingReviews",id)); loadPending(); }
   catch(e){ alert("Reject fail: "+(e.code||e.message)); }
 }
+
+// ---------- BRANDS ----------
+async function loadBrands(){
+  const list=$("brand-list"); list.innerHTML='<p class="muted">Loading…</p>';
+  try{
+    const snap=await getDocs(query(collection(db,"brands"), orderBy("order")));
+    const seedBtn=$("brand-seed");
+    if(snap.empty){
+      list.innerHTML='<p class="muted">Abhi koi brand nahi. '+(myRole==="master"?'"Import current brands" dabao ya naya add karo.':'')+'</p>';
+      if(seedBtn) seedBtn.style.display=(myRole==="master")?"inline-flex":"none";
+      return;
+    }
+    if(seedBtn) seedBtn.style.display="none"; // pehle se hain to import chhupao
+    list.innerHTML="";
+    snap.forEach(d=>{
+      const b=d.data();
+      const div=document.createElement("div"); div.className="list-item";
+      div.innerHTML=`
+        <img src="${b.photoURL||''}" alt="" style="border-radius:10px;"/>
+        <div class="it-body">
+          <div class="it-text"><b>${escapeHtml(b.name||'')}</b><br><span class="muted">${escapeHtml(b.desc||'')}</span></div>
+          ${myRole==="master"?`<div class="row-actions">
+            <button class="btn btn-gold btn-sm">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button></div>`:''}
+        </div>`;
+      if(myRole==="master"){
+        div.querySelector(".btn-gold").onclick=()=>editBrand(d.id,b);
+        div.querySelector(".btn-danger").onclick=()=>deleteBrand(d.id,b.name);
+      }
+      list.appendChild(div);
+    });
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; }
+}
+
+function editBrand(id,b){
+  $("brand-id").value=id; $("brand-name").value=b.name||""; $("brand-desc").value=b.desc||"";
+  $("brand-photo").value=""; $("brand-cancel").classList.remove("hide");
+  $("brand-msg").textContent="Editing…"; window.scrollTo({top:0,behavior:"smooth"});
+}
+const brandCancelBtn=$("brand-cancel"); if(brandCancelBtn) brandCancelBtn.onclick=()=>resetBrandForm();
+function resetBrandForm(){ $("brand-id").value=""; $("brand-name").value=""; $("brand-desc").value=""; $("brand-photo").value=""; $("brand-cancel").classList.add("hide"); $("brand-msg").textContent=""; }
+
+const brandSaveBtn=$("brand-save");
+if(brandSaveBtn) brandSaveBtn.onclick=async()=>{
+  const id=$("brand-id").value, name=$("brand-name").value.trim(), desc=$("brand-desc").value.trim();
+  const file=$("brand-photo").files[0]; $("brand-msg").textContent="";
+  if(!name){ $("brand-msg").textContent="Brand name likhein."; return; }
+  brandSaveBtn.disabled=true; $("brand-msg").textContent="Saving…";
+  try{
+    let photoURL=null;
+    if(file){ photoURL=await compressToDataURL(file,460,0.82); if(photoURL.length>900000) photoURL=await compressToDataURL(file,340,0.7); }
+    if(id){ const upd={name,desc}; if(photoURL) upd.photoURL=photoURL; await updateDoc(doc(db,"brands",id),upd); }
+    else{ if(!photoURL){ $("brand-msg").textContent="Naye brand ke liye photo chunein."; brandSaveBtn.disabled=false; return; }
+      await addDoc(collection(db,"brands"),{name,desc,photoURL,order:Date.now(),createdAt:serverTimestamp()}); }
+    resetBrandForm(); $("brand-msg").textContent="Saved ✓"; loadBrands();
+  }catch(e){ $("brand-msg").textContent="Save fail: "+(e.code||e.message); }
+  brandSaveBtn.disabled=false;
+};
+
+async function deleteBrand(id,name){
+  if(!confirm("Brand delete karein: "+name+" ?")) return;
+  try{ await deleteDoc(doc(db,"brands",id)); loadBrands(); }
+  catch(e){ alert("Delete fail: "+(e.code||e.message)); }
+}
+
+const brandSeedBtn=$("brand-seed");
+if(brandSeedBtn) brandSeedBtn.onclick=async()=>{
+  if(!confirm("Website ke current 7 brands database mein import karein?")) return;
+  const defaults=[
+    {name:"Radha Govind", desc:"Aadit Oil Mill ka premium Kachi Ghani binola khal — gaay-bhains ke liye behtar sehat aur zyada doodh.", photoURL:"images/radha_govind_kachhighani.jpg"},
+    {name:"Shreekamal Cattle Feed Cake", desc:"Hamara flagship cattle feed cake — premium Binola Khal, 1969 se bharose ka naam.", photoURL:"images/shrikamal.jpg"},
+    {name:"Panchratan", desc:"Panchratan Shri 100% shudh Kachi Ghani binola khal — sehatmand pashu, zyada doodh.", photoURL:"images/panchratan_shri.jpg"},
+    {name:"Radha Kaithal", desc:"Radha Govind Special Kaithal quality binola khal (adhik tel wali).", photoURL:"images/radha_govind_kaithal.jpg"},
+    {name:"Gaiyya", desc:"Super-quality high-oil binola khal — purity guaranteed.", photoURL:"images/gaiyya.jpg"},
+    {name:"Butter Milk", desc:"100% pure binola khal — zyada doodh, behtar pashu sehat.", photoURL:"images/buttermilk.jpg"},
+    {name:"Amrit Kalash", desc:"100% shudh Kachi Ghani binola khal — Adhik Doodh, Adhik Ghee.", photoURL:"images/amrit_kalash.jpg"}
+  ];
+  brandSeedBtn.disabled=true; $("brand-msg").textContent="Importing…";
+  try{
+    for(let i=0;i<defaults.length;i++){
+      await addDoc(collection(db,"brands"),{...defaults[i], order:i+1, createdAt:serverTimestamp()});
+    }
+    $("brand-msg").textContent="Imported ✓"; loadBrands();
+  }catch(e){ $("brand-msg").textContent="Import fail: "+(e.code||e.message); }
+  brandSeedBtn.disabled=false;
+};
 
 function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 

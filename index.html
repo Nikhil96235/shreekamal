@@ -656,6 +656,26 @@ try{
       }
     }catch(e){}
 
+    // load brands (agar database mein hain to) -> carousel rebuild
+    try{
+      const bs = await getDocs(query(collection(db,"brands"), orderBy("order")));
+      if(!bs.empty){
+        const track = document.getElementById("brandsTrack");
+        if(track){
+          track.innerHTML="";
+          bs.forEach(d=>{ const b=d.data(); const card=document.createElement("div");
+            card.className="brand-card reveal";
+            card.onclick=()=>{ const c=document.getElementById("contact"); if(c) c.scrollIntoView({behavior:"smooth"}); };
+            card.innerHTML='<div class="brand-img-wrap"><img src="'+esc(b.photoURL)+'" alt="'+esc(b.name)+'"/></div>'+
+              '<div class="brand-body"><div class="brand-name">'+esc(b.name)+'</div>'+
+              '<p class="brand-desc">'+esc(b.desc||"")+'</p></div>';
+            track.appendChild(card);
+          });
+          if(window.refreshBrandsCarousel) window.refreshBrandsCarousel();
+        }
+      }
+    }catch(e){}
+
     // customer submit -> pendingReviews
     const submitBtn=document.getElementById("cust-submit");
     if(submitBtn){

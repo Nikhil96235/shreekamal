@@ -18,7 +18,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // ===== Brands carousel (Lenskart-style smooth infinite slide) =====
 const brandTrack=document.getElementById('brandsTrack');
-let brandIndex=0, brandOrig=0, brandStep=0, brandTimer=null;
+let brandIndex=0, brandOrig=0, brandStep=0, brandTimer=null, brandListenersAdded=false;
 const BRAND_GAP=24;            // must match CSS gap
 const BRAND_INTERVAL=2800;    // auto-slide speed (ms)
 
@@ -42,15 +42,31 @@ function goBrand(i){ brandIndex=brandOrig+i; brandApply(true); brandResetTimer()
 function brandStart(){ if(brandTrack) brandTimer=setInterval(nextBrand,BRAND_INTERVAL); }
 function brandResetTimer(){ if(brandTimer){clearInterval(brandTimer);brandTimer=null;} brandStart(); }
 
+function brandOneTimeListeners(){
+  if(brandListenersAdded||!brandTrack) return;
+  brandListenersAdded=true;
+  brandTrack.addEventListener('transitionend',(e)=>{
+    if(e.target!==brandTrack||e.propertyName!=='transform') return;
+    if(brandIndex>=brandOrig*2){ brandIndex-=brandOrig; brandApply(false); }
+    else if(brandIndex<brandOrig){ brandIndex+=brandOrig; brandApply(false); }
+  });
+  const wrap=document.querySelector('.brands-slider-wrap');
+  if(wrap){
+    wrap.addEventListener('mouseenter',()=>{if(brandTimer){clearInterval(brandTimer);brandTimer=null;}});
+    wrap.addEventListener('mouseleave',brandStart);
+  }
+  window.addEventListener('resize',()=>{ brandMeasure(); brandApply(false); });
+}
+
 function setupBrands(){
   if(!brandTrack) return;
+  if(brandTimer){clearInterval(brandTimer);brandTimer=null;}   // re-run safe
   const cards=Array.from(brandTrack.children);
   brandOrig=cards.length;
   if(brandOrig===0) return;
   // clone full set after AND before, for seamless looping both directions
   cards.forEach(c=>{const cl=c.cloneNode(true);cl.classList.add('visible');brandTrack.appendChild(cl);});
   cards.slice().reverse().forEach(c=>{const cl=c.cloneNode(true);cl.classList.add('visible');brandTrack.insertBefore(cl,brandTrack.firstChild);});
-  // make sure none stay hidden by the reveal animation
   brandTrack.querySelectorAll('.brand-card').forEach(c=>c.classList.add('visible'));
   // build dots
   const dotsWrap=document.getElementById('brandDots');
@@ -67,21 +83,11 @@ function setupBrands(){
   brandMeasure();
   brandApply(false);
   brandStart();
-  // seamless jump when we slide onto a clone
-  brandTrack.addEventListener('transitionend',(e)=>{
-    if(e.target!==brandTrack||e.propertyName!=='transform') return;
-    if(brandIndex>=brandOrig*2){ brandIndex-=brandOrig; brandApply(false); }
-    else if(brandIndex<brandOrig){ brandIndex+=brandOrig; brandApply(false); }
-  });
-  // pause on hover
-  const wrap=document.querySelector('.brands-slider-wrap');
-  if(wrap){
-    wrap.addEventListener('mouseenter',()=>{if(brandTimer){clearInterval(brandTimer);brandTimer=null;}});
-    wrap.addEventListener('mouseleave',brandStart);
-  }
-  window.addEventListener('resize',()=>{ brandMeasure(); brandApply(false); });
+  brandOneTimeListeners();
 }
 setupBrands();
+// Firebase dynamic brands aane par isse dobara setup hota hai:
+window.refreshBrandsCarousel=setupBrands;
 
 // Form submit
 function handleSubmit(){
