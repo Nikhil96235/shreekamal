@@ -346,6 +346,9 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#0a1c0d,#13361a);border-bottom:1px solid rgba(245,192,48,0.18);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 5%;}
 .topbar-left{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;white-space:nowrap;}
 .topbar-right{display:flex;align-items:center;gap:8px;}
+.tb-phones{display:inline-flex;align-items:center;}
+.tb-phones a{padding:5px 6px;gap:6px;}
+.tb-dot{color:rgba(255,255,255,0.35);padding:0 1px;}
 .topbar a{color:rgba(255,255,255,0.85);text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;padding:5px 12px;border-radius:20px;transition:background .2s,color .2s;white-space:nowrap;}
 .topbar a:hover{background:rgba(245,192,48,0.1);color:#fff;}
 .tb-ico{width:22px;height:22px;border-radius:50%;background:rgba(245,192,48,0.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
