@@ -226,6 +226,8 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.3);}
 .wa-float{position:fixed;bottom:24px;right:24px;z-index:998;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;animation:waBounce 2s ease-in-out 3s infinite;transition:transform 0.2s;}
 .wa-float:hover{transform:scale(1.1);}
+.ig-float{position:fixed;bottom:24px;right:92px;z-index:998;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(220,39,67,0.4);text-decoration:none;transition:transform 0.2s;}
+.ig-float:hover{transform:scale(1.1);}
 @keyframes waBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
 /* RESPONSIVE */
