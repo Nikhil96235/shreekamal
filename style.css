@@ -407,7 +407,9 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .testi-section .section-eyebrow{color:var(--gy);}
 .testi-section .section-title{color:#fff;}
 .testi-section .section-desc{color:rgba(255,255,255,0.7);}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;}
+.testi-slider-wrap{overflow:hidden;margin-top:50px;}
+.testi-grid{display:flex;gap:24px;}
+.testi-grid .testi-card{flex:0 0 calc((100% - 48px)/3);}
 .testi-card{display:flex;flex-direction:column;align-items:center;text-align:center;background:linear-gradient(160deg,#ffffff,#f6f1e6);border-radius:22px;padding:36px 26px 30px;box-shadow:0 16px 40px rgba(0,0,0,0.28);border:1px solid rgba(245,192,48,0.35);position:relative;overflow:hidden;}
 .testi-card::after{content:"\201D";position:absolute;right:18px;bottom:-40px;font-family:'Playfair Display',serif;font-size:150px;color:rgba(34,139,58,0.07);pointer-events:none;}
 .testi-photo-wrap{position:relative;flex-shrink:0;margin-bottom:18px;}
@@ -418,7 +420,8 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .testi-text{font-size:16px;line-height:1.7;color:#143a1c;font-weight:500;margin:12px 0 0;}
 .testi-text::after{content:"";display:block;width:50px;height:3px;border-radius:3px;background:var(--gy);margin:16px auto 0;}
 @media(max-width:880px){
-  .testi-grid{grid-template-columns:1fr;gap:20px;max-width:480px;margin-left:auto;margin-right:auto;}
+  .testi-grid{gap:20px;}
+  .testi-grid .testi-card{flex:0 0 100%;}
 }
 
 /* ===== Public review submit form ===== */

@@ -128,3 +128,27 @@ function handleSubmit(){
     hero.addEventListener('mouseleave',start);
   }
 })();
+
+// ===== Testimonials auto-slider (cards slide hote rehte hain) =====
+(function(){
+  const grid = document.getElementById('testiGrid');
+  if(!grid) return;
+  let busy = false;
+  function perView(){ return window.innerWidth <= 860 ? 1 : 3; }
+  setInterval(function(){
+    const cards = grid.children;
+    if(busy || cards.length <= perView()) return;
+    busy = true;
+    const first = cards[0];
+    const gap = parseFloat(getComputedStyle(grid).gap) || 24;
+    const shift = first.getBoundingClientRect().width + gap;
+    grid.style.transition = 'transform 0.8s ease';
+    grid.style.transform = 'translateX(-' + shift + 'px)';
+    setTimeout(function(){
+      grid.style.transition = 'none';
+      grid.style.transform = 'none';
+      grid.appendChild(first);
+      busy = false;
+    }, 820);
+  }, 3500);
+})();
