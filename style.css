@@ -85,12 +85,12 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* STATS BAR */
-.stats-bar{background:linear-gradient(135deg,#0f2a14,#1a4a24);padding:40px 5%;border-top:1px solid rgba(245,192,48,0.1);border-bottom:1px solid rgba(245,192,48,0.1);}
+.stats-bar{background:linear-gradient(135deg,#0f2a14,#1a4a24);padding:14px 5%;border-top:1px solid rgba(245,192,48,0.1);border-bottom:1px solid rgba(245,192,48,0.1);}
 .stats-bar-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
-.sbar-item{text-align:center;padding:20px;border-right:1px solid rgba(245,192,48,0.1);}
+.sbar-item{text-align:center;padding:6px 20px;border-right:1px solid rgba(245,192,48,0.1);}
 .sbar-item:last-child{border-right:none;}
-.sbar-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;background:linear-gradient(135deg,var(--gy),var(--gl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbar-lbl{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-top:6px;}
+.sbar-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gy),var(--gl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbar-lbl{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1.5px;margin-top:2px;}
 
 /* PRODUCTS */
 .products-section{background:#fff;}
