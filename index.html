@@ -26,6 +26,34 @@
 </head>
 <body class="has-topbar">
 
+<!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
+<div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
+  <img src="images/splash.jpg" alt="Shreekamal Oil Industries — Pashu Swasth, Doodh Zyada" class="sk-intro-img"/>
+</div>
+<style>
+  .sk-intro{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#dcebf7 0%,#ffffff 46%,#eaf4fb 100%);
+    opacity:1;transition:opacity .6s ease;cursor:pointer;}
+  .sk-intro.sk-hide{opacity:0;pointer-events:none;}
+  .sk-intro-img{max-width:94%;max-height:90%;object-fit:contain;
+    animation:skZoom 2.6s ease forwards;}
+  @keyframes skZoom{0%{transform:scale(.94);opacity:0;} 14%{opacity:1;} 100%{transform:scale(1);opacity:1;}}
+  @media(max-width:640px){ .sk-intro-img{max-width:100%;} }
+  body.sk-lock{overflow:hidden;}
+</style>
+<script>
+  document.body.classList.add('sk-lock');
+  function skHideIntro(){
+    var el=document.getElementById('skIntro');
+    if(!el||el.classList.contains('sk-hide'))return;
+    el.classList.add('sk-hide');
+    document.body.classList.remove('sk-lock');
+    setTimeout(function(){ if(el&&el.parentNode) el.style.display='none'; },650);
+  }
+  setTimeout(skHideIntro, 2600);
+</script>
+<!-- ===== END INTRO SPLASH ===== -->
+
 <!-- TOP CONTACT BAR -->
 <div class="topbar">
   <div class="topbar-left">Pure · Natural · Trusted · Est. 2011</div>
@@ -803,4 +831,3 @@ try{
 </script>
 </body>
 </html>
-
