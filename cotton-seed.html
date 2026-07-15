@@ -35,11 +35,12 @@
     </div>
   </a>
   <div class="nav-links" id="navLinks">
-    <a href="index.html#products">Products</a>
-    <a href="index.html#brands">Brands</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="index.html#contact" class="nav-cta">Get Quote →</a>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="brands.html">Brands</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-cta">Get Quote →</a>
   </div>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -48,7 +49,7 @@
 
 <!-- PRODUCT HERO -->
 <section class="pd-hero">
-  <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; <a href="index.html#products">Products</a> &nbsp;›&nbsp; Cotton Seed</div>
+  <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; <a href="products.html">Products</a> &nbsp;›&nbsp; Cotton Seed</div>
   <div class="pd-hero-grid">
     <div class="pd-img-wrap">
       <!-- Apni image yahan lagayein: src ko images/cotton-seed.jpg se replace karein -->
@@ -61,7 +62,7 @@
       <p class="pd-desc">Premium, well-cleaned cotton seed with consistent quality — suitable for oil extraction units as well as direct cattle feed. Reliable supply, competitive pricing and quality you can depend on for businesses of every size.</p>
       <div class="pd-tags"><span class="pd-tag">PREMIUM GRADE</span><span class="pd-tag">BULK ORDERS</span><span class="pd-tag">CONSISTENT QUALITY</span><span class="pd-tag">FOR OIL & FEED</span></div>
       <div class="pd-cta-row">
-        <a href="index.html#contact" class="btn-primary">Get Quote →</a>
+        <a href="contact.html" class="btn-primary">Get Quote →</a>
         <a href="https://wa.me/919528547179" target="_blank" class="btn-wa">WhatsApp Us</a>
       </div>
     </div>
@@ -125,7 +126,7 @@
   <div class="pd-cta-band-title">Interested in Cotton Seed?</div>
   <div class="pd-cta-band-sub">Available for oil mills, feed makers and traders in bulk. Send your quantity and destination for a quick quote.</div>
   <div class="pd-cta-row">
-    <a href="index.html#contact" class="btn-primary">Send Inquiry →</a>
+    <a href="contact.html" class="btn-primary">Send Inquiry →</a>
     <a href="https://wa.me/919528547179" target="_blank" class="btn-wa">Chat on WhatsApp</a>
   </div>
 </div>
@@ -141,7 +142,6 @@
     <div>
       <div class="footer-col-title">PRODUCTS</div>
       <ul class="footer-links">
-        <li><a href="mustard-oil.html">Mustard Oil</a></li>
         <li><a href="cattle-feed-cake.html">Cattle Feed Cake</a></li>
         <li><a href="cotton-seed.html">Cotton Seed</a></li>
       </ul>
@@ -149,29 +149,30 @@
     <div>
       <div class="footer-col-title">BRANDS</div>
       <ul class="footer-links">
-        <li><a href="index.html#brands">Radha Govind</a></li>
-        <li><a href="index.html#brands">Panchratan</a></li>
-        <li><a href="index.html#brands">Radha Kaithal</a></li>
-        <li><a href="index.html#brands">Shreekamal</a></li>
-        <li><a href="index.html#brands">Butter Milk</a></li>
-        <li><a href="index.html#brands">Gaiyya</a></li>
-        <li><a href="index.html#brands">Amrit Kalash</a></li>
+        <li><a href="brands.html">Radha Govind</a></li>
+        <li><a href="brands.html">Panchratan</a></li>
+        <li><a href="brands.html">Radha Kaithal</a></li>
+        <li><a href="brands.html">Shreekamal</a></li>
+        <li><a href="brands.html">Butter Milk</a></li>
+        <li><a href="brands.html">Gaiyya</a></li>
+        <li><a href="brands.html">Amrit Kalash</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">GROUP</div>
       <ul class="footer-links">
-        <li><a href="index.html#about">Aadit Oil Mill</a></li>
-        <li><a href="index.html#about">Singhal Agro Products</a></li>
-        <li><a href="index.html#about">Fenixx Innovation Private Limited</a></li>
+        <li><a href="about.html">Aadit Oil Mill</a></li>
+        <li><a href="about.html">Singhal Agro Products</a></li>
+        <li><a href="about.html">Fenixx Innovation Private Limited</a></li>
         <li><a href="admin.html">Admin Login</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Shreekamal Oil Industries. All rights reserved. | Hinganghat, Maharashtra 442301</div>
+    <div class="footer-copy">© <span id="fyear">2011–2026</span> Shreekamal Oil Industries. All rights reserved. | Hinganghat, Maharashtra 442301</div>
     <div class="footer-copy">Made with ❤️ in India</div>
   </div>
+  <script>try{document.getElementById('fyear').textContent='2011–'+new Date().getFullYear();}catch(e){}</script>
 </footer>
 
 <!-- WhatsApp Float -->
