@@ -39,7 +39,7 @@ function brandApply(animate){
 function nextBrand(){ brandIndex++; brandApply(true); }
 function slideBrands(dir){ brandIndex+=dir; brandApply(true); brandResetTimer(); }
 function goBrand(i){ brandIndex=brandOrig+i; brandApply(true); brandResetTimer(); }
-function brandStart(){ if(brandTrack) brandTimer=setInterval(nextBrand,BRAND_INTERVAL); }
+function brandStart(){ if(brandTrack){ if(brandTimer)clearInterval(brandTimer); brandTimer=setInterval(nextBrand,BRAND_INTERVAL); } }
 function brandResetTimer(){ if(brandTimer){clearInterval(brandTimer);brandTimer=null;} brandStart(); }
 
 function brandOneTimeListeners(){
@@ -50,11 +50,8 @@ function brandOneTimeListeners(){
     if(brandIndex>=brandOrig*2){ brandIndex-=brandOrig; brandApply(false); }
     else if(brandIndex<brandOrig){ brandIndex+=brandOrig; brandApply(false); }
   });
-  const wrap=document.querySelector('.brands-slider-wrap');
-  if(wrap){
-    wrap.addEventListener('mouseenter',()=>{if(brandTimer){clearInterval(brandTimer);brandTimer=null;}});
-    wrap.addEventListener('mouseleave',brandStart);
-  }
+  // Brands slider hamesha auto-move kare (scroll ya tab-switch ke baad bhi)
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) brandResetTimer(); });
   window.addEventListener('resize',()=>{ brandMeasure(); brandApply(false); });
 }
 
@@ -119,14 +116,11 @@ function handleSubmit(){
     slides[idx].classList.add('active'); if(dots[idx])dots[idx].classList.add('active');
   }
   function next(){ go(idx+1); }
-  function start(){ timer=setInterval(next,4500); }   // ~4.5s pause per slide
-  function reset(){ if(timer){clearInterval(timer);timer=null;} start(); }
+  function start(){ if(timer)clearInterval(timer); timer=setInterval(next,4500); }   // ~4.5s per slide
+  function reset(){ start(); }
   start();
-  const hero=document.querySelector('.hero');
-  if(hero){
-    hero.addEventListener('mouseenter',()=>{if(timer){clearInterval(timer);timer=null;}});
-    hero.addEventListener('mouseleave',start);
-  }
+  // Slider hamesha auto-move kare (scroll ya tab-switch ke baad bhi chalu rahe)
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) start(); });
 })();
 
 // ===== Testimonials auto-slider (cards slide hote rehte hain) =====
