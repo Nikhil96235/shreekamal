@@ -451,16 +451,16 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 @keyframes heroMar{from{transform:translateY(0);}to{transform:translateY(-50%);}}
 @media(min-width:1250px){.hero-side{display:block;}}
 /* ===== Sub-page image banner (stylish Kapila-style header) ===== */
-.page-banner{position:relative;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;padding:150px 5% 76px;background:#0b1f0e center/cover no-repeat;overflow:hidden;}
+.page-banner{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:108px 5% 52px;background:#0b1f0e center/cover no-repeat;overflow:hidden;}
 .page-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,26,12,.72),rgba(9,26,12,.66) 45%,rgba(9,26,12,.92));}
 .page-banner-inner{position:relative;z-index:2;max-width:860px;animation:pbUp .8s ease both;}
 @keyframes pbUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-.pb-crumb{font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.62);margin-bottom:20px;}
+.pb-crumb{font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.62);margin-bottom:14px;}
 .pb-crumb a{color:var(--gy);text-decoration:none;}
 .pb-crumb a:hover{text-decoration:underline;}
-.pb-eyebrow{display:inline-block;font-size:11px;letter-spacing:4px;color:var(--gy);font-weight:600;margin-bottom:16px;text-transform:uppercase;}
+.pb-eyebrow{display:inline-block;font-size:11px;letter-spacing:4px;color:var(--gy);font-weight:600;margin-bottom:12px;text-transform:uppercase;}
 .pb-eyebrow::before,.pb-eyebrow::after{content:'';display:inline-block;width:30px;height:1px;background:var(--gr);vertical-align:middle;margin:0 12px;}
-.page-banner h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:800;color:#fff;line-height:1.12;margin-bottom:18px;text-shadow:0 2px 20px rgba(0,0,0,.35);}
-.page-banner .pb-sub{font-size:16px;color:rgba(255,255,255,.8);line-height:1.85;max-width:660px;margin:0 auto 30px;}
+.page-banner h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;line-height:1.14;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,.35);}
+.page-banner .pb-sub{font-size:14.5px;color:rgba(255,255,255,.8);line-height:1.7;max-width:620px;margin:0 auto 22px;}
 .pb-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-@media(max-width:600px){.page-banner{min-height:340px;padding:120px 6% 58px;} .pb-eyebrow::before,.pb-eyebrow::after{width:16px;margin:0 8px;}}
+@media(max-width:600px){.page-banner{padding:92px 6% 42px;} .pb-eyebrow::before,.pb-eyebrow::after{width:16px;margin:0 8px;} .page-banner .pb-sub{font-size:13.5px;}}
