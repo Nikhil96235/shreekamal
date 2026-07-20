@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gallery — Our Products & Brands | Shreekamal Oil Industries</title>
+<meta name="description" content="Photo gallery of Shreekamal Oil Industries products and brands — Radha Govind, Shree Kamal, Panchratan, Gaiyya, Amrit Kalash, Butter Milk cattle feed & cotton seed."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="favicon-180.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .gal-wrap{max-width:1200px;margin:0 auto;padding:56px 5% 30px;}
+  .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+  .gal-item{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;background:#f4ede2;aspect-ratio:3/4;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06);
+    opacity:0;transform:scale(.9) translateY(16px);animation:galPop .55s cubic-bezier(.2,.7,.3,1) forwards;}
+  .gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .gal-item:hover img{transform:scale(1.07);}
+  .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 14px 12px;
+    background:linear-gradient(transparent,rgba(11,31,14,.9));color:#fff;font-size:14px;font-weight:600;}
+  .gal-cap span{display:block;font-size:11px;color:var(--gy);font-weight:500;margin-top:2px;letter-spacing:.3px;}
+  @keyframes galPop{to{opacity:1;transform:none;}}
+  /* lightbox popup */
+  .lb{position:fixed;inset:0;z-index:100000;background:rgba(6,16,8,.93);display:none;
+    align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .3s ease;}
+  .lb.open{display:flex;opacity:1;}
+  .lb-img{max-width:88%;max-height:82vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:lbZoom .35s ease;}
+  @keyframes lbZoom{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#fff;font-size:15px;font-weight:600;padding:0 20px;}
+  .lb-cap b{color:var(--gy);}
+  .lb-close{position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1;background:none;border:none;}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:46px;cursor:pointer;
+    background:none;border:none;padding:0 16px;user-select:none;opacity:.75;transition:opacity .2s;}
+  .lb-nav:hover{opacity:1;}
+  .lb-prev{left:6px;} .lb-next{right:6px;}
+  @media(max-width:600px){ .lb-nav{font-size:34px;padding:0 8px;} .lb-img{max-width:94%;} }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 44 44" fill="none">
+      <ellipse cx="22" cy="29" rx="5" ry="10" fill="#1a5c2a" transform="rotate(-35 22 29)"/>
+      <ellipse cx="22" cy="29" rx="5" ry="10" fill="#1a5c2a" transform="rotate(35 22 29)"/>
+      <ellipse cx="22" cy="26" rx="5" ry="10" fill="#1a5c2a" transform="rotate(-15 22 29)"/>
+      <ellipse cx="22" cy="26" rx="5" ry="10" fill="#1a5c2a" transform="rotate(15 22 29)"/>
+      <ellipse cx="22" cy="25" rx="4.5" ry="10" fill="#1d6630"/>
+      <path d="M22 8Q27 17 27 22Q27 30 22 33Q17 30 17 22Q17 17 22 8Z" fill="url(#ngl)"/>
+      <ellipse cx="19" cy="16" rx="2" ry="4.5" fill="rgba(255,255,255,0.3)" transform="rotate(-15 19 16)"/>
+      <defs><linearGradient id="ngl" x1="22" y1="8" x2="22" y2="33" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#fdd85a"/><stop offset="55%" stop-color="#f5c030"/>
+        <stop offset="100%" stop-color="#c8860a"/>
+      </linearGradient></defs>
+    </svg>
+    <div>
+      <div class="nav-brand-name">Shreekamal Oil Industries</div>
+      <div class="nav-brand-sub">EST. 2011</div>
+    </div>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="brands.html">Brands</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-cta">Get Quote →</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="pd-hero">
+  <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; Gallery</div>
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2;text-align:center;">
+    <span class="pd-eyebrow">GALLERY</span>
+    <h1 class="pd-title">Our Products &amp; Brands</h1>
+    <p class="pd-desc" style="max-width:620px;margin:0 auto 0;">Kisi bhi image par click karein — woh badी view mein khulegi. Hamare premium cattle feed brands aur products ek jagah.</p>
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<div class="gal-wrap">
+  <div class="gal-grid" id="galGrid">
+    <div class="gal-item" style="animation-delay:.00s" data-cap="Shree Kamal|Avik Agro Products"><img loading="lazy" src="images/shrikamal.jpg?v=2" alt="Shree Kamal Binola Khal"/><div class="gal-cap">Shree Kamal<span>Avik Agro Products</span></div></div>
+    <div class="gal-item" style="animation-delay:.06s" data-cap="Radha Govind|Aadit Oil Mill"><img loading="lazy" src="images/radha_govind_kachhighani.jpg?v=2" alt="Radha Govind Binola Khal"/><div class="gal-cap">Radha Govind<span>Aadit Oil Mill</span></div></div>
+    <div class="gal-item" style="animation-delay:.12s" data-cap="Radha Kaithal|Aadit Oil Mill"><img loading="lazy" src="images/radha_govind_kaithal.jpg?v=4" alt="Radha Kaithal Binola Khal"/><div class="gal-cap">Radha Kaithal<span>Aadit Oil Mill</span></div></div>
+    <div class="gal-item" style="animation-delay:.18s" data-cap="Panchratan Shri|Singhal Agro"><img loading="lazy" src="images/panchratan_shri.jpg?v=2" alt="Panchratan Shri Binola Khal"/><div class="gal-cap">Panchratan Shri<span>Singhal Agro</span></div></div>
+    <div class="gal-item" style="animation-delay:.24s" data-cap="Gaiyya|Avik Agro Products"><img loading="lazy" src="images/gaiyya.jpg?v=3" alt="Gaiyya Super Quality Binola Khal"/><div class="gal-cap">Gaiyya<span>Avik Agro Products</span></div></div>
+    <div class="gal-item" style="animation-delay:.30s" data-cap="Butter Milk|Avik Agro Products"><img loading="lazy" src="images/buttermilk.jpg?v=2" alt="Butter Milk Binola Khal"/><div class="gal-cap">Butter Milk<span>Avik Agro Products</span></div></div>
+    <div class="gal-item" style="animation-delay:.36s" data-cap="Amrit Kalash|Avik Agro Products"><img loading="lazy" src="images/amrit_kalash.jpg?v=2" alt="Amrit Kalash Kachi Ghani Binola Khal"/><div class="gal-cap">Amrit Kalash<span>Avik Agro Products</span></div></div>
+    <div class="gal-item" style="animation-delay:.42s" data-cap="Radha Kaithal — Gold Pack|Aadit Oil Mill"><img loading="lazy" src="images/radhagovind_kaithal.jpg?v=4" alt="Radha Kaithal Gold Pack Binola Khal"/><div class="gal-cap">Radha Kaithal — Gold<span>Aadit Oil Mill</span></div></div>
+    <div class="gal-item" style="animation-delay:.48s" data-cap="Cattle Feed Cake|High Protein Binola Khal"><img loading="lazy" src="images/product-cattle-feed.jpg.jpeg" alt="Cattle Feed Cake"/><div class="gal-cap">Cattle Feed Cake<span>High Protein Khal</span></div></div>
+    <div class="gal-item" style="animation-delay:.54s" data-cap="Cotton Seed|Premium Grade"><img loading="lazy" src="images/product-cotton-seed.jpg.jpeg" alt="Premium Cotton Seed"/><div class="gal-cap">Cotton Seed<span>Premium Grade</span></div></div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="pd-cta-band">
+  <div class="pd-cta-band-title">Interested in Any Product?</div>
+  <div class="pd-cta-band-sub">Bulk orders aur dealership ke liye humse turant baat karein.</div>
+  <div class="pd-cta-row">
+    <a href="contact.html" class="btn-primary">Send Inquiry →</a>
+    <a href="https://wa.me/919528547179" target="_blank" class="btn-wa">Chat on WhatsApp</a>
+  </div>
+</div>
+
+<!-- LIGHTBOX POPUP -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" title="Close">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" title="Previous">&#8249;</button>
+  <img class="lb-img" id="lbImg" src="" alt="Preview"/>
+  <button class="lb-nav lb-next" id="lbNext" title="Next">&#8250;</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Shreekamal Oil Industries</div>
+      <div class="footer-brand-tag">PURE · NATURAL · TRUSTED · EST. 2011</div>
+      <p class="footer-brand-desc">Serving 10 Lakh+ clients across 7 states. Mauza Kohli, Jamb Road, Hinganghat — 442301, Maharashtra.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">PRODUCTS</div>
+      <ul class="footer-links">
+        <li><a href="cattle-feed-cake.html">Cattle Feed Cake</a></li>
+        <li><a href="cotton-seed.html">Cotton Seed</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">COMPANY</div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="brands.html">Brands</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">GROUP</div>
+      <ul class="footer-links">
+        <li><a href="about.html">Aadit Oil Mill</a></li>
+        <li><a href="about.html">Singhal Agro Products</a></li>
+        <li><a href="about.html">Fenixx Innovation Private Limited</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© <span id="fyear">2011–2026</span> Shreekamal Oil Industries. All rights reserved. | Hinganghat, Maharashtra 442301</div>
+    <script>try{document.getElementById('fyear').textContent='2011–'+new Date().getFullYear();}catch(e){}</script>
+    <div class="footer-copy">Made with ❤️ in India</div>
+  </div>
+</footer>
+
+<!-- Instagram Float -->
+<a href="https://www.instagram.com/YOUR_USERNAME" class="ig-float" target="_blank" rel="noopener" title="Follow us on Instagram">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 4.98a4.82 4.82 0 1 0 0 9.64 4.82 4.82 0 0 0 0-9.64zm0 1.62a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4zm5-2.9a1.13 1.13 0 1 0 0 2.26 1.13 1.13 0 0 0 0-2.26z"/></svg>
+</a>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919528547179" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.gal-item'));
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
+  var idx=0;
+  function show(i){
+    idx=(i+items.length)%items.length;
+    var it=items[idx];
+    lbImg.src=it.querySelector('img').getAttribute('src');
+    var c=(it.getAttribute('data-cap')||'').split('|');
+    lbCap.innerHTML='<b>'+(c[0]||'')+'</b>'+(c[1]?' — '+c[1]:'');
+  }
+  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  items.forEach(function(it,i){ it.addEventListener('click',function(){ open(i); }); });
+  document.getElementById('lbClose').onclick=close;
+  document.getElementById('lbPrev').onclick=function(e){ e.stopPropagation(); show(idx-1); };
+  document.getElementById('lbNext').onclick=function(e){ e.stopPropagation(); show(idx+1); };
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close();
+    else if(e.key==='ArrowLeft')show(idx-1);
+    else if(e.key==='ArrowRight')show(idx+1);
+  });
+})();
+</script>
+<script src="script.js"></script>
+</body>
+</html>
