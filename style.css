@@ -474,3 +474,14 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
   display:flex;align-items:flex-end;justify-content:center;}
 .founder-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;}
 .founder-photo svg{width:70px;height:70px;fill:rgba(245,192,48,.5);margin-bottom:-4px;}
+
+/* ===== Hero side marquee — hover zoom + click/tap popup ===== */
+.hero-side{pointer-events:auto;}
+.hero-side:hover .hside-track{animation-play-state:paused;}
+.hside-track img{cursor:pointer;transition:transform .35s ease, box-shadow .35s ease;border-radius:6px;}
+.hside-track img:hover{transform:scale(1.14);box-shadow:0 12px 30px rgba(0,0,0,.5);position:relative;z-index:4;}
+.hlb{position:fixed;inset:0;z-index:100000;background:rgba(6,16,8,.93);display:none;align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .3s ease;}
+.hlb.open{display:flex;opacity:1;}
+.hlb-img{max-width:min(80%,520px);max-height:84vh;border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.6);animation:hlbZoom .32s ease;}
+@keyframes hlbZoom{from{transform:scale(.82);opacity:0;}to{transform:scale(1);opacity:1;}}
+.hlb-close{position:absolute;top:14px;right:24px;color:#fff;font-size:38px;line-height:1;cursor:pointer;background:none;border:none;}
