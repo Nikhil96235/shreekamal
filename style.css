@@ -504,3 +504,7 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .qual-text{font-size:12.5px;color:var(--tt);margin-top:3px;}
 @media(max-width:900px){.qual-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:520px){.qual-grid{grid-template-columns:1fr;}}
+
+/* ===== Brands page full-width banner (no crop, no empty space) ===== */
+.brand-banner{margin-top:72px;line-height:0;font-size:0;background:var(--gd);}
+.brand-banner img{width:100%;height:auto;display:block;}
