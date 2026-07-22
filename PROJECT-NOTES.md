@@ -1,7 +1,7 @@
 # SHREEKAMAL WEBSITE — MASTER PROJECT FILE (ROOT)
 
 > Yeh is poore project ka master record hai. Jo bhi kaam hota hai, yahan update hota rehta hai.
-> **Last updated:** 21 July 2026
+> **Last updated:** 22 July 2026
 
 ---
 
@@ -77,6 +77,8 @@
 - **Brands page par full-width brand banner lagaya** (farmer + 5 bags wali image, na cut na khali space) ✅ *(latest)*
 - Poore project ka step-by-step PDF guide banaya
 - Footer copyright auto-year kiya
+- **Brand banner image change ki** (nayi image se replace, cache version v2) *(22 July)*
+- **PROJECT-NOTES.md master root file banayi** (project ka poora record) *(21 July)*
 
 ---
 
