@@ -100,7 +100,8 @@
 - **Facebook float icon add kiya** (neela, link: https://www.facebook.com/shreekamalagro/) sabhi 8 pages par *(22 July)*
 - **Instagram link theek ki** (placeholder → https://www.instagram.com/shreekamalagro/), aur do product pages par Instagram bhi add kiya *(22 July)*
 - **Founder photo add ki** (Sh. Suresh Singhal Ji) — `images/founder.jpg`, index+about *(30 July)*
-- **Founder frame wapas gol (circle) kiya** — user ne pehle jaisa maanga; face-centered crop, 132px golden circle, v4 *(30 July)*
+- **Founder frame wapas gol (circle) kiya** — 132px golden circle *(30 July)*
+- **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
 
 ---
 
