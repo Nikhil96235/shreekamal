@@ -99,6 +99,7 @@
 - **PROJECT-NOTES.md ko full master/context file banaya** (nayi chat mein upload karke continue karne ke liye) *(22 July)*
 - **Facebook float icon add kiya** (neela, link: https://www.facebook.com/shreekamalagro/) sabhi 8 pages par *(22 July)*
 - **Instagram link theek ki** (placeholder → https://www.instagram.com/shreekamalagro/), aur do product pages par Instagram bhi add kiya *(22 July)*
+- **Founder photo add ki** (Sh. Suresh Singhal Ji) — `images/founder.jpg`, circular frame ke liye square crop, index+about par v2 *(30 July)*
 
 ---
 
@@ -108,7 +109,7 @@
 - [ ] **Domain jodna** — domain lene ke baad: repo mein CNAME file + domain company ki DNS settings. (Editing/deploy ka tarika same rahega, sirf ek-baar ka setup.)
 - [ ] **SEO** — domain ke BAAD: Google Search Console, Google Business Profile, sitemap.xml, robots.txt, business schema, keyword-rich titles, directory listings (IndiaMART/JustDial/TradeIndia).
 - [x] ~~Instagram link theek~~ — ho gaya (https://www.instagram.com/shreekamalagro/). Facebook bhi add ho gaya (https://www.facebook.com/shreekamalagro/).
-- [ ] **Founder photo** — `images/founder.jpg` naam se Sh. Suresh Singhal Ji ki asli photo daalni.
+- [x] ~~Founder photo~~ — ho gaya. `images/founder.jpg` (Sh. Suresh Singhal Ji, square crop, circular frame ke liye) *(30 July)*
 - [ ] **FSSAI number + GST number** — Quality/Contact section mein daalne (trust ke liye).
 - [ ] **FormSubmit activate** — pehli baar confirmation email aata hai, use click karna zaroori (warna contact form kaam nahi karega).
 - [ ] **Firebase account** — project `shreekamal-36ba3` kis Google account mein hai woh dhoondna baaki (abhi access nahi mil raha — Gmail mein "Firebase"/"shreekamal-36ba3" search karke dekho, ya naya project banao).
