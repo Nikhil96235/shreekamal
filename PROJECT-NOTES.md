@@ -102,6 +102,7 @@
 - **Founder photo add ki** (Sh. Suresh Singhal Ji) — `images/founder.jpg`, index+about *(30 July)*
 - **Founder frame wapas gol (circle) kiya** — 132px golden circle *(30 July)*
 - **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
+- **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
 
 ---
 

@@ -234,6 +234,15 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .fb-float:hover{transform:scale(1.1);}
 @keyframes waBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
+/* ===== Footer social icons (small, clickable) ===== */
+.footer-social{display:flex;gap:10px;margin-top:18px;}
+.footer-social a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.09);transition:transform .2s,background .2s;}
+.footer-social a svg{width:17px;height:17px;fill:#fff;}
+.footer-social a:hover{transform:translateY(-3px);}
+.footer-social a.fb:hover{background:#1877f2;}
+.footer-social a.ig:hover{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);}
+.footer-social a.wa:hover{background:#25d366;}
+
 /* RESPONSIVE */
 @media(max-width:1024px){
   .why-grid,.states-grid{grid-template-columns:repeat(2,1fr);}
