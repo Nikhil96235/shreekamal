@@ -232,6 +232,8 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .ig-float:hover{transform:scale(1.1);}
 .fb-float{position:fixed;bottom:24px;right:160px;z-index:998;background:#1877f2;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(24,119,242,0.4);text-decoration:none;animation:waBounce 2s ease-in-out 3.8s infinite;transition:transform 0.2s;}
 .fb-float:hover{transform:scale(1.1);}
+.yt-float{position:fixed;bottom:24px;right:228px;z-index:998;background:#ff0000;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,0,0,0.4);text-decoration:none;animation:waBounce 2s ease-in-out 4.2s infinite;transition:transform 0.2s;}
+.yt-float:hover{transform:scale(1.1);}
 @keyframes waBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
 /* ===== Footer social icons (small, clickable) ===== */
@@ -242,6 +244,7 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .footer-social a.fb:hover{background:#1877f2;}
 .footer-social a.ig:hover{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);}
 .footer-social a.wa:hover{background:#25d366;}
+.footer-social a.yt:hover{background:#ff0000;}
 
 /* RESPONSIVE */
 @media(max-width:1024px){

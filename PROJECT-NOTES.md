@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 30 July 2026
+> **Last updated:** 31 July 2026
 
 ---
 
@@ -30,6 +30,7 @@
 | WhatsApp / Phone | +91 95285 47179 (link: https://wa.me/919528547179) |
 | Instagram | https://www.instagram.com/shreekamalagro/ |
 | Facebook | https://www.facebook.com/shreekamalagro/ |
+| YouTube | https://www.youtube.com/@shreekamalagro |
 | Live website | https://nikhil96235.github.io/shreekamal/ |
 | GitHub repo | Nikhil96235 / shreekamal |
 | Computer folder | C:\Users\lenovo\Documents\nikhil sheet\website\shreekamal |
@@ -103,6 +104,7 @@
 - **Founder frame wapas gol (circle) kiya** — 132px golden circle *(30 July)*
 - **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
 - **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
+- **YouTube icon add kiya** (laal) — floating icons + footer, sabhi 8 pages. Link: https://www.youtube.com/@shreekamalagro *(31 July)*
 
 ---
 
