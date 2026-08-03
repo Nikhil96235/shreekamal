@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 31 July 2026
+> **Last updated:** 3 August 2026
 
 ---
 
@@ -105,12 +105,14 @@
 - **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
 - **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
 - **YouTube icon add kiya** (laal) — floating icons + footer, sabhi 8 pages. Link: https://www.youtube.com/@shreekamalagro *(31 July)*
+- **Splash mobile fix** — mobile par splash box/cut ho rahi thi. Nayi portrait `images/splash-mobile.jpg` (1080x1920, sky extend) banayi; index.html mein <picture> se mobile pe portrait + desktop pe splash.jpg. Ab full-screen complete dikhti hai *(3 Aug)*
+- **Domain:** shreekamalagro.co.in — GoDaddy par registered (Shreekamal Oil Industries ke naam, valid till 4 July 2027). Band nahi hua, bas parked (kisi site se juda nahi). GitHub se jodna baaki. CNAME file repo mein daal di. User ke paas GoDaddy login nahi — recover karna baaki. *(3 Aug)*
 
 ---
 
 ## 5. PENDING / KARNA BAAKI HAI
 
-- [ ] **Domain khareedna** (shreekamal.com / shreekamal.in / shreekamalindustries.com) — sabse bada upgrade. Setup domain ke BAAD.
+- [ ] **Domain jodna** — `shreekamalagro.co.in` PEHLE SE hai (GoDaddy, 2027 tak, khareedne ki zaroorat nahi). CNAME file repo mein daal di. Baaki: GoDaddy login recover karo → DNS mein 4 A records (185.199.108-111.153) + www CNAME (nikhil96235.github.io) → GitHub Settings>Pages custom domain set → Enforce HTTPS.
 - [ ] **Domain jodna** — domain lene ke baad: repo mein CNAME file + domain company ki DNS settings. (Editing/deploy ka tarika same rahega, sirf ek-baar ka setup.)
 - [ ] **SEO** — domain ke BAAD: Google Search Console, Google Business Profile, sitemap.xml, robots.txt, business schema, keyword-rich titles, directory listings (IndiaMART/JustDial/TradeIndia).
 - [x] ~~Instagram link theek~~ — ho gaya (https://www.instagram.com/shreekamalagro/). Facebook bhi add ho gaya (https://www.facebook.com/shreekamalagro/).
