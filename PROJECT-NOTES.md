@@ -105,6 +105,7 @@
 - **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
 - **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
 - **YouTube icon add kiya** (laal) — floating icons + footer, sabhi 8 pages. Link: https://www.youtube.com/@shreekamalagro *(31 July)*
+- **Founder ki photo aur naam ("Sh. Suresh Singhal Ji") site se poori tarah hataya** — index + about (photo block, timeline naam, meta description). User ne kaha naam kahin nahi hona chahiye. *(3 Aug)*
 - **Splash mobile fix** — mobile par splash box/cut ho rahi thi. Nayi portrait `images/splash-mobile.jpg` (1080x1920, sky extend) banayi; index.html mein <picture> se mobile pe portrait + desktop pe splash.jpg. Ab full-screen complete dikhti hai *(3 Aug)*
 - **Domain:** shreekamalagro.co.in — GoDaddy par registered (Shreekamal Oil Industries ke naam, valid till 4 July 2027). Band nahi hua, bas parked (kisi site se juda nahi). GitHub se jodna baaki. CNAME file repo mein daal di. User ke paas GoDaddy login nahi — recover karna baaki. *(3 Aug)*
 
@@ -112,7 +113,7 @@
 
 ## 5. PENDING / KARNA BAAKI HAI
 
-- [ ] **Domain jodna** — `shreekamalagro.co.in` PEHLE SE hai (GoDaddy, 2027 tak, khareedne ki zaroorat nahi). CNAME file repo mein daal di. Baaki: GoDaddy login recover karo → DNS mein 4 A records (185.199.108-111.153) + www CNAME (nikhil96235.github.io) → GitHub Settings>Pages custom domain set → Enforce HTTPS.
+- [ ] **Domain jodna** — `shreekamalagro.co.in` PEHLE SE hai (GoDaddy, 2027 tak). ⚠️ CNAME file time se pehle push hui thi → github.io redirect ho gaya parked page par → CNAME KHALI karke fix kiya (site wapas live). SAHI ORDER: (1) GoDaddy login recover (2) DNS: 4 A records (185.199.108-111.153) + www CNAME → nikhil96235.github.io (3) SABSE AAKHIR mein CNAME file mein domain daalna. CNAME abhi khali hai — DNS ready hone tak khali hi rehne dena.
 - [ ] **Domain jodna** — domain lene ke baad: repo mein CNAME file + domain company ki DNS settings. (Editing/deploy ka tarika same rahega, sirf ek-baar ka setup.)
 - [ ] **SEO** — domain ke BAAD: Google Search Console, Google Business Profile, sitemap.xml, robots.txt, business schema, keyword-rich titles, directory listings (IndiaMART/JustDial/TradeIndia).
 - [x] ~~Instagram link theek~~ — ho gaya (https://www.instagram.com/shreekamalagro/). Facebook bhi add ho gaya (https://www.facebook.com/shreekamalagro/).
