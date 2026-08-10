@@ -365,7 +365,7 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 
 /* ===== Top contact bar (homepage only) ===== */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#0a1226,#17264a);border-bottom:1px solid rgba(245,192,48,0.18);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 5%;}
-.topbar-left{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;white-space:nowrap;}
+.topbar-left{font-size:11px;letter-spacing:2px;color:#ffffff;text-transform:uppercase;white-space:nowrap;}
 .topbar-right{display:flex;align-items:center;gap:8px;}
 .tb-phones{display:inline-flex;align-items:center;}
 .tb-phones a{padding:5px 6px;gap:6px;}
