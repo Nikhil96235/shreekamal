@@ -390,8 +390,8 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .hero-watermark{position:absolute;right:26px;top:126px;z-index:5;display:flex;align-items:center;gap:9px;padding:10px 16px;background:rgba(255,255,255,0.16);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,0.25);border-radius:16px;}
 .hero-watermark b{font-family:'Playfair Display',serif;color:#fff;font-size:16px;}
 @media(max-width:768px){.hero-watermark{right:14px;top:70px;padding:7px 12px;}.hero-watermark b{font-size:13px;}}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;}
-.hero-slide.active{opacity:1;}
+.hs-track{display:flex;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.hero-slide{flex:0 0 100%;width:100%;height:100%;}
 .hs-img{width:100%;height:100%;object-fit:cover;object-position:center 78%;display:block;}
 .hero-dots{position:absolute;bottom:16px;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:9px;}
 .hero-dots .hdot{width:32px;height:4px;border-radius:3px;background:rgba(255,255,255,0.55);cursor:pointer;transition:background .3s;box-shadow:0 1px 5px rgba(0,0,0,0.45);}

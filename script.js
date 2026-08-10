@@ -97,11 +97,12 @@ function handleSubmit(){
   },3000);
 }
 
-// ===== Hero image slideshow (auto-rotate with pause) =====
+// ===== Hero image slider (dost ki tarah side se slide) =====
 (function(){
+  const track=document.getElementById('hsTrack');
   const slides=document.querySelectorAll('.hero-slide');
   const dotsWrap=document.getElementById('heroDots');
-  if(!slides.length) return;
+  if(!track||!slides.length) return;
   let idx=0, timer=null;
   slides.forEach((_,i)=>{
     const d=document.createElement('div');
@@ -111,15 +112,14 @@ function handleSubmit(){
   });
   const dots=document.querySelectorAll('.hero-dots .hdot');
   function go(n){
-    slides[idx].classList.remove('active'); if(dots[idx])dots[idx].classList.remove('active');
     idx=(n+slides.length)%slides.length;
-    slides[idx].classList.add('active'); if(dots[idx])dots[idx].classList.add('active');
+    track.style.transform='translateX('+(-idx*100)+'%)';
+    dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
   }
   function next(){ go(idx+1); }
-  function start(){ if(timer)clearInterval(timer); timer=setInterval(next,4500); }   // ~4.5s per slide
+  function start(){ if(timer)clearInterval(timer); timer=setInterval(next,4500); }
   function reset(){ start(); }
   start();
-  // Slider hamesha auto-move kare (scroll ya tab-switch ke baad bhi chalu rahe)
   document.addEventListener('visibilitychange',function(){ if(!document.hidden) start(); });
 })();
 
