@@ -105,6 +105,7 @@
 - **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
 - **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
 - **YouTube icon add kiya** (laal) — floating icons + footer, sabhi 8 pages. Link: https://www.youtube.com/@shreekamalagro *(31 July)*
+- **Top design friend (shailesh7277.github.io/Skoi) jaisा banaya** (sirf top, baaki site green): navy topbar + WHITE navbar + full-width hero + spiky white grass + top-right watermark; marquee (hero-side) hataya; stats bar ko white + navy icon cards (5 Lakh+/55+/7) banaya; farm.jpeg ko hero slide 1 par kiya. index.html + style.css. *(6 Aug)*
 - **Founder ki photo aur naam ("Sh. Suresh Singhal Ji") site se poori tarah hataya** — index + about (photo block, timeline naam, meta description). User ne kaha naam kahin nahi hona chahiye. *(3 Aug)*
 - **Splash mobile fix** — mobile par splash box/cut ho rahi thi. Nayi portrait `images/splash-mobile.jpg` (1080x1920, sky extend) banayi; index.html mein <picture> se mobile pe portrait + desktop pe splash.jpg. Ab full-screen complete dikhti hai *(3 Aug)*
 - **Domain:** shreekamalagro.co.in — GoDaddy par registered (Shreekamal Oil Industries ke naam, valid till 4 July 2027). Band nahi hua, bas parked (kisi site se juda nahi). GitHub se jodna baaki. CNAME file repo mein daal di. User ke paas GoDaddy login nahi — recover karna baaki. *(3 Aug)*
