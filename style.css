@@ -385,11 +385,11 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 }
 
 /* ===== Hero banner slideshow (uniform 16:9, perfect fill) ===== */
-.hero-slides{position:relative;width:100%;max-width:none;margin:0;height:min(64vh,600px);background:#0c1631;border-radius:0;overflow:hidden;}
+.hero-slides{position:relative;width:100%;max-width:none;margin:0;aspect-ratio:16/9;background:#0c1631;border-radius:0;overflow:hidden;}
 .grass-hero{position:absolute;bottom:-1px;left:0;width:100%;height:44px;z-index:4;pointer-events:none;}
 .hero-watermark{position:absolute;right:26px;top:126px;z-index:5;display:flex;align-items:center;gap:9px;padding:10px 16px;background:rgba(255,255,255,0.16);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,0.25);border-radius:16px;}
 .hero-watermark b{font-family:'Playfair Display',serif;color:#fff;font-size:16px;}
-@media(max-width:768px){.hero-slides{height:min(56vh,440px);}.hero-watermark{right:14px;top:96px;padding:7px 12px;}.hero-watermark b{font-size:13px;}}
+@media(max-width:768px){.hero-watermark{right:14px;top:70px;padding:7px 12px;}.hero-watermark b{font-size:13px;}}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;}
 .hero-slide.active{opacity:1;}
 .hs-img{width:100%;height:100%;object-fit:cover;display:block;}
