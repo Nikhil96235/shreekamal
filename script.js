@@ -161,3 +161,25 @@ function handleSubmit(){
     }, 820);
   }, 3500);
 })();
+// ===== Count-up for capacity number (scroll par ginti) =====
+(function(){
+  const el=document.querySelector('.cf-count');
+  if(!el) return;
+  const target=parseInt(el.getAttribute('data-target')||'0',10);
+  let done=false;
+  const io=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(e.isIntersecting && !done){
+        done=true;
+        const dur=1500, t0=performance.now();
+        (function tick(now){
+          const p=Math.min((now-t0)/dur,1);
+          const val=Math.round(target*(1-Math.pow(1-p,3)));
+          el.textContent=val;
+          if(p<1) requestAnimationFrame(tick); else el.textContent=target;
+        })(t0);
+      }
+    });
+  },{threshold:0.4});
+  io.observe(el);
+})();
