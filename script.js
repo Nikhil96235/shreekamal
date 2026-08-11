@@ -97,17 +97,18 @@ function handleSubmit(){
   },3000);
 }
 
-// ===== Hero image slider (seamless infinite slide, no jerk) =====
+// ===== Hero image slider (seamless, drift-proof) =====
 (function(){
   const track=document.getElementById('hsTrack');
   const slides=document.querySelectorAll('.hero-slide');
   const dotsWrap=document.getElementById('heroDots');
+  const hero=document.getElementById('heroSlides');
   if(!track||!slides.length) return;
   const N=slides.length;
   const EASE='transform .7s cubic-bezier(.4,0,.2,1)';
   // clone first slide at end for seamless loop
   track.appendChild(slides[0].cloneNode(true));
-  let idx=0, timer=null;
+  let idx=0, timer=null, inView=true;
   for(let i=0;i<N;i++){
     const d=document.createElement('div');
     d.className='hdot'+(i===0?' active':'');
@@ -115,27 +116,48 @@ function handleSubmit(){
     if(dotsWrap) dotsWrap.appendChild(d);
   }
   const dots=document.querySelectorAll('.hero-dots .hdot');
-  function setDots(){ const a=idx%N; dots.forEach((d,i)=>d.classList.toggle('active',i===a)); }
+  function setDots(){ const a=((idx%N)+N)%N; dots.forEach((d,i)=>d.classList.toggle('active',i===a)); }
+  // snap to a valid real slide instantly (no animation) — recovers from any drift
+  function snap(n){
+    idx=n;
+    track.style.transition='none';
+    track.style.transform='translateX('+(-idx*100)+'%)';
+    void track.offsetWidth;            // force reflow
+    track.style.transition=EASE;
+    setDots();
+  }
   function go(n){
     idx=n;
     track.style.transition=EASE;
     track.style.transform='translateX('+(-idx*100)+'%)';
     setDots();
   }
-  track.addEventListener('transitionend',function(){
-    if(idx===N){                       // reached clone -> jump back to real first, no animation
-      track.style.transition='none';
-      idx=0;
-      track.style.transform='translateX(0%)';
-      void track.offsetWidth;          // force reflow
-      track.style.transition=EASE;
-    }
+  track.addEventListener('transitionend',function(e){
+    if(e.target!==track) return;
+    if(idx>=N) snap(0);                 // reached clone (or beyond) -> back to first
   });
-  function next(){ go(idx+1); }
-  function start(){ if(timer)clearInterval(timer); timer=setInterval(next,4500); }
+  function next(){
+    if(idx>=N){ snap(0); }              // safety: never sit past the clone
+    go(idx+1);
+  }
+  function stop(){ if(timer){clearInterval(timer);timer=null;} }
+  function start(){ stop(); if(inView && !document.hidden) timer=setInterval(next,4500); }
   function reset(){ start(); }
+  // Pause auto-slide when hero is off-screen; resume (and fix position) when it returns
+  if('IntersectionObserver' in window && hero){
+    new IntersectionObserver(function(ents){
+      ents.forEach(function(en){
+        inView=en.isIntersecting;
+        if(inView){ if(idx>=N) snap(0); start(); }
+        else stop();
+      });
+    },{threshold:0.15}).observe(hero);
+  }
   start();
-  document.addEventListener('visibilitychange',function(){ if(!document.hidden) start(); });
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){ stop(); }
+    else { if(idx>=N) snap(0); start(); }
+  });
 })();
 
 // ===== Testimonials auto-slider (cards slide hote rehte hain) =====
