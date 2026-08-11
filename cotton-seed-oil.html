@@ -3,39 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Gallery — Our Products & Brands | Shreekamal Oil Industries</title>
-<meta name="description" content="Photo gallery of Shreekamal Oil Industries products and brands — Radha Govind, Shree Kamal, Panchratan, Gaiyya, Amrit Kalash, Butter Milk cattle feed & cotton seed."/>
+<title>Cotton Seed Oil — Shreekamal Oil Industries</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="apple-touch-icon" href="favicon-180.png"/>
+
+<meta name="description" content="Pure Cotton Seed Oil from Shreekamal Oil Industries — extracted from premium binola, ideal for edible use and industrial supply. Bulk orders welcome."/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
-<style>
-  .gal-wrap{max-width:1200px;margin:0 auto;padding:56px 5% 30px;}
-  .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
-  .gal-item{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;background:#f4ede2;aspect-ratio:3/4;
-    box-shadow:0 6px 20px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06);
-    opacity:0;transform:scale(.9) translateY(16px);animation:galPop .55s cubic-bezier(.2,.7,.3,1) forwards;}
-  .gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
-  .gal-item:hover img{transform:scale(1.07);}
-  .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:16px 14px 12px;
-    background:linear-gradient(transparent,rgba(11,31,14,.9));color:#fff;font-size:14px;font-weight:600;}
-  .gal-cap span{display:block;font-size:11px;color:var(--gy);font-weight:500;margin-top:2px;letter-spacing:.3px;}
-  @keyframes galPop{to{opacity:1;transform:none;}}
-  /* lightbox popup */
-  .lb{position:fixed;inset:0;z-index:100000;background:rgba(6,16,8,.93);display:none;
-    align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .3s ease;}
-  .lb.open{display:flex;opacity:1;}
-  .lb-img{max-width:88%;max-height:82vh;border-radius:12px;box-shadow:0 24px 70px rgba(0,0,0,.55);animation:lbZoom .35s ease;}
-  @keyframes lbZoom{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
-  .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#fff;font-size:15px;font-weight:600;padding:0 20px;}
-  .lb-cap b{color:var(--gy);}
-  .lb-close{position:absolute;top:16px;right:24px;color:#fff;font-size:36px;cursor:pointer;line-height:1;background:none;border:none;}
-  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:46px;cursor:pointer;
-    background:none;border:none;padding:0 16px;user-select:none;opacity:.75;transition:opacity .2s;}
-  .lb-nav:hover{opacity:1;}
-  .lb-prev{left:6px;} .lb-next{right:6px;}
-  @media(max-width:600px){ .lb-nav{font-size:34px;padding:0 8px;} .lb-img{max-width:94%;} }
-</style>
 </head>
 <body>
 
@@ -74,46 +48,88 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
+<!-- PRODUCT HERO -->
 <section class="pd-hero">
-  <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; Gallery</div>
-  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2;text-align:center;">
-    <span class="pd-eyebrow">GALLERY</span>
-    <h1 class="pd-title">Our Products &amp; Brands</h1>
-    <p class="pd-desc" style="max-width:620px;margin:0 auto 0;">Kisi bhi image par click karein — woh badी view mein khulegi. Hamare premium cattle feed brands aur products ek jagah.</p>
+  <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; <a href="products.html">Products</a> &nbsp;›&nbsp; Cotton Seed Oil</div>
+  <div class="pd-hero-grid">
+    <div class="pd-img-wrap">
+      <!-- Apni image yahan lagayein: src ko images/cotton-seed-oil.jpg se replace karein -->
+      <!-- <img loading="lazy" decoding="async" src="images/cotton-seed-oil.jpg?v=2" alt="Cotton Seed Oil"/> -->
+      <img loading="lazy" decoding="async" src="images/product-cotton-seed-oil.jpg" alt="Cotton Seed Oil — shudh binola tel"/>
+    </div>
+    <div>
+      <span class="pd-eyebrow">EDIBLE & INDUSTRIAL OIL</span>
+      <h1 class="pd-title">Cotton Seed Oil</h1>
+      <p class="pd-desc">Pure cotton seed oil extracted from premium binola — clean, quality-checked and suitable for both edible use and industrial supply. Reliable bulk availability with consistent quality that businesses of every size can depend on.</p>
+      <div class="pd-tags"><span class="pd-tag">PURE &amp; NATURAL</span><span class="pd-tag">BULK AVAILABLE</span><span class="pd-tag">QUALITY CHECKED</span><span class="pd-tag">EDIBLE &amp; INDUSTRIAL</span></div>
+      <div class="pd-cta-row">
+        <a href="contact.html" class="btn-primary">Get Quote →</a>
+        <a href="https://wa.me/919528547179" target="_blank" class="btn-wa">WhatsApp Us</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- GALLERY GRID -->
-<div class="gal-wrap">
-  <div class="gal-grid" id="galGrid">
-    <div class="gal-item" style="animation-delay:.00s" data-cap="Shree Kamal|Avik Agro Products"><img loading="lazy" src="images/shrikamal.jpg?v=10" alt="Shree Kamal Binola Khal"/><div class="gal-cap">Shree Kamal<span>Avik Agro Products</span></div></div>
-    <div class="gal-item" style="animation-delay:.06s" data-cap="Radha Govind|Aadit Oil Mill"><img loading="lazy" src="images/radha_govind_kachhighani.jpg?v=10" alt="Radha Govind Binola Khal"/><div class="gal-cap">Radha Govind<span>Aadit Oil Mill</span></div></div>
-    <div class="gal-item" style="animation-delay:.12s" data-cap="Radha Kaithal|Aadit Oil Mill"><img loading="lazy" src="images/radha_govind_kaithal.jpg?v=10" alt="Radha Kaithal Binola Khal"/><div class="gal-cap">Radha Kaithal<span>Aadit Oil Mill</span></div></div>
-    <div class="gal-item" style="animation-delay:.18s" data-cap="Panchratan Shri|Singhal Agro"><img loading="lazy" src="images/panchratan_shri.jpg?v=10" alt="Panchratan Shri Binola Khal"/><div class="gal-cap">Panchratan Shri<span>Singhal Agro</span></div></div>
-    <div class="gal-item" style="animation-delay:.24s" data-cap="Gaiyya|Avik Agro Products"><img loading="lazy" src="images/gaiyya.jpg?v=10" alt="Gaiyya Super Quality Binola Khal"/><div class="gal-cap">Gaiyya<span>Avik Agro Products</span></div></div>
-    <div class="gal-item" style="animation-delay:.30s" data-cap="Butter Milk|Avik Agro Products"><img loading="lazy" src="images/buttermilk.jpg?v=10" alt="Butter Milk Binola Khal"/><div class="gal-cap">Butter Milk<span>Avik Agro Products</span></div></div>
-    <div class="gal-item" style="animation-delay:.36s" data-cap="Amrit Kalash|Avik Agro Products"><img loading="lazy" src="images/amrit_kalash.jpg?v=10" alt="Amrit Kalash Kachi Ghani Binola Khal"/><div class="gal-cap">Amrit Kalash<span>Avik Agro Products</span></div></div>
+<!-- DETAILS BODY -->
+<div class="pd-body">
+  <div class="pd-body-inner">
+
+    <div class="pd-block">
+      <h2 class="pd-block-title">Key Benefits</h2>
+      <p class="pd-block-sub">Why customers across 7 states trust our cotton seed oil.</p>
+      <div class="pd-benefits">
+      <div class="pd-benefit reveal">
+        <div class="pd-benefit-icon">💧</div>
+        <div class="pd-benefit-title">Pure &amp; Natural</div>
+        <div class="pd-benefit-text">Extracted from premium binola and carefully filtered for a clean, consistent oil.</div>
+      </div>
+      <div class="pd-benefit reveal">
+        <div class="pd-benefit-icon">🍳</div>
+        <div class="pd-benefit-title">Edible &amp; Industrial Use</div>
+        <div class="pd-benefit-text">Versatile oil suited for cooking as well as a range of industrial applications.</div>
+      </div>
+      <div class="pd-benefit reveal">
+        <div class="pd-benefit-icon">📦</div>
+        <div class="pd-benefit-title">Reliable Bulk Supply</div>
+        <div class="pd-benefit-text">Steady availability and consistent quality for businesses that need volume.</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="pd-block">
+      <h2 class="pd-block-title">Specifications</h2>
+      <p class="pd-block-sub">Standard packaging and quality details. Custom bulk options available on request.</p>
+      <div class="pd-spec-table">
+        <div class="pd-spec-row"><span class="pd-spec-key">Source</span><span class="pd-spec-val">Premium Cotton Seed (Binola)</span></div>
+        <div class="pd-spec-row"><span class="pd-spec-key">Use</span><span class="pd-spec-val">Edible &amp; Industrial</span></div>
+        <div class="pd-spec-row"><span class="pd-spec-key">Quality</span><span class="pd-spec-val">Filtered &amp; Quality-Checked</span></div>
+        <div class="pd-spec-row"><span class="pd-spec-key">Packaging</span><span class="pd-spec-val">Tins · Drums · Bulk Loads</span></div>
+        <div class="pd-spec-row"><span class="pd-spec-key">Availability</span><span class="pd-spec-val">Year-round (Subject to Season)</span></div>
+        <div class="pd-spec-row"><span class="pd-spec-key">Min. Bulk Order</span><span class="pd-spec-val">On Request</span></div>
+      </div>
+    </div>
+
+    <div class="pd-block">
+      <h2 class="pd-block-title">Common Uses</h2>
+      <div class="pd-uses">
+        <div class="pd-use"><span class="pd-use-icon">🍳</span>Cooking &amp; Edible Use</div>
+        <div class="pd-use"><span class="pd-use-icon">🏭</span>Industrial Supply</div>
+        <div class="pd-use"><span class="pd-use-icon">🧴</span>Manufacturing</div>
+        <div class="pd-use"><span class="pd-use-icon">🌾</span>Wholesale Trade</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- CTA BAND -->
 <div class="pd-cta-band">
-  <div class="pd-cta-band-title">Interested in Any Product?</div>
-  <div class="pd-cta-band-sub">Bulk orders aur dealership ke liye humse turant baat karein.</div>
+  <div class="pd-cta-band-title">Interested in Cotton Seed Oil?</div>
+  <div class="pd-cta-band-sub">Available for edible and industrial buyers in bulk. Send your quantity and destination for a quick quote.</div>
   <div class="pd-cta-row">
     <a href="contact.html" class="btn-primary">Send Inquiry →</a>
     <a href="https://wa.me/919528547179" target="_blank" class="btn-wa">Chat on WhatsApp</a>
   </div>
-</div>
-
-<!-- LIGHTBOX POPUP -->
-<div class="lb" id="lb">
-  <button class="lb-close" id="lbClose" title="Close">&times;</button>
-  <button class="lb-nav lb-prev" id="lbPrev" title="Previous">&#8249;</button>
-  <img class="lb-img" id="lbImg" src="" alt="Preview"/>
-  <button class="lb-nav lb-next" id="lbNext" title="Next">&#8250;</button>
-  <div class="lb-cap" id="lbCap"></div>
 </div>
 
 <!-- FOOTER -->
@@ -139,13 +155,15 @@
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">COMPANY</div>
+      <div class="footer-col-title">BRANDS</div>
       <ul class="footer-links">
-        <li><a href="products.html">Products</a></li>
-        <li><a href="brands.html">Brands</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="brands.html">Radha Govind</a></li>
+        <li><a href="brands.html">Panchratan</a></li>
+        <li><a href="brands.html">Radha Kaithal</a></li>
+        <li><a href="brands.html">Shreekamal</a></li>
+        <li><a href="brands.html">Butter Milk</a></li>
+        <li><a href="brands.html">Gaiyya</a></li>
+        <li><a href="brands.html">Amrit Kalash</a></li>
       </ul>
     </div>
     <div>
@@ -160,49 +178,19 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© <span id="fyear">2011–2026</span> Shreekamal Oil Industries. All rights reserved. | Hinganghat, Maharashtra 442301</div>
-    <script>try{document.getElementById('fyear').textContent='2011–'+new Date().getFullYear();}catch(e){}</script>
     <div class="footer-copy">Made with ❤️ in India</div>
   </div>
+  <script>try{document.getElementById('fyear').textContent='2011–'+new Date().getFullYear();}catch(e){}</script>
 </footer>
 
-<!-- Instagram Float -->
+<!-- WhatsApp Float -->
 <a href="https://www.youtube.com/@shreekamalagro" class="yt-float" target="_blank" rel="noopener" title="Subscribe on YouTube"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.45 12 20.45 12 20.45s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
         <a href="https://www.facebook.com/shreekamalagro/" class="fb-float" target="_blank" rel="noopener" title="Follow us on Facebook"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-<a href="https://www.instagram.com/shreekamalagro/" class="ig-float" target="_blank" rel="noopener" title="Follow us on Instagram">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 4.98a4.82 4.82 0 1 0 0 9.64 4.82 4.82 0 0 0 0-9.64zm0 1.62a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4zm5-2.9a1.13 1.13 0 1 0 0 2.26 1.13 1.13 0 0 0 0-2.26z"/></svg>
-</a>
-<!-- WhatsApp Float -->
+<a href="https://www.instagram.com/shreekamalagro/" class="ig-float" target="_blank" rel="noopener" title="Follow us on Instagram"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 4.98a4.82 4.82 0 1 0 0 9.64 4.82 4.82 0 0 0 0-9.64zm0 1.62a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4zm5-2.9a1.13 1.13 0 1 0 0 2.26 1.13 1.13 0 0 0 0-2.26z"/></svg></a>
 <a href="https://wa.me/919528547179" class="wa-float" target="_blank" title="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
 </a>
 
-<script>
-(function(){
-  var items=[].slice.call(document.querySelectorAll('.gal-item'));
-  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
-  var idx=0;
-  function show(i){
-    idx=(i+items.length)%items.length;
-    var it=items[idx];
-    lbImg.src=it.querySelector('img').getAttribute('src');
-    var c=(it.getAttribute('data-cap')||'').split('|');
-    lbCap.innerHTML='<b>'+(c[0]||'')+'</b>'+(c[1]?' — '+c[1]:'');
-  }
-  function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
-  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-  items.forEach(function(it,i){ it.addEventListener('click',function(){ open(i); }); });
-  document.getElementById('lbClose').onclick=close;
-  document.getElementById('lbPrev').onclick=function(e){ e.stopPropagation(); show(idx-1); };
-  document.getElementById('lbNext').onclick=function(e){ e.stopPropagation(); show(idx+1); };
-  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
-  document.addEventListener('keydown',function(e){
-    if(!lb.classList.contains('open'))return;
-    if(e.key==='Escape')close();
-    else if(e.key==='ArrowLeft')show(idx-1);
-    else if(e.key==='ArrowRight')show(idx+1);
-  });
-})();
-</script>
 <script src="script.js"></script>
 </body>
 </html>
