@@ -183,28 +183,33 @@ function handleSubmit(){
     }, 820);
   }, 3500);
 })();
-// ===== Count-up for numbers (scroll par ginti) — sabhi .cf-count =====
+// ===== Count-up for numbers (har baar view me aane par ginti) — sabhi .cf-count =====
 (function(){
   const els=document.querySelectorAll('.cf-count');
   if(!els.length) return;
-  function run(el){
-    if(el.dataset.counted) return;
-    el.dataset.counted='1';
+  function animate(el){
     const target=parseInt(el.getAttribute('data-target')||'0',10);
+    if(el._raf) cancelAnimationFrame(el._raf);   // pehle wali animation rok do
     const dur=1500, t0=performance.now();
     (function tick(now){
       const p=Math.min((now-t0)/dur,1);
-      const val=Math.round(target*(1-Math.pow(1-p,3)));
-      el.textContent=val;
-      if(p<1) requestAnimationFrame(tick); else el.textContent=target;
+      el.textContent=Math.round(target*(1-Math.pow(1-p,3)));
+      if(p<1){ el._raf=requestAnimationFrame(tick); } else { el.textContent=target; el._raf=null; }
     })(t0);
   }
   if('IntersectionObserver' in window){
     const io=new IntersectionObserver(function(ents){
-      ents.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
+      ents.forEach(function(e){
+        if(e.isIntersecting){
+          animate(e.target);                     // har baar view me aaye to dobara chale
+        } else {
+          if(e.target._raf){ cancelAnimationFrame(e.target._raf); e.target._raf=null; }
+          e.target.textContent='0';              // bahar jaate hi 0 par reset, taaki agli baar fresh chale
+        }
+      });
     },{threshold:0.4});
     els.forEach(function(el){ io.observe(el); });
   } else {
-    els.forEach(run);
+    els.forEach(animate);
   }
 })();
