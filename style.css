@@ -144,7 +144,7 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .state-card{background:rgba(255,255,255,0.75);border:1px solid rgba(0,0,0,0.8);border-radius:var(--r);padding:24px 20px;text-align:center;transition:background var(--tr),border-color var(--tr),transform var(--tr);}
 .state-card:hover{background:#ffffff;border-color:#000;transform:translateY(-4px);}
 .state-icon{font-size:28px;margin-bottom:12px;}
-.state-name{font-size:14px;font-weight:600;color:var(--gm);margin-bottom:4px;}
+.state-name{font-size:19px;font-weight:700;color:var(--gm);margin-bottom:4px;}
 .state-sub{font-size:11px;color:var(--tt);letter-spacing:0.5px;}
 
 /* GROUP COMPANIES */
