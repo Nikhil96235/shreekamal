@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **"Our Products" aur "Our Brands" section headings ko CENTER kiya** (title + subtitle + desc). Reveal div par `text-align:center;max-width:640px;margin:0 auto`. *(14 Aug)*
 - **Stats (5 Lakh+ / 55+ / 7) ko ek WHITE BOX (card) mein daala** — section bg WHITE, box bahut HALKA (soft shadow `0 4px 18px .05` + patli border `.05` + patle dividers) taaki bas halka sa box dikhe (Kapila reference jaisa; pehle cream+strong shadow tha, user ko zyada laga to soften kiya). Mobile par stacked, horizontal dividers. *(14 Aug)*
 - **Favicon (browser tab icon) LOTUS kiya** — navy rounded square + white lotus. `favicon.png` (64) + `favicon-180.png` (180), sabhi pages, v2. Pehle favicon.svg (flame) tha. *(14 Aug)*
 - **Naya LOTUS logo** — purana diya/flame SVG hataya, sabhi 9 pages ke navbar mein `images/logo.png` (splash se extract, black lotus, transparent). Naya CSS class `.nav-logo-img` (height:46px). *(14 Aug)*
