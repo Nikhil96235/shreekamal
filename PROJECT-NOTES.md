@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Cotton Seed section (index.html "Premium Cotton Seed" block) ki image** purani `product-cotton-seed.jpg.jpeg` → user ki nayi `COTTONSEED.jpeg`. *(14 Aug)*
 - **Brands slider (index.html) cards chhote kiye** — har brand-desc sirf PEHLE sentence tak (first "." tak); brand-tags mein 2 ki jagah SIRF 1 tag "COTTON SEED OIL CAKE" (sabhi 7 cards). *(14 Aug)*
 - **"Our Products" aur "Our Brands" section headings ko CENTER kiya** (title + subtitle + desc). Reveal div par `text-align:center;max-width:640px;margin:0 auto`. *(14 Aug)*
 - **Stats (5 Lakh+ / 55+ / 7) ko ek WHITE BOX (card) mein daala** — section bg WHITE, box bahut HALKA (soft shadow `0 4px 18px .05` + patli border `.05` + patle dividers) taaki bas halka sa box dikhe (Kapila reference jaisa; pehle cream+strong shadow tha, user ko zyada laga to soften kiya). Mobile par stacked, horizontal dividers. *(14 Aug)*
