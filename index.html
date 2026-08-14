@@ -535,41 +535,41 @@
     <div class="testi-slider-wrap"><div class="testi-grid" id="testiGrid">
 
       <div class="testi-card reveal">
-        <div class="testi-photo-wrap"><img loading="lazy" decoding="async" class="testi-photo" src="images/customer1.jpg?v=2" alt="Customer"/></div>
-        <div class="testi-content">
-          <div class="testi-quote-mark">&#8220;</div>
-          <p class="testi-text">राधा गोविन्द बिनौला खल खिलाने से मेरी गायों का दूध बढ़ा और सेहत भी अच्छी रही।</p>
-        </div>
+        <div class="testi-quote-badge">&#8220;</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">राधा गोविन्द बिनौला खल खिलाने से मेरी गायों का दूध बढ़ा और सेहत भी अच्छी रही।</p>
+        <div class="testi-divider"></div>
+        <div class="testi-person"><img class="testi-avatar" loading="lazy" src="images/customer1.jpg?v=2" alt="Customer"/></div>
       </div>
 
       <div class="testi-card reveal">
-        <div class="testi-photo-wrap"><img loading="lazy" decoding="async" class="testi-photo" src="images/customer2.jpg?v=2" alt="Customer"/></div>
-        <div class="testi-content">
-          <div class="testi-quote-mark">&#8220;</div>
-          <p class="testi-text">पंचरत्न श्री खल की क्वालिटी बेहतरीन है — पशु तंदुरुस्त और दूध भी ज़्यादा।</p>
-        </div>
+        <div class="testi-quote-badge">&#8220;</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">पंचरत्न श्री खल की क्वालिटी बेहतरीन है — पशु तंदुरुस्त और दूध भी ज़्यादा।</p>
+        <div class="testi-divider"></div>
+        <div class="testi-person"><img class="testi-avatar" loading="lazy" src="images/customer2.jpg?v=2" alt="Customer"/></div>
       </div>
 
       <div class="testi-card reveal">
-        <div class="testi-photo-wrap"><img loading="lazy" decoding="async" class="testi-photo" src="images/customer3.jpg?v=2" alt="Customer"/></div>
-        <div class="testi-content">
-          <div class="testi-quote-mark">&#8220;</div>
-          <p class="testi-text">कई साल से यही खल इस्तेमाल कर रहा हूँ — नतीजा हमेशा शानदार, दूध और घी दोनों बढ़े।</p>
-        </div>
+        <div class="testi-quote-badge">&#8220;</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">कई साल से यही खल इस्तेमाल कर रहा हूँ — नतीजा हमेशा शानदार, दूध और घी दोनों बढ़े।</p>
+        <div class="testi-divider"></div>
+        <div class="testi-person"><img class="testi-avatar" loading="lazy" src="images/customer3.jpg?v=2" alt="Customer"/></div>
       </div>
       <div class="testi-card reveal">
-        <div class="testi-photo-wrap"><img loading="lazy" decoding="async" class="testi-photo" src="images/customer4.jpg" alt="Customer"/></div>
-        <div class="testi-content">
-          <div class="testi-quote-mark">&#8220;</div>
-          <p class="testi-text">हमारी दुकान पर ग्राहकों की पहली पसंद यही खल है — क्वालिटी ऐसी कि जो एक बार ले जाता है, बार-बार वही मांगता है।</p>
-        </div>
+        <div class="testi-quote-badge">&#8220;</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">हमारी दुकान पर ग्राहकों की पहली पसंद यही खल है — क्वालिटी ऐसी कि जो एक बार ले जाता है, बार-बार वही मांगता है।</p>
+        <div class="testi-divider"></div>
+        <div class="testi-person"><img class="testi-avatar" loading="lazy" src="images/customer4.jpg" alt="Customer"/></div>
       </div>
       <div class="testi-card reveal">
-        <div class="testi-photo-wrap"><img loading="lazy" decoding="async" class="testi-photo" src="images/customer5.jpg" alt="Customer"/></div>
-        <div class="testi-content">
-          <div class="testi-quote-mark">&#8220;</div>
-          <p class="testi-text">सालों से श्रीकमल के साथ कारोबार कर रहा हूँ — माल हमेशा शुद्ध, तौल पूरा और डिलीवरी समय पर। भरोसे का दूसरा नाम।</p>
-        </div>
+        <div class="testi-quote-badge">&#8220;</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">सालों से श्रीकमल के साथ कारोबार कर रहा हूँ — माल हमेशा शुद्ध, तौल पूरा और डिलीवरी समय पर। भरोसे का दूसरा नाम।</p>
+        <div class="testi-divider"></div>
+        <div class="testi-person"><img class="testi-avatar" loading="lazy" src="images/customer5.jpg" alt="Customer"/></div>
       </div>
 
     </div></div>
@@ -790,8 +790,11 @@ try{
         const grid = document.getElementById("testiGrid"); grid.innerHTML="";
         snap.forEach(d=>{ const t=d.data(); const card=document.createElement("div");
           card.className="testi-card reveal";
-          card.innerHTML='<div class="testi-photo-wrap"><img class="testi-photo" loading="lazy" decoding="async" src="'+esc(t.photoURL)+'" alt="Customer"/></div>'+
-            '<div class="testi-content"><div class="testi-quote-mark">&#8220;</div><p class="testi-text">'+esc(t.text)+'</p></div>';
+          card.innerHTML='<div class="testi-quote-badge">&#8220;</div>'+
+            '<div class="testi-stars">★★★★★</div>'+
+            '<p class="testi-text">'+esc(t.text)+'</p>'+
+            '<div class="testi-divider"></div>'+
+            '<div class="testi-person"><img class="testi-avatar" loading="lazy" src="'+esc(t.photoURL)+'" alt="Customer"/></div>';
           grid.appendChild(card); });
       }
     }catch(e){}
