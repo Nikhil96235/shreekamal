@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Quality section grid 4→3 columns** (FSSAI card hatne ke baad 3 cards side me lag rahe the) + max-width 980 center. *(14 Aug)*
 - **"FSSAI" sab jagah se hataya** — index (cotton feature chip, quality section ka poora FSSAI card, section-desc), products.html (meta, benefit text, spec row → "Purity Guaranteed"), about.html (why-text). Quality section ab 3 cards. *(14 Aug)*
 - **Cotton Seed section (index.html "Premium Cotton Seed" block) ki image** purani `product-cotton-seed.jpg.jpeg` → user ki nayi `COTTONSEED.jpeg`. *(14 Aug)*
 - **Brands slider (index.html) cards chhote kiye** — har brand-desc sirf PEHLE sentence tak (first "." tak); brand-tags mein 2 ki jagah SIRF 1 tag "COTTON SEED OIL CAKE" (sabhi 7 cards). *(14 Aug)*

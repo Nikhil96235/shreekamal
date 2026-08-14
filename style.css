@@ -515,7 +515,7 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .quality-section .section-eyebrow::before,.quality-section .section-eyebrow::after{content:'';width:26px;height:2px;background:var(--gr);display:inline-block;}
 .quality-section .section-title{color:var(--td);}
 .quality-section .section-desc{color:var(--tt);}
-.qual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;}
+.qual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;max-width:980px;margin-left:auto;margin-right:auto;}
 .qual-card{display:flex;align-items:center;gap:15px;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:16px;padding:20px 18px;
   transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;}
 .qual-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(0,0,0,.09);border-color:rgba(200,134,10,.4);}
