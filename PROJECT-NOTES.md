@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Group Companies section:** naya card "Shreekamal Oil Industries" (lotus 🪷) add — ab 4 cards. Descriptions (group-desc) hataaye, names bade (17px→21px), grid 3→4 columns ek line me (card padding chhota). *(14 Aug)*
 - **7 States section:** state names bade kiye (`.state-name` 14px→19px, weight 700, same green `--gm`); har state ki sub-line (Largest Market/Headquarters etc.) hatai — sirf "Expanding… / More states coming soon" rahi. *(14 Aug)*
 - **Quality section grid 4→3 columns** (FSSAI card hatne ke baad 3 cards side me lag rahe the) + max-width 980 center. *(14 Aug)*
 - **"FSSAI" sab jagah se hataya** — index (cotton feature chip, quality section ka poora FSSAI card, section-desc), products.html (meta, benefit text, spec row → "Purity Guaranteed"), about.html (why-text). Quality section ab 3 cards. *(14 Aug)*
