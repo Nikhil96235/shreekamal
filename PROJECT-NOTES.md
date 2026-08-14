@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Group cards ke emoji icons → asli company logos:** Shreekamal=logo.png (lotus), Aadit Oil Mill=AOM1.jpeg, Singhal=SAP.jpeg, Fenixx=FENIXX.png. Card content center kiya. Pehle white tile diya tha, user ko box nahi chahiye tha → tile hataya, `mix-blend-mode:multiply` se logos ke white/cream bg card me blend (box na dikhe). AOM1/FENIXX me halki baked border reh sakti hai (transparent PNG mile to fully clean). *(14 Aug)*
 - **Group Companies section:** naya card "Shreekamal Oil Industries" (lotus 🪷) add — ab 4 cards. Descriptions (group-desc) hataaye, names bade (17px→21px), grid 3→4 columns ek line me (card padding chhota). *(14 Aug)*
 - **7 States section:** state names bade kiye (`.state-name` 14px→19px, weight 700, same green `--gm`); har state ki sub-line (Largest Market/Headquarters etc.) hatai — sirf "Expanding… / More states coming soon" rahi. *(14 Aug)*
 - **Quality section grid 4→3 columns** (FSSAI card hatne ke baad 3 cards side me lag rahe the) + max-width 980 center. *(14 Aug)*
