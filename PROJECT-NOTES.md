@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **products.html product section heading home jaisa kiya** — "Our Product Range" ab center + gold Playfair (section-eyebrow style), pehle left plain pd-block-title tha. Cards home se already same. *(14 Aug)*
 - **about.html ka Group section bhi home jaisa kiya** — 4 cards (Shreekamal+Aadit+Singhal+Fenixx) asli logos ke saath, bina description. *(14 Aug)*
 - **cattle-feed-cake.html ke brand cards bhi same simplify** (maker+desc hataye, common 2 tags). *(14 Aug)*
 - **brands.html cards simplify:** pd-brand-maker (Aadit Oil Mill etc.) + pd-brand-desc hataye, "★ Flagship" hataya. Sirf brand name (16px) + 2 common tags sab me: COTTON SEED OIL CAKE + 100% PURE. *(14 Aug)*
