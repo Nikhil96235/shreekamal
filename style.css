@@ -427,7 +427,7 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 }
 
 /* ===== Customer Testimonials (side-by-side cards, designed) ===== */
-.testi-section{background:var(--c2);padding:88px 0;position:relative;overflow:hidden;}
+.testi-section{background:#f1e6ce;padding:88px 0;position:relative;overflow:hidden;border-top:2px solid rgba(180,120,40,0.30);border-bottom:2px solid rgba(180,120,40,0.30);}
 .testi-section::before{content:"";position:absolute;inset:0;background:url("images/village-beige.png") no-repeat right top/min(640px,60%) auto;opacity:0.35;pointer-events:none;}
 .testi-section .section-inner{position:relative;z-index:1;}
 .testi-section .section-eyebrow{color:var(--gr);}
