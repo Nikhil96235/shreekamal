@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 3 August 2026
+> **Last updated:** 14 August 2026
 
 ---
 
@@ -9,11 +9,12 @@
 **Agar aap Claude ho aur yeh file ek nayi chat mein upload ki gayi hai — pehle isse poora padho.** Yeh ek cattle-feed business "Shreekamal Oil Industries" ki website ka project hai. User (naam: Shreekamal ji) **non-technical** hai aur **Hinglish** (Hindi + English roman script) mein baat karta hai — usse Hinglish mein hi, simple bhaasha mein jawab dena. Yeh file poore project ka record hai — business info, tech, files, ab tak ka kaam, aur pending cheezein. Isse padhke seedha kaam continue karo, user ko dobara sab samjhane ko mat bolo.
 
 **Kaam karne ka tarika (IMPORTANT):**
-- User ke computer ki website folder yeh hai: `C:\Users\lenovo\Documents\nikhil sheet\website\shreekamal` (Windows, device bridge `mcp__remote-devices__*` se pahunchti hai).
+- User ke computer ki website folder yeh hai: `C:\Users\lenovo\Documents\nikhil sheet\website\shreekamal` (Windows, device bridge `mcp__remote-devices__*` se pahunchti hai). **YEH FOLDER HI ASLI SOURCE HAI** — cloud workspace `/root/new-files/` kabhi-kabhi reset ho jata hai (ephemeral). Isliye kaam shuru karne se pehle device se latest files `device_stage_files` se stage karke usi par kaam karo, warna user ki manual changes revert ho sakti hain.
 - Nayi/badli hui file pehle cloud workspace `/root/new-files/` mein banao, phir `SendUserFile` se do, phir `mcp__remote-devices__device_commit_files` (force:true) se user ke folder mein likho.
 - User apne aap VS Code se **Commit + Sync** karke site live karta hai (GitHub Pages). Har kaam ke baad usse yeh yaad dilana, aur **incognito** mein check karne ko kehna (cache issue).
 - Image cache-busting ke liye HTML mein `?v=1` → `?v=2` badalte raho jab image replace ho.
-- **Har naye change ke baad NEECHE "CHANGE LOG" aur "PENDING" section update karo, aur yeh file dobara user ke folder mein save kar do — taaki hamesha up-to-date rahe.** (User ne yeh khaaskar kaha hai.)
+- Local render/screenshot ke liye: `playwright-core` + Chromium `/opt/pw-browsers/chromium`. Splash hide karne ke liye `#skIntro{display:none!important}` addStyleTag. Splash JS ~2.6s scroll lock karta hai, isliye test mein ~3s wait karo. `images` symlink → staged images folder.
+- **Har naye change ke baad NEECHE "CHANGE LOG" aur "PENDING" section update karo, aur yeh file dobara user ke folder mein save kar do — taaki hamesha up-to-date rahe.** (User ne yeh khaaskar kaha hai — 14 Aug ko dobara bola.)
 
 ---
 
@@ -22,12 +23,11 @@
 | Cheez | Detail |
 |---|---|
 | Business | Shreekamal Oil Industries |
-| Product | Cattle Feed, Binola Khal (Cotton Seed Cake), Cotton Seed, Oil |
+| Product | **Cotton Seed Oil Cake** (Binola Khal), **Cotton Seed**, **Cotton Seed Oil** (3 products) |
 | Founded | 2011 (family legacy since 1969) |
-| Founder | Sh. Suresh Singhal Ji (Founder & Director) |
 | Address | Mauza Kohli, Jamb Road, Hinganghat — 442301, Maharashtra |
-| Reach | 10 Lakh+ clients, 7 states |
-| WhatsApp / Phone | +91 95285 47179 (link: https://wa.me/919528547179) |
+| Reach | 5 Lakh+ clients, 7 states (site par "5 Lakh+" likha hai) |
+| WhatsApp / Phone | +91 95285 47179 (link: https://wa.me/919528547179), +91 98739 32670 |
 | Instagram | https://www.instagram.com/shreekamalagro/ |
 | Facebook | https://www.facebook.com/shreekamalagro/ |
 | YouTube | https://www.youtube.com/@shreekamalagro |
@@ -36,7 +36,8 @@
 | Computer folder | C:\Users\lenovo\Documents\nikhil sheet\website\shreekamal |
 
 **Group companies:** Aadit Oil Mill · Singhal Agro Products · Fenixx Innovation Private Limited
-**Brands:** Radha Govind · Panchratan · Radha Kaithal (Radha Govind Kaithal) · Gaiyya · Shri Kamal · Amrit Kalash
+**Brands:** Radha Govind · Panchratan · Radha Kaithal · Gaiyya · Shri Kamal · Amrit Kalash · Butter Milk
+*(Note: "Radha Kaithal — Gold Pack" / radhagovind_kaithal brand user ke kehne par DELETE kiya tha gallery + cattle-feed-cake se.)*
 
 ---
 
@@ -44,15 +45,18 @@
 
 - **HTML** — har page ka structure
 - **CSS** — ek hi shared file `style.css` mein saara design
-- **JavaScript** — `script.js` (sliders, menu, animations) + kuch inline JS
-- **Firebase (Firestore)** — reviews aur admin login. Project id: `shreekamal-36ba3`. Config file: `firebase-config.js` (apiKey `AIzaSyBJvRtVoKeMWMGLiycaCVpsK3ahemjlqvo`). Storage use nahi hota — photos data-URL ke roop mein.
+- **JavaScript** — `script.js` (sliders, menu, animations, count-up) + kuch inline JS
+- **Firebase (Firestore)** — reviews aur admin login. Project id: `shreekamal-36ba3`. Config file: `firebase-config.js`. Storage use nahi hota — photos data-URL ke roop mein.
 - **FormSubmit** — Contact form ka message email par bhejne ke liye
 - **GitHub Pages** — free hosting (live)
 
-**Design system:**
-- Colours (CSS variables): `--gd:#0b1f0e` (dark green) · `--gk:#0f3318` · `--gm:#1a5c2a` · `--gr:#c8860a` (gold dark) · `--gy:#f5c030` (gold) · `--gl:#fdd85a` · `--td:#0a1a0c` · `--tt:#5a7a5e` · `--cr:#fffdf5` (cream) · `--c2:#f7f2e8`
-- Fonts: **Playfair Display** (headings) + **Inter** (body)
-- Theme: Green + Gold premium look
+**Design system (LATEST):**
+- Top redesign (friend shailesh7277.github.io/Skoi jaisa): **navy topbar + WHITE navbar + full-width hero slider + spiky white grass edge.**
+- Accent colours ab: **navy `#132147` + gold `#f5c030`** (stats box, facility cards, icons). Base cream `--cr:#fffdf5`. Purane green variables abhi bhi CSS mein hain (`--gm`, `--gr`, `--gy` etc.) kyunki neeche ke kuch sections green use karte hain.
+- Fonts: **Playfair Display** (headings/numbers) + **Inter** (body)
+- **Logo:** LOTUS (kamal) — `images/logo.png` (navbar), favicon bhi lotus.
+- Reveal animations: **facility section side se** (left content left se `rv-left`, right boxes right se `rv-right`), **baaki sab sections neeche-se-upar slide** (`.reveal` = translateY 48px, smooth ease-out). script.js IntersectionObserver.
+- Count-up numbers (`.cf-count`): scroll par 0 se ginti; **har baar view mein aane par dobara chalta hai** (bahar jaate hi 0 reset). Facility "50 MT" + stats box (5 Lakh+/55+/7).
 
 ---
 
@@ -60,69 +64,64 @@
 
 | File | Kya hai |
 |---|---|
-| index.html | Home — splash screen, hero slider (7 slides), hero-side popup marquee, founder frame, quality section, navbar, footer |
-| products.html | Products detail page |
-| brands.html | Brands — full-width brand banner (images/brand-banner.jpg) + brand cards + lightbox |
-| gallery.html | Gallery — 8 brand bags, click par lightbox (zoom, ‹›/ESC nav) |
-| about.html | About — 55+ saal legacy, timeline, founder frame, vision/mission, group companies, why-us |
-| contact.html | Contact — Google map embed, form, phone, WhatsApp |
-| cattle-feed-cake.html | Product page: Cattle Feed Cake |
+| index.html | Home — splash, hero slider (drift-proof), stats box, products (3 cards), brands slider, cotton section, quality, 7 states, **facility/company section (50 MT + checklist)**, group, why-us, about/timeline, testimonials, contact form, footer |
+| products.html | Products — 3 product cards (Cotton Seed Oil Cake, Cotton Seed, Cotton Seed Oil) |
+| brands.html | Brands — full-width banner + brand cards + lightbox |
+| gallery.html | Gallery — brand bags, lightbox |
+| about.html | About — 55+ saal legacy, timeline, vision/mission, group, why-us |
+| contact.html | Contact — Google map, form, phone, WhatsApp |
+| cattle-feed-cake.html | Product page: **Cotton Seed Oil Cake** (URL/filename purana hi hai) |
 | cotton-seed.html | Product page: Cotton Seed |
-| admin.html | Admin login (reviews manage karne ke liye — Firebase) |
+| cotton-seed-oil.html | Product page: **Cotton Seed Oil** (naya, 13 Aug) |
+| admin.html | Admin login (reviews — Firebase) |
 | style.css | Poore site ka shared design |
-| script.js | Sliders, hamburger menu, reveal-on-scroll animations |
-| firebase-config.js | Firebase connection settings |
+| script.js | Sliders, menu, reveal animations, count-up |
+| firebase-config.js | Firebase settings |
 | PROJECT-NOTES.md | **Yeh file** — master root record |
 
 **Navbar links:** Home · Products · Brands · Gallery · About · Contact · Get Quote
+**Logo files:** `images/logo.png` (lotus, navbar sab pages), `favicon.png` + `favicon-180.png` (lotus tab icon).
 
-**Key images:** hero1-6, farm.jpeg (hero slide 3), gaiyya.jpg, brand-banner.jpg, splash.jpg, radha_govind_kaithal.jpg, panchratan_shri.jpg, amrit_kalash.jpg, buttermilk.jpg, founder.jpg (MISSING — daalni hai)
+**Key product images (user ki ASLI photos — inhe replace mat karna):** `COTTONSEEDOIL.jpeg` (Cotton Seed Oil Cake), `COTTONSEED.jpeg` (Cotton Seed), `COTTONOIL.jpeg` (Cotton Seed Oil). Hero: hero1-3.jpg, farm.jpeg. Splash: splash.jpg + splash-mobile.jpg (lotus + cow, "पशु स्वस्थ, दूध ज्यादा").
 
 ---
 
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
-- WhatsApp number theek kiya (placeholder → 919528547179)
-- Splash / intro screen banaya (diya/flame logo), final version fix kiya
-- 4 nayi detail pages banayi: Products, Brands, About, Contact (Kapila-style reference)
-- Hero slider + brands slider auto-move theek kiya (scroll ke baad ruk jaate the — hover-pause hataya)
-- Gallery page banaya (lightbox/zoom, 8 brand bags)
-- Founder ka golden circle photo frame banaya (About + Home)
-- Hero ke side wali marquee images ko hover/touch par popup kiya
-- Quality & Certifications section banaya (clean white 4-card: FSSAI / In-house Lab / 100% Pure / Full Weight)
-- Bhaari images optimize ki (21MB → ~160KB) — site fast ki
-- Naya hero slide add kiya (farm.jpeg — 3rd position)
-- Brands page par full-width brand banner lagaya (farmer + bags wali image, na cut na khali space)
-- Poore project ka step-by-step PDF guide banaya (Shreekamal-Website-Guide.pdf)
-- Footer copyright auto-year kiya
-- **PROJECT-NOTES.md master root file banayi** *(21 July)*
-- **Brand banner image change ki** (nayi image se replace, cache v2) *(22 July)*
-- **PROJECT-NOTES.md ko full master/context file banaya** (nayi chat mein upload karke continue karne ke liye) *(22 July)*
-- **Facebook float icon add kiya** (neela, link: https://www.facebook.com/shreekamalagro/) sabhi 8 pages par *(22 July)*
-- **Instagram link theek ki** (placeholder → https://www.instagram.com/shreekamalagro/), aur do product pages par Instagram bhi add kiya *(22 July)*
-- **Founder photo add ki** (Sh. Suresh Singhal Ji) — `images/founder.jpg`, index+about *(30 July)*
-- **Founder frame wapas gol (circle) kiya** — 132px golden circle *(30 July)*
-- **Founder ki nayi SQUARE photo lagayi** (founder-photo-1, 1024x1024) — circle mein poora baitha dikhta hai, na side khali; founder.jpg 600x600, v5 *(30 July)*
-- **Footer mein choti clickable social icons add ki** (Facebook, Instagram, WhatsApp) — sabhi 8 pages, address ke neeche, hover par brand colour *(30 July)*
-- **YouTube icon add kiya** (laal) — floating icons + footer, sabhi 8 pages. Link: https://www.youtube.com/@shreekamalagro *(31 July)*
-- **Top design friend (shailesh7277.github.io/Skoi) jaisा banaya** (sirf top, baaki site green): navy topbar + WHITE navbar + full-width hero + spiky white grass + top-right watermark; marquee (hero-side) hataya; stats bar ko white + navy icon cards (5 Lakh+/55+/7) banaya; farm.jpeg ko hero slide 1 par kiya. index.html + style.css. *(6 Aug)*
-- **Founder ki photo aur naam ("Sh. Suresh Singhal Ji") site se poori tarah hataya** — index + about (photo block, timeline naam, meta description). User ne kaha naam kahin nahi hona chahiye. *(3 Aug)*
-- **Splash mobile fix** — mobile par splash box/cut ho rahi thi. Nayi portrait `images/splash-mobile.jpg` (1080x1920, sky extend) banayi; index.html mein <picture> se mobile pe portrait + desktop pe splash.jpg. Ab full-screen complete dikhti hai *(3 Aug)*
-- **Domain:** shreekamalagro.co.in — GoDaddy par registered (Shreekamal Oil Industries ke naam, valid till 4 July 2027). Band nahi hua, bas parked (kisi site se juda nahi). GitHub se jodna baaki. CNAME file repo mein daal di. User ke paas GoDaddy login nahi — recover karna baaki. *(3 Aug)*
+*(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**13–14 August 2026:**
+- **Stats (5 Lakh+ / 55+ / 7) ko ek WHITE BOX (card) mein daala** — border + soft shadow + beech mein dividers; section bg cream taaki box pop kare. Mobile par stacked, horizontal dividers. *(14 Aug)*
+- **Favicon (browser tab icon) LOTUS kiya** — navy rounded square + white lotus. `favicon.png` (64) + `favicon-180.png` (180), sabhi pages, v2. Pehle favicon.svg (flame) tha. *(14 Aug)*
+- **Naya LOTUS logo** — purana diya/flame SVG hataya, sabhi 9 pages ke navbar mein `images/logo.png` (splash se extract, black lotus, transparent). Naya CSS class `.nav-logo-img` (height:46px). *(14 Aug)*
+- **Nayi splash image** — user ki WhatsApp image (lotus + श्रीकमल + gaay, "पशु स्वस्थ, दूध ज्यादा"). `splash.jpg` + `splash-mobile.jpg` dono replace; mobile par `object-fit:contain` (pura logo dikhe); v2. *(14 Aug)*
+- **User ne khud asli product photos wire ki** (COTTONSEEDOIL/COTTONSEED/COTTONOIL) home + detail pages par. Humne `products.html` ko bhi inhi photos se match kiya (consistency). *(14 Aug)*
+- **Sections reveal animation** — facility section side se (rv-left/rv-right), baaki sab neeche-se-upar slide (48px). *(13 Aug)*
+- **Stats bar count-up + re-trigger** — 5 Lakh+/55+/7 scroll par ginti; har baar view mein aane par dobara. *(13 Aug)*
+- **Teesra product "Cotton Seed Oil" add kiya** — home + products cards, nayi detail page `cotton-seed-oil.html`, footer links, products grid 3-column. *(13 Aug)*
+- **"Cattle Feed Cake" naam poori site par "Cotton Seed Oil Cake" kiya** — links/filenames (cattle-feed-cake.html) same rakhe. *(13 Aug)*
+- **Facility / Company section banaya** (7-states ke neeche): left text + gold "50 MT Daily Production Capacity" card (count-up) + navy checklist card. Location/map card baad mein hataya, dono box center kiye. *(13 Aug)*
+- **Hero slider fix** — friend jaisa seamless slide; scroll/tab-switch ke baad blank ho jata tha (drift) → off-screen/hidden par pause + valid slide par snap. Hero 6th image hataya. *(13 Aug)*
+
+**Purane (21 July – 6 Aug):**
+- WhatsApp number theek kiya; Splash/intro screen banaya; 4 detail pages (Products/Brands/About/Contact); hero + brands slider auto-move fix; Gallery + lightbox; Founder frame; hero-side marquee popup; Quality section; images optimize (21MB→~160KB); brand banner; PDF guide; footer auto-year.
+- PROJECT-NOTES.md master file banayi *(21–22 July)*; Facebook + Instagram + YouTube icons sab pages *(22–31 July)*.
+- **Top design friend jaisa** (navy topbar + white navbar + full-width hero + spiky grass; marquee hataya; stats bar white + navy icon cards; farm.jpeg hero slide 1) *(6 Aug)*.
+- **Founder ki photo + naam poori tarah HATAYA** (user ne kaha naam kahin na ho) *(3 Aug)*.
+- **Splash mobile fix** (portrait splash-mobile.jpg) *(3 Aug)*.
 
 ---
 
 ## 5. PENDING / KARNA BAAKI HAI
 
-- [ ] **Domain jodna** — `shreekamalagro.co.in` PEHLE SE hai (GoDaddy, 2027 tak). ⚠️ CNAME file time se pehle push hui thi → github.io redirect ho gaya parked page par → CNAME KHALI karke fix kiya (site wapas live). SAHI ORDER: (1) GoDaddy login recover (2) DNS: 4 A records (185.199.108-111.153) + www CNAME → nikhil96235.github.io (3) SABSE AAKHIR mein CNAME file mein domain daalna. CNAME abhi khali hai — DNS ready hone tak khali hi rehne dena.
-- [ ] **Domain jodna** — domain lene ke baad: repo mein CNAME file + domain company ki DNS settings. (Editing/deploy ka tarika same rahega, sirf ek-baar ka setup.)
-- [ ] **SEO** — domain ke BAAD: Google Search Console, Google Business Profile, sitemap.xml, robots.txt, business schema, keyword-rich titles, directory listings (IndiaMART/JustDial/TradeIndia).
-- [x] ~~Instagram link theek~~ — ho gaya (https://www.instagram.com/shreekamalagro/). Facebook bhi add ho gaya (https://www.facebook.com/shreekamalagro/).
-- [x] ~~Founder photo~~ — ho gaya. `images/founder.jpg` (Sh. Suresh Singhal Ji, square crop, circular frame ke liye) *(30 July)*
+- [ ] **Domain jodna** — `shreekamalagro.co.in` (GoDaddy). ⚠️ Domain **expire ho chuka hai / renew karna hai** (user ko ~₹749 renewal karna hai) — tab tak PAUSED. CNAME file abhi **khali** hai (repo mein). Renew ke baad SAHI ORDER: (1) GoDaddy login recover (2) DNS: 4 A records (185.199.108–111 .153) + www CNAME → nikhil96235.github.io (3) SABSE AAKHIR mein CNAME file mein domain daalna.
+- [ ] **SEO** — domain ke BAAD: Google Search Console, Google Business Profile, sitemap.xml, robots.txt, business schema, keyword titles, IndiaMART/JustDial/TradeIndia listings.
 - [ ] **FSSAI number + GST number** — Quality/Contact section mein daalne (trust ke liye).
 - [ ] **FormSubmit activate** — pehli baar confirmation email aata hai, use click karna zaroori (warna contact form kaam nahi karega).
-- [ ] **Firebase account** — project `shreekamal-36ba3` kis Google account mein hai woh dhoondna baaki (abhi access nahi mil raha — Gmail mein "Firebase"/"shreekamal-36ba3" search karke dekho, ya naya project banao).
-- [ ] **About page banner** (optional) — abhi clean text header hai (theek). Chaho to farm/factory image banner laga sakte hain.
+- [ ] **Firebase account** — project `shreekamal-36ba3` kis Google account mein hai dhoondna baaki.
+- [ ] **Infrastructure photo** — facility section mein abhi blank placeholder hai; user asli factory photo dega tab lagani hai.
+- [x] ~~Cotton Seed Oil card placeholder~~ — user ki asli COTTONOIL.jpeg lag gayi.
+- [x] ~~Lotus logo + favicon~~ — ho gaya *(14 Aug)*.
 
 ---
 
@@ -130,22 +129,24 @@
 
 Jab bhi files change ho, VS Code mein:
 1. **Source Control** kholo (left side branch icon)
-2. Saare changes **+** se stage karo (nayi file/image ho to use zaroor stage karna)
-3. Message box mein chhota note likho (jaise "banner update")
+2. Saare changes **+** se stage karo (nayi file/image ho to zaroor stage karna)
+3. Message box mein chhota note likho
 4. **Commit** → phir **Sync Changes** (push)
-5. 1-2 minute baad site update — check karne ke liye **incognito window** mein site kholna (purana cache na dikhe)
+5. 1–2 minute baad site update — **incognito window** mein `?v=` laga ke check karna (cache).
 
 ---
 
 ## 7. IMPORTANT DECISIONS / GOTCHAS (yaad rakhne layak)
 
-- **SEO domain ke BAAD** — abhi github.io URL pe SEO/Business Profile karenge to domain lene par sab dobara karna padega. In-code SEO (sitemap/schema) file ke saath chalta hai, woh kabhi bhi.
-- **Domain se editing nahi badalti** — domain sirf naya "naam" hai jo isi GitHub site par point karta hai. Change karne ka tarika (Commit + Sync) bilkul same rahega. Change dono URL par dikhega.
-- Domain na mile to `.in`, `.co.in`, ya `shreekamalindustries.com` jaisa option. Naam chhota aur simple rakhna.
-- **Windows filename issue** — user kabhi-kabhi image ko capital naam ya extra extension (jaise Splash.jpeg, hero5.jpg.jpeg) se save kar deta hai. GitHub case-sensitive hai, isliye file ko correct naam se **seedha device par likhna** (device_commit_files) safe rehta hai.
-- **Cache** — image replace karne par HTML mein `?v=` number badalna, aur incognito mein check karna.
-- **External github.io Playwright se nahi khulta** (tunnel error). Local render ke liye files `/root/new-files/test/` mein rakhke Chromium se screenshot lena. WebFetch sirf raw.githubusercontent.com / api.github.com par chalta hai.
-- **VS Code "file is newer" error** — agar Claude ne file disk par likhi jabki woh VS Code mein khuli thi. Fix: Overwrite mat dabao; tab close (Don't Save) ya Revert File; phir Commit+Sync.
+- **DEVICE FOLDER = SOURCE OF TRUTH.** Cloud `/root/new-files/` reset ho jata hai. User apne aap bhi images/HTML badalta hai. Isliye kaam se pehle device se stage karke latest par kaam karo — purani copy se deploy mat karo (warna user ka kaam ud jayega). *(14 Aug ko yeh issue aaya tha.)*
+- **User ki images kabhi purani se replace mat karna** — jo naam user ne di hain (COTTONSEEDOIL/COTTONSEED/COTTONOIL, splash, logo) wahi rakhna.
+- **SEO domain ke BAAD.**
+- **Domain se editing nahi badalti** — domain sirf naya naam, deploy tarika same.
+- **Windows filename issue** — capital naam / double extension (hero5.jpg.jpeg). GitHub case-sensitive — file seedha device par correct naam se likhna safe.
+- **Cache** — image replace par `?v=` badalna + incognito. Favicon zyada cache hota hai → Ctrl+Shift+R.
+- **External github.io Playwright se nahi khulta** — local files `/root/new-files/` se render karo.
+- **VS Code "file is newer" error** — Overwrite mat dabao; tab close (Don't Save) / Revert; phir Commit+Sync.
+- **Facility count / stats count** — sab `.cf-count` class use karte hain; ek hi script sabko handle karta hai.
 
 ---
 
