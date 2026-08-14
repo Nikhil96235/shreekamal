@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **cattle-feed-cake.html ke brand cards bhi same simplify** (maker+desc hataye, common 2 tags). *(14 Aug)*
 - **brands.html cards simplify:** pd-brand-maker (Aadit Oil Mill etc.) + pd-brand-desc hataye, "★ Flagship" hataya. Sirf brand name (16px) + 2 common tags sab me: COTTON SEED OIL CAKE + 100% PURE. *(14 Aug)*
 - **Testimonials (Success Story) section ko darker warm bg (#f1e6ce) + top/bottom line** (border 2px rgba(180,120,40,.30)) diya taaki upar/neeche wale sections se alag block dikhe. *(14 Aug)*
 - **Testimonials section dost ki site jaisa redesign:** dark green → light cream (--c2) + village-beige watermark. Cards ab gold quote-badge (circle) + 5 stars + review text (Hindi text waise hi rakha). Name/role/photo NAHI (user ne mana kiya). Firebase dynamic review template (index.html JS) bhi naye design me update kiya. *(14 Aug)*
