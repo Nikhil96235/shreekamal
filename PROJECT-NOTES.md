@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **cotton-seed.html spec table trim** — Grade, Use, Packaging, Availability rows poori hatai. Bache: Quality, Min. Bulk Order. *(14 Aug)*
 - **cattle-feed-cake.html spec table trim** — Source: "Mustard /" hataya (ab "Cotton Seed Cake"); Form, Packaging, Suitable For rows poori hatai. Bache: Source, Protein, Min. Bulk Order. *(14 Aug)*
 - **products.html "Quality You Can Trust" spec table trim** — Quality → sirf "Purity Guaranteed" (Lab-Tested hataya); Packaging aur Suitable For rows poori hatai. Bache: Product Range, Quality, Delivery, Min. Bulk Order. *(14 Aug)*
 - **gallery.html captions se company sub-line (Aadit Oil Mill/Avik Agro/Singhal) hatai** — sab items me sirf brand name. gal-cap span + data-cap ka "|Company" part removed; lightbox JS already safe. *(14 Aug)*
