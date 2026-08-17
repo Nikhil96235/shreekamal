@@ -213,3 +213,43 @@ function handleSubmit(){
     els.forEach(animate);
   }
 })();
+
+// ===== Language toggle: English / Hindi (Google Translate) =====
+(function(){
+  function setCookie(n,v){
+    var host=location.hostname;
+    document.cookie=n+"="+v+";path=/";
+    document.cookie=n+"="+v+";path=/;domain="+host;
+    if(host.indexOf('.')>0){ document.cookie=n+"="+v+";path=/;domain=."+host; }
+  }
+  function getCookie(n){ var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m?m.pop():''; }
+  function currentLang(){ var c=getCookie('googtrans'); return (c && c.indexOf('/hi')>-1) ? 'hi' : 'en'; }
+  function switchLang(lang){
+    setCookie('googtrans', lang==='hi' ? '/en/hi' : '/en/en');
+    location.reload();
+  }
+  // hidden google element + loader
+  if(!document.getElementById('google_translate_element')){
+    var gdiv=document.createElement('div'); gdiv.id='google_translate_element'; gdiv.style.display='none';
+    document.body.appendChild(gdiv);
+  }
+  window.googleTranslateElementInit=function(){
+    try{ new google.translate.TranslateElement({pageLanguage:'en', includedLanguages:'en,hi', autoDisplay:false}, 'google_translate_element'); }catch(e){}
+  };
+  var gs=document.createElement('script');
+  gs.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  document.body.appendChild(gs);
+  // toggle button in navbar
+  var nav=document.getElementById('navLinks');
+  if(nav){
+    var btn=document.createElement('a');
+    btn.href='javascript:void(0)';
+    btn.className='lang-toggle notranslate';
+    btn.setAttribute('translate','no');
+    function render(){ btn.textContent = (currentLang()==='hi') ? 'English' : 'हिंदी'; }
+    render();
+    btn.onclick=function(){ switchLang(currentLang()==='hi'?'en':'hi'); };
+    var cta=nav.querySelector('.nav-cta');
+    if(cta) nav.insertBefore(btn, cta); else nav.appendChild(btn);
+  }
+})();

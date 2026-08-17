@@ -571,3 +571,14 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .reveal.rv-left{transform:translateX(-45px);}
 .reveal.rv-right{transform:translateX(45px);}
 .reveal.rv-left.visible,.reveal.rv-right.visible{transform:none;}
+
+/* ===== Language toggle button + Google Translate cleanup ===== */
+.lang-toggle{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-weight:700;font-size:14px;color:#132147;border:1.5px solid rgba(19,33,71,0.28);border-radius:30px;padding:6px 15px;text-decoration:none;transition:background .2s,color .2s,border-color .2s;line-height:1;}
+.lang-toggle::before{content:"🌐";font-size:14px;}
+.lang-toggle:hover{background:#132147;color:#ffffff;border-color:#132147;}
+/* hide Google Translate top banner + artifacts so site layout stays clean */
+.goog-te-banner-frame.skiptranslate,.goog-logo-link,.goog-te-gadget-icon{display:none!important;}
+.goog-te-gadget{height:0!important;overflow:hidden!important;font-size:0!important;}
+body{top:0!important;position:static!important;}
+#goog-gt-tt,.goog-te-balloon-frame{display:none!important;}
+.goog-text-highlight{background:none!important;box-shadow:none!important;}
