@@ -360,6 +360,7 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 .slogan-track{display:inline-block;white-space:nowrap;animation:sloganScroll 20s linear infinite;}
 .slogan-track span{font-family:'Playfair Display',serif;font-size:clamp(19px,2.6vw,30px);font-weight:700;color:var(--gy);padding:0 26px;vertical-align:middle;}
 .slogan-track .sep{font-size:clamp(18px,2.4vw,26px);padding:0 6px;}
+.slogan-track .sep img{height:1.7em;width:auto;vertical-align:middle;object-fit:contain;}
 .slogan-band:hover .slogan-track{animation-play-state:paused;}
 @keyframes sloganScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
