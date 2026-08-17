@@ -228,6 +228,12 @@ function handleSubmit(){
     setCookie('googtrans', lang==='hi' ? '/en/hi' : '/en/en');
     location.reload();
   }
+  // brand / company names ko translate se bachao (proper naam waise hi rahein)
+  try{
+    document.querySelectorAll('.brand-name,.pd-brand-name,.group-name,.gal-cap,.nav-brand-name,.footer-brand-name,.testi-name').forEach(function(el){
+      el.classList.add('notranslate'); el.setAttribute('translate','no');
+    });
+  }catch(e){}
   // hidden google element + loader
   if(!document.getElementById('google_translate_element')){
     var gdiv=document.createElement('div'); gdiv.id='google_translate_element'; gdiv.style.display='none';
