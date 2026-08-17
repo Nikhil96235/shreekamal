@@ -13,12 +13,12 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 /* NAVBAR */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:999;background:#ffffff;backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);box-shadow:0 4px 18px rgba(10,20,50,0.08);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;transition:var(--tr);}
 .navbar.scrolled{height:60px;}
-.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-decoration:none;}
 .nav-logo-svg{width:52px;height:52px;}
 .nav-logo-img{height:46px;width:auto;display:block;}
 .nav-logo-full{height:44px;width:auto;display:block;}
 .nav-brand-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#132147;letter-spacing:0.5px;line-height:1.1;}
-.nav-brand-sub{font-size:11px;letter-spacing:3px;color:#b3860e;font-weight:600;margin-top:2px;}
+.nav-brand-sub{font-size:11px;letter-spacing:3px;color:#b3860e;font-weight:600;margin-top:1px;padding-left:3px;}
 .nav-links{display:flex;align-items:center;gap:28px;}
 .nav-links a{color:#22304f;text-decoration:none;font-size:13px;font-weight:500;transition:color var(--tr);position:relative;}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gr);transform:scaleX(0);transition:transform var(--tr);}
