@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Home brands slider ke saare cards ab brands.html pe jaate hain** (pehle kuch #contact, kuch cattle-feed-cake.html jaate the). Static 7 cards + dynamic Firebase template dono. *(14 Aug)*
 - **Our Story timeline se "Building on 40+ years of legacy..." (2011 item ka text) hataya** — index + about. Year heading "2011 — SHREEKAMAL OIL INDUSTRIES FOUNDED" rahi. *(14 Aug)*
 - **Hindi mode me brand/company names mangle ho rahe the** (Google Translate proper nouns ko translate kar deta — "Butter Milk"→"छाछ" etc.). Fix: script.js me `.brand-name,.pd-brand-name,.group-name,.gal-cap,.nav-brand-name,.footer-brand-name,.testi-name` ko `class="notranslate" translate="no"` mark kiya (GT inject hone se pehle). Ab brand names Hindi mode me bhi asli (English/Roman) form me rehte hain. Devanagari script chahiye to manual mapping karni padegi. Product card names + tags + stat numbers (.product-name,.tag,.pd-tag,.pd-brand-tag,.brand-tag,.sbar-num,.cf-count) bhi notranslate kiye (card content English jaisa rahe; descriptions Hindi me translate hote hain). *(14 Aug)*
 - **cotton-seed-oil.html spec table trim** — Source, Use, Packaging, Availability rows hatai. Bache: Quality, Min. Bulk Order. (Ab teeno product pages ke spec tables chhote/clean.) *(14 Aug)*
