@@ -90,6 +90,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**17 August 2026:**
+- **Shreekamal ka naya WORDMARK logo lagaya** (user ne `log.jpeg` = "Shreekamaloil Industries" blue text + leaf mark di). Usse transparent PNG banaya `images/shreekamal-logo.png` (border crop + distance-from-white key, 1147x321). Do jagah lagaya (user ne "Group card + navbar dono me" choose kiya): **(1)** Group section ka Shreekamal card (index+about) — purana lotus logo.png hataya. **(2)** Sabhi 9 pages ke navbar me — purana lotus `nav-logo-img` + alag text (`nav-brand-name` "Shreekamal Oil Industries" + `nav-brand-sub` "EST. 2011") dono hataye, unki jagah sirf yeh wordmark (naam logo me hi hai). Naya CSS `.nav-logo-full{height:44px;width:auto}`. *(17 Aug)*
+
 **13–14 August 2026:**
 - **Home brands slider ke saare cards ab brands.html pe jaate hain** (pehle kuch #contact, kuch cattle-feed-cake.html jaate the). Static 7 cards + dynamic Firebase template dono. *(14 Aug)*
 - **Our Story timeline se "Building on 40+ years of legacy..." (2011 item ka text) hataya** — index + about. Year heading "2011 — SHREEKAMAL OIL INDUSTRIES FOUNDED" rahi. *(14 Aug)*
