@@ -253,3 +253,20 @@ function handleSubmit(){
     if(cta) nav.insertBefore(btn, cta); else nav.appendChild(btn);
   }
 })();
+
+// ===== Reliable trigger for top-to-bottom "open" image reveal (.rv-open) =====
+(function(){
+  var els=document.querySelectorAll('.rv-open');
+  if(!els.length) return;
+  function check(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    els.forEach(function(e){
+      if(e.classList.contains('visible')) return;
+      var r=e.getBoundingClientRect();
+      if(r.top < vh*0.85 && r.bottom > 0){ e.classList.add('visible'); }
+    });
+  }
+  window.addEventListener('scroll',check,{passive:true});
+  window.addEventListener('resize',check);
+  check();
+})();

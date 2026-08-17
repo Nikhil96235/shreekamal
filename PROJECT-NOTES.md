@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **Facility section me infrastructure photo (images/infra.jpeg) lagai** — placeholder ki jagah. Scroll par UPAR-SE-NEECHE "open" animation (clip-path inset reveal, class .rv-open). Trigger scroll-based check se (reliable). CSS: .cf-photo img cover + .reveal.rv-open clip-path. *(14 Aug)*
 - **Language toggle (English/Hindi) add kiya** — navbar me "🌐 हिंदी" button (script.js me inject hota hai, isliye sab pages pe). Google Translate widget use karta hai (googtrans cookie /en/hi <-> /en/en, reload). Default GT banner CSS se hide kiya. Machine translation — live site (internet) par hi chalega. *(14 Aug)*
 - **products.html product section heading home jaisa kiya** — "Our Product Range" ab center + gold Playfair (section-eyebrow style), pehle left plain pd-block-title tha. Cards home se already same. *(14 Aug)*
 - **about.html ka Group section bhi home jaisa kiya** — 4 cards (Shreekamal+Aadit+Singhal+Fenixx) asli logos ke saath, bina description. *(14 Aug)*
