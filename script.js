@@ -230,7 +230,7 @@ function handleSubmit(){
   }
   // brand / company names ko translate se bachao (proper naam waise hi rahein)
   try{
-    document.querySelectorAll('.brand-name,.pd-brand-name,.group-name,.gal-cap,.nav-brand-name,.footer-brand-name,.testi-name').forEach(function(el){
+    document.querySelectorAll('.brand-name,.pd-brand-name,.group-name,.gal-cap,.nav-brand-name,.footer-brand-name,.testi-name,.product-name,.tag,.pd-tag,.pd-brand-tag,.brand-tag,.sbar-num,.cf-count').forEach(function(el){
       el.classList.add('notranslate'); el.setAttribute('translate','no');
     });
   }catch(e){}
