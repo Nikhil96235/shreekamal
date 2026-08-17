@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **13–14 August 2026:**
+- **products.html "Quality You Can Trust" spec table trim** — Quality → sirf "Purity Guaranteed" (Lab-Tested hataya); Packaging aur Suitable For rows poori hatai. Bache: Product Range, Quality, Delivery, Min. Bulk Order. *(14 Aug)*
 - **gallery.html captions se company sub-line (Aadit Oil Mill/Avik Agro/Singhal) hatai** — sab items me sirf brand name. gal-cap span + data-cap ka "|Company" part removed; lightbox JS already safe. *(14 Aug)*
 - **Right-side blank space (horizontal overflow) fix** — desktop-site mode/mobile par content screen se ~38px chauda tha (contact form fields + sliders), page ke right me blank strip aata tha. Fix: `html{overflow-x:hidden}` + `body{max-width:100%}` (pehle sirf body pe overflow-x tha). Ab docW==viewport har width par. *(14 Aug)*
 - **Mobile splash box/strip fix** — pehle landscape splash contain hone se mobile par beech me strip dikhti thi. Ab portrait (1080x1920) splash-mobile.jpg banayi (splash ka sky upar-neeche edge-extend karke), mobile CSS object-fit contain→cover, v3. Full-screen dikhti hai. *(14 Aug)*
