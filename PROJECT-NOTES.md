@@ -90,6 +90,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**18 August 2026:**
+- **Shreekamal ka naya logo lagaya** (user ne `logo23.jpeg` di — wahi wordmark, thoda stacked layout, leaf upar). White bg hata ke transparent `shreekamal-logo.png` banaya (distance-from-white key + trim, 1122x768). Purane shreekamal-logo.png ki jagah — navbar (9 pages) + group card (index+about) — sab jagah automatically. Stacked hone se navbar me chhota lag raha tha → `.nav-logo-full` height 44px → 54px. ?v=2 (cache bust). *(18 Aug)*
+
 **17 August 2026:**
 - **index.html Premium Cotton Seed section se "Gossypium hirsutum — Premium Grade" line hatai.** "Cotton Seed" label ko `notranslate` + `translate="no"` kiya (Hindi me English rahe). Aur script.js ke notranslate selector me `.pd-title` add kiya taaki product detail pages ke naam (Cotton Seed Oil Cake / Cotton Seed / Cotton Seed Oil) Hindi mode me shudh-hindi na ho ke English rahein. (Side effect: products.html ka pd-title tagline "Pure Quality…" bhi ab English rahega.) *(17 Aug)*
 - **Product detail pages ka hero background dark-green → CREAM** kiya (user ne cream swatch bheja). `.pd-hero` bg `var(--gd)` → `var(--c2)` (#f7f2e8, site ka existing cream). Text cream pe readable banaya: pd-title `#fff`→`var(--td)`, pd-desc white→`var(--tm)`, pd-eyebrow gold(--gy)→amber(--gr), breadcrumb white→`--tt`/links `--gr`, pd-tag amber-on-cream. Ek style.css change se sabhi 4 pages (cattle-feed-cake/cotton-seed/cotton-seed-oil + products.html listing) ka hero cream ho gaya. *(17 Aug)*
