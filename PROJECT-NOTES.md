@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **18 August 2026:**
+- **REVERT: naya logo (logo23) hata ke wapas pehla (1st) logo lagaya usi original size me.** `shreekamal-logo.png` ko phir se `log.jpeg` se banaya (horizontal compact "Shreekamaloil Industries" + leaf side me, 1149x323). CSS wapas: `.nav-logo-full` 44px, navbar height 72px (scrolled 60px). ?v=3 (cache bust). (Neeche wala "naya logo lagaya" wala kaam undo ho gaya.) *(18 Aug)*
 - **Shreekamal ka naya logo lagaya** (user ne `logo23.jpeg` di — wahi wordmark, thoda stacked layout, leaf upar). White bg hata ke transparent `shreekamal-logo.png` banaya (distance-from-white key + trim, 1122x768). Purane shreekamal-logo.png ki jagah — navbar (9 pages) + group card (index+about) — sab jagah automatically. Stacked hone se navbar me chhota lag raha tha → `.nav-logo-full` height 44px → 54px. ?v=2 (cache bust). User ne aur bada bola → logo 66px (navbar 86px). Phir aur bada → **logo 80px, navbar height 100px (scrolled 84px)** — text clear bada, EST fit. (Logo stacked+leaf-upar hone se height chahiye thi.) *(18 Aug)*
 
 **17 August 2026:**
