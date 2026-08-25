@@ -281,6 +281,12 @@ function handleSubmit(){
 (function(){
   var vids=document.querySelectorAll('.video-el');
   if(!vids.length) return;
+  // Ek time par ek hi video chale — koi play ho to baaki pause
+  vids.forEach(function(v){
+    v.addEventListener('play',function(){
+      vids.forEach(function(o){ if(o!==v && !o.paused){ o.pause(); } });
+    });
+  });
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
