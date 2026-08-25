@@ -116,6 +116,12 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 
 /* BRANDS SLIDER */
 .brands-section{background:var(--c2);padding:80px 5%;}
+.video-section{background:var(--cr);padding:80px 5%;}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1000px;margin:34px auto 0;}
+.video-card{display:flex;flex-direction:column;}
+.video-card video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#000;border-radius:18px;border:5px solid #fff;box-shadow:0 16px 40px rgba(11,31,14,.14);}
+.video-cap{margin-top:12px;text-align:center;font-size:14px;font-weight:600;color:var(--tm);}
+@media(max-width:760px){.video-grid{grid-template-columns:1fr;gap:22px;}}
 .brands-slider-wrap{position:relative;margin-top:48px;}
 .brands-slider{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .brand-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:transform var(--tr),box-shadow var(--tr);text-decoration:none;display:block;}

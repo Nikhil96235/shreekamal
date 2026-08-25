@@ -90,6 +90,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**25 August 2026:**
+- **Home page pe VIDEO SECTION add kiya** (Products section ke baad, Brands slider se pehle). User ne `video/` folder me 2 mp4 di. Web ke liye compress kiya: video1 6.6MB→2.8MB, video2 122MB(2.7K!)→4.2MB (720p, crf 26-27, +faststart). `video/shreekamal-video1.mp4` (dada-pota-gaay emotional ad) + `video/shreekamal-video2.mp4` (2 kisaan conversation, Shri Kamal binola khal). Posters `video/poster1.jpg`/`poster2.jpg`. Native `<video controls preload="none" poster>` 2-up grid (`.video-grid` — mobile stack). Heading "Swasth Pashu, Adhik Doodh". CSS `.video-section/.video-grid/.video-card`. *(25 Aug)*
+
 **18 August 2026:**
 - **Timeline "2015–2020 Expansion" ka text trim** (index+about): "Group expands operations — Aadit Oil Mill and Singhal Agro Products established." hataya; bacha "Network grows to 5+ states with multiple brand launches including Radha Govind & Panchratan." *(18 Aug)*
 - **REVERT: naya logo (logo23) hata ke wapas pehla (1st) logo lagaya usi original size me.** `shreekamal-logo.png` ko phir se `log.jpeg` se banaya (horizontal compact "Shreekamaloil Industries" + leaf side me, 1149x323). CSS wapas: `.nav-logo-full` 44px, navbar height 72px (scrolled 60px). ?v=3 (cache bust). (Neeche wala "naya logo lagaya" wala kaam undo ho gaya.) *(18 Aug)*
