@@ -276,3 +276,24 @@ function handleSubmit(){
   window.addEventListener('resize',check);
   check();
 })();
+
+// ===== Video: scroll karke bahar jaate hi pause + start (poster) par reset =====
+(function(){
+  var vids=document.querySelectorAll('.video-el');
+  if(!vids.length) return;
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting){
+          var v=e.target;
+          try{
+            if(!v.paused) v.pause();
+            v.currentTime=0;
+            v.load();            // wapas poster (pehle jaisa) dikha do
+          }catch(err){}
+        }
+      });
+    },{threshold:0.2});
+    vids.forEach(function(v){ io.observe(v); });
+  }
+})();
