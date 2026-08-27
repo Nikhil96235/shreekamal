@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **26 August 2026:**
+- **Timeline ke aakhri 2 points merge kiye** (index+about): "2015–2020 Expansion" + "TODAY — Trusted across 7 states" → ek point **"2015 – ONGOING — EXPANSION ACROSS INDIA"**, dono ka text ek tl-text me joda ("Network grows… Radha Govind & Panchratan. Today, 5 Lakh+ happy clients across 7 states — …journey continues."). Ab timeline me 3 points. *(26 Aug)*
 - **Facility section se navy checkmark-box hataya** — `.cf-card.cf-navy` (2 points: "Most modern plant…" + "Less dependence…") poora remove. Ab `.cf-right` me sirf gold "500 MT Daily Production Capacity" card, jo `justify-content:center` se apne aap vertically center (left photo ke saath balanced). *(26 Aug)*
 - **Home brand slider cards clean kiye** (user ki latest manual-edited index.html pe kaam kiya — unki text edits preserve): har card se `brand-desc` (sub-line) hataya (static 7 + dynamic Firebase template), brand-name bada (`.brand-name` 20px→26px, margin-bottom 8→14). Tags pehle se sab same the ("COTTON SEED OIL CAKE") — barabar rahe; dynamic template me bhi wahi tag add kiya consistency ke liye. *(26 Aug)*
 
