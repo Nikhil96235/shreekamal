@@ -90,6 +90,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**26 August 2026:**
+- **Home brand slider cards clean kiye** (user ki latest manual-edited index.html pe kaam kiya — unki text edits preserve): har card se `brand-desc` (sub-line) hataya (static 7 + dynamic Firebase template), brand-name bada (`.brand-name` 20px→26px, margin-bottom 8→14). Tags pehle se sab same the ("COTTON SEED OIL CAKE") — barabar rahe; dynamic template me bhi wahi tag add kiya consistency ke liye. *(26 Aug)*
+
 **25 August 2026:**
 - **Hero: chhoti-vs-poori experiment, aakhir me ORIGINAL wapas.** Pehle max-height:620 hataya (full 16:9, poori image par taller) → user ko tall laga. Blur-fill (contain + blurred bg) try kiya → user ne mana kiya (wide screen pe blur bars dikhe). Aakhir user ne "jaise suru me the waise" bola → `.hero-slides max-height:620px` + `.hs-img object-position:center 78%` wapas (original chhoti height, cover). NOTE: `.grass-hero` display:none (straight line) waisa hi rakha (wo alag request thi). *(25 Aug)*
 - **Hero ke neeche wala zigzag/grass divider hataya** — `.grass-hero` (clip-path polygon sawtooth) ko `display:none` kiya, ab hero ki bottom edge bilkul straight line hai (user ne plain straight chaha). *(25 Aug)*

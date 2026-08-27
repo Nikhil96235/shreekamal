@@ -213,7 +213,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/radha_govind_kachhighani.jpg?v=10" alt="Radha Govind Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Radha Govind</div>
-            <p class="brand-desc">Premium cotton seed oil cake trusted by dairy farmers across UP, MP and Maharashtra.</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -223,7 +222,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/shrikamal.jpg?v=10" alt="Shree Kamal Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Shreekamal</div>
-            <p class="brand-desc">Our flagship cotton seed oil cake — premium Binola Khal (cotton seed cake) for healthier cattle and higher milk yield.</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -233,7 +231,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/panchratan_shri.jpg?v=10" alt="Panchratan Shri Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Panchratan Shri</div>
-            <p class="brand-desc">Five-in-one nutrition formula cotton seed oil cake — a blend of five essential nutrients for complete animal health.</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -243,7 +240,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/radha_govind_kaithal.jpg?v=10" alt="Radha Govind Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Radha Govind</div>
-            <p class="brand-desc">Named after the sacred city of Kaithal, this brand brings traditional nutrition wisdom to modern cattle farming.</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -253,7 +249,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/gaiyya.jpg?v=10" alt="Gaiyya Super Quality Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Gaiyya</div>
-            <p class="brand-desc">Super-quality, high-oil cotton seed cake (binola khal).</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -263,7 +258,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/buttermilk.jpg?v=10" alt="Butter Milk 100% Pure Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Butter Milk</div>
-            <p class="brand-desc">100% pure binola khal for richer milk and healthier livestock — a dairy-farmer favourite for more milk and better animal health.</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -273,7 +267,6 @@
           <div class="brand-img-wrap"><img loading="lazy" decoding="async" src="images/amrit_kalash.jpg?v=10" alt="Amrit Kalash Kachi Ghani Binola Khal"/></div>
           <div class="brand-body">
             <div class="brand-name">Amrit Kalash</div>
-            <p class="brand-desc">100% shudh Kachi Ghani binola khal — "Adhik Doodh, Adhik Ghee."</p>
             <div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div>
           </div>
         </div>
@@ -848,7 +841,7 @@ try{
             card.onclick=()=>{ window.location.href='brands.html'; };
             card.innerHTML='<div class="brand-img-wrap"><img loading="lazy" decoding="async" src="'+esc(b.photoURL)+'" alt="'+esc(b.name)+'"/></div>'+
               '<div class="brand-body"><div class="brand-name">'+esc(b.name)+'</div>'+
-              '<p class="brand-desc">'+esc(b.desc||"")+'</p></div>';
+              '<div class="brand-tags"><span class="brand-tag">COTTON SEED OIL CAKE</span></div></div>';
             track.appendChild(card);
           });
           if(window.refreshBrandsCarousel) window.refreshBrandsCarousel();
