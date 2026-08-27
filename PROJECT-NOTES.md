@@ -91,6 +91,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **26 August 2026:**
+- **Facility section se navy checkmark-box hataya** — `.cf-card.cf-navy` (2 points: "Most modern plant…" + "Less dependence…") poora remove. Ab `.cf-right` me sirf gold "500 MT Daily Production Capacity" card, jo `justify-content:center` se apne aap vertically center (left photo ke saath balanced). *(26 Aug)*
 - **Home brand slider cards clean kiye** (user ki latest manual-edited index.html pe kaam kiya — unki text edits preserve): har card se `brand-desc` (sub-line) hataya (static 7 + dynamic Firebase template), brand-name bada (`.brand-name` 20px→26px, margin-bottom 8→14). Tags pehle se sab same the ("COTTON SEED OIL CAKE") — barabar rahe; dynamic template me bhi wahi tag add kiya consistency ke liye. *(26 Aug)*
 
 **25 August 2026:**
