@@ -172,7 +172,7 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .why-card{background:rgba(255,255,255,0.55);border:1px solid rgba(19,33,71,0.10);border-radius:var(--rl);padding:28px 22px;transition:background var(--tr),border-color var(--tr);}
 .why-card:hover{background:rgba(255,255,255,0.85);border-color:rgba(200,134,10,0.45);}
 .why-icon{width:48px;height:48px;background:rgba(19,33,71,0.07);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
-.why-title{font-size:15px;font-weight:600;color:#132147;margin-bottom:8px;}
+.why-title{font-size:21px;font-weight:700;color:#132147;margin-bottom:0;}
 .why-text{font-size:13px;color:rgba(19,33,71,0.62);line-height:1.7;}
 
 /* ABOUT / HISTORY */
