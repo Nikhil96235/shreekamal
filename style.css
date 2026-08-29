@@ -184,7 +184,8 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .about-stat-grid .about-stat-card:last-child{grid-column:1/-1;}
 .about-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(245,192,48,0.12);border-radius:14px;padding:20px 18px;}
 .about-stat-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;background:linear-gradient(135deg,var(--gy),var(--gl));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.about-stat-lbl{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:1px;margin-top:4px;}
+.about-stat-lbl{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;margin-top:4px;white-space:nowrap;}
+.about-stat-lbl .stat-sub{color:var(--gy);font-weight:700;letter-spacing:0.3px;white-space:nowrap;}
 .timeline{margin-top:28px;display:flex;flex-direction:column;gap:0;}
 .tl-item{display:flex;gap:16px;position:relative;}
 .tl-line{display:flex;flex-direction:column;align-items:center;}
@@ -595,3 +596,8 @@ a.product-card{text-decoration:none;color:inherit;display:block;}
 body{top:0!important;position:static!important;}
 #goog-gt-tt,.goog-te-balloon-frame{display:none!important;}
 .goog-text-highlight{background:none!important;box-shadow:none!important;}
+@media(max-width:600px){
+  .about-visual{padding:26px 16px;}
+  .about-stat-card{padding:16px 14px;}
+  .about-stat-lbl{font-size:8.5px;letter-spacing:0.2px;}
+}
