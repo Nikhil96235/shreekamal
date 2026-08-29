@@ -90,6 +90,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**27 August 2026:**
+- **Footer BRANDS list se duplicate "Radha Govind" hataya** (Radha Kaithal→Radha Govind karne se do baar aa gaya tha). Panchratan ke baad wala Radha Govind li remove kiya. Sirf 4 pages me BRANDS footer-column thi: index, cattle-feed-cake, cotton-seed, cotton-seed-oil (baaki me PRODUCTS/COMPANY/GROUP columns). *(27 Aug)*
+
 **26 August 2026:**
 - **About stats box labels me gold bracket-tag jode** (index.html about-stat): "LEGACY BEGINS **(Manufacturing)**", "COMPANY FOUNDED **(Trading)**". Naya span `.about-stat-lbl .stat-sub{color:var(--gy);font-weight:700}` (nowrap, chhota font taaki ek line me). Desktop-site-mode (mobile) me About box cut ho raha tha (2-col me about-visual side column ~980px pe off-screen) → `.about-grid` ko `@media ≤1024px` pe 1-col kiya → box full-width, dono cards poore dikhte hain. Aur brand-banner.png (3MB) → brand-banner.jpg (368KB) optimize + brands.html reference update. Cloud copy user ki manual edits se sync ki. *(26 Aug)*
 - **Nayi WIDE hero images lagayi (6)** — user ne 1920×818 (~2.35 / 21:9) ki 6 images di (jaisa maine suggest kiya). Optimize karke `hu1.jpg`–`hu6.jpg` banaya (2-3MB PNG → ~300-416KB JPEG). User ke order me: hu1=update2, hu2=update, hu3=update3, hu4=update4, hu5=update5, hu6=update6. `.hero-slides` ko `aspect-ratio:1920/818` kiya (height:56.25vw+max-height:620 hataya) → ab hero images POORI dikhti hain (no cut/bar) AUR chhoti height (1280px pe 545px, aspect 2.35). Purani hero images (farm/hero1-5) ab use nahi. NOTE: mobile pe wide banner short strip dikhega (wide image ka nature). *(26 Aug)*
