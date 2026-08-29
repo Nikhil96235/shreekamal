@@ -263,6 +263,7 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
   .why-grid,.states-grid{grid-template-columns:repeat(2,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .group-grid{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
 }
 @media(max-width:768px){
   .hero-grid,.about-grid,.cotton-grid,.contact-grid{grid-template-columns:1fr;}
