@@ -92,6 +92,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **27 August 2026:**
+- **Cotton Seed Oil Cake card image update** — user ne nayi `cake1.png` (asli binola khal cake photo) di. Optimize → `cake1.jpg` (1400px, 331KB). `COTTONSEEDOIL.jpeg` ki jagah 3 spots: index card, products card, cattle-feed-cake hero. ?v=1. *(27 Aug)*
 - **Nayi splash image lagayi** — user ne `spl.png` (Shreekamaloil Industries wordmark + tagline + cow) di. White bg whiten + trim + optimize → `splash.jpg` (1660x722, 128KB). Ek hi image contain se desktop+mobile dono pe (existing setup). ?v=6. *(27 Aug)*
 - **Cotton Seed card image update** — user ne nayi `cssed1.jpeg` (burlap sack se seeds nikalte hue) di. Optimize karke `cssed1.jpg` (1400px, 190KB). `cottonseed1.jpg` ki jagah 4 spots pe lagayi: index (product card + Premium Cotton Seed section), products.html card, cotton-seed.html hero. (Beech me cseed.jpeg bhi try ki thi par cssed1 use ki.) *(27 Aug)*
 - **Footer BRANDS list se duplicate "Radha Govind" hataya** (Radha Kaithal→Radha Govind karne se do baar aa gaya tha). Panchratan ke baad wala Radha Govind li remove kiya. Sirf 4 pages me BRANDS footer-column thi: index, cattle-feed-cake, cotton-seed, cotton-seed-oil (baaki me PRODUCTS/COMPANY/GROUP columns). *(27 Aug)*
