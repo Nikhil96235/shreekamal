@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 14 August 2026
+> **Last updated:** 27 August 2026
 
 ---
 
@@ -9,6 +9,7 @@
 **Agar aap Claude ho aur yeh file ek nayi chat mein upload ki gayi hai — pehle isse poora padho.** Yeh ek cattle-feed business "Shreekamal Oil Industries" ki website ka project hai. User (naam: Shreekamal ji) **non-technical** hai aur **Hinglish** (Hindi + English roman script) mein baat karta hai — usse Hinglish mein hi, simple bhaasha mein jawab dena. Yeh file poore project ka record hai — business info, tech, files, ab tak ka kaam, aur pending cheezein. Isse padhke seedha kaam continue karo, user ko dobara sab samjhane ko mat bolo.
 
 **Kaam karne ka tarika (IMPORTANT):**
+- 🚨 **SABSE PEHLA RULE (user ne khaaskar kaha — 27 Aug): koi bhi naya change/update karne se PEHLE, hamesha user ke device se us file ki LATEST copy `device_stage_files` se stage karo aur apni cloud copy se `diff` karke dekho ki user ne khud manually kuch edit to nahi kiya. Agar kiya hai to us latest copy ko adopt karke (cloud me copy karke) USI ke upar kaam karo — user ki manual edits kabhi overwrite/revert mat karo.** User apne aap bhi code/text/images manually badalta rehta hai.
 - User ke computer ki website folder yeh hai: `C:\Users\lenovo\Documents\nikhil sheet\website\shreekamal` (Windows, device bridge `mcp__remote-devices__*` se pahunchti hai). **YEH FOLDER HI ASLI SOURCE HAI** — cloud workspace `/root/new-files/` kabhi-kabhi reset ho jata hai (ephemeral). Isliye kaam shuru karne se pehle device se latest files `device_stage_files` se stage karke usi par kaam karo, warna user ki manual changes revert ho sakti hain.
 - Nayi/badli hui file pehle cloud workspace `/root/new-files/` mein banao, phir `SendUserFile` se do, phir `mcp__remote-devices__device_commit_files` (force:true) se user ke folder mein likho.
 - User apne aap VS Code se **Commit + Sync** karke site live karta hai (GitHub Pages). Har kaam ke baad usse yeh yaad dilana, aur **incognito** mein check karne ko kehna (cache issue).
