@@ -92,6 +92,7 @@
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
 **1 September 2026:**
+- **Splash image badli — "hero image update 6" wali** — user ne kaha splash (load pe aane wali image) ki jagah `hero image update 6.png` (wide 1918x820, ratio 2.34, saare 6 product bags + "उत्तम पशु आहार / स्वस्थ पशु, समृद्ध किसान" banner) lagao **bina cut hue**. Optimize → `splash6.jpg` (1600x684, 363KB). index.html splash `<img>` src `splash.jpg?v=6` → `splash6.jpg?v=1`. CSS wide image ke liye adjust: `.sk-intro-img` max-width `min(540px,84vw)`→`min(1180px,94vw)`, max-height `68vh`→`82vh`; portrait media query max-width `82vw`→`94vw`, max-height `56vh`→`70vh`. object-fit:contain hi hai to poori dikhti hai. Desktop + mobile dono render karke verify — kahin cut nahi. *(1 Sep)*
 - **Cotton Seed Oil Cake ki nayi HD photo lagayi** — user ne `c2.png` (1394x887, binola khal ke flakes ka HD photo) di. Optimize → `c2.jpg` (404KB, slight UnsharpMask). Teeno cake spots pe lagayi: index.html card + products.html card (`cake2.jpg?v=2` → `c2.jpg?v=1`) AUR cattle-feed-cake.html detail hero (`cake-hd.jpg?v=1` → `c2.jpg?v=1`). Card object-fit:cover se crop, detail hero pe poori dikhti hai. Render karke verify kiya — dono sharp. *(1 Sep)*
 - **Rule follow:** kaam se pehle teeno files device se stage karke diff kiya. cattle-feed-cake.html pd-desc me cloud pe "(khali)" tha par device pe nahi (mera purana un-committed edit) → device (source of truth) ko adopt kiya. index/products identical the. *(1 Sep)*
 
