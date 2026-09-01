@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 27 August 2026
+> **Last updated:** 1 September 2026
 
 ---
 
@@ -90,6 +90,10 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**1 September 2026:**
+- **Cotton Seed Oil Cake ki nayi HD photo lagayi** — user ne `c2.png` (1394x887, binola khal ke flakes ka HD photo) di. Optimize → `c2.jpg` (404KB, slight UnsharpMask). Teeno cake spots pe lagayi: index.html card + products.html card (`cake2.jpg?v=2` → `c2.jpg?v=1`) AUR cattle-feed-cake.html detail hero (`cake-hd.jpg?v=1` → `c2.jpg?v=1`). Card object-fit:cover se crop, detail hero pe poori dikhti hai. Render karke verify kiya — dono sharp. *(1 Sep)*
+- **Rule follow:** kaam se pehle teeno files device se stage karke diff kiya. cattle-feed-cake.html pd-desc me cloud pe "(khali)" tha par device pe nahi (mera purana un-committed edit) → device (source of truth) ko adopt kiya. index/products identical the. *(1 Sep)*
 
 **27 August 2026:**
 - **Cotton Seed Oil Cake card image update** — user ne nayi `cake1.png` (asli binola khal cake photo) di. Optimize → `cake1.jpg` (1400px, 331KB). `COTTONSEEDOIL.jpeg` ki jagah 3 spots: index card, products card, cattle-feed-cake hero. ?v=1. **Fir user ne dusri nayi cake photo di** → `cake2.jpg` (308KB), teeno spots pe cake1→cake2. *(27 Aug / 1 Sep)*
