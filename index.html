@@ -821,12 +821,24 @@ try{
       }
     }catch(e){}
 
-    // load product image overrides (admin se badli hui photos)
+    // product image overrides + hero slides (admin panel se)
     try{
-      const pim = await getDocs(collection(db,"products"));
-      pim.forEach(d=>{ const u=(d.data()||{}).photoURL; if(!u) return;
-        document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=u; });
+      const ps = await getDocs(collection(db,"products"));
+      const heroItems=[];
+      ps.forEach(d=>{ const x=d.data()||{};
+        if(d.id.indexOf("hero_")===0){ if(x.photoURL) heroItems.push({url:x.photoURL, order:x.order||0}); }
+        else if(x.photoURL){ document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=x.photoURL; }); }
       });
+      if(heroItems.length){
+        heroItems.sort((a,b)=>a.order-b.order);
+        const track=document.getElementById("hsTrack");
+        if(track){
+          track.innerHTML="";
+          heroItems.forEach(h=>{ const dv=document.createElement("div"); dv.className="hero-slide";
+            dv.innerHTML='<img class="hs-img" src="'+h.url+'" alt="Shreekamal Oil Industries"/>'; track.appendChild(dv); });
+          if(window.buildHero) window.buildHero();
+        }
+      }
     }catch(e){}
 
     // load brands (agar database mein hain to) -> carousel rebuild

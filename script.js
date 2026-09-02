@@ -97,68 +97,43 @@ function handleSubmit(){
   },3000);
 }
 
-// ===== Hero image slider (seamless, drift-proof) =====
-(function(){
+// ===== Hero image slider (seamless, drift-proof) — rebuildable =====
+window.buildHero = function(){
   const track=document.getElementById('hsTrack');
-  const slides=document.querySelectorAll('.hero-slide');
   const dotsWrap=document.getElementById('heroDots');
   const hero=document.getElementById('heroSlides');
-  if(!track||!slides.length) return;
+  if(!track) return;
+  // teardown previous instance (timer, observer, visibility handler, clone, dots)
+  if(window.__heroTimer){ clearInterval(window.__heroTimer); window.__heroTimer=null; }
+  if(window.__heroObs){ try{ window.__heroObs.disconnect(); }catch(e){} window.__heroObs=null; }
+  if(window.__heroVis){ document.removeEventListener('visibilitychange', window.__heroVis); window.__heroVis=null; }
+  track.querySelectorAll('.hero-slide.__clone').forEach(c=>c.remove());
+  if(dotsWrap) dotsWrap.innerHTML='';
+  const slides=track.querySelectorAll('.hero-slide');
+  if(!slides.length) return;
   const N=slides.length;
   const EASE='transform .7s cubic-bezier(.4,0,.2,1)';
-  // clone first slide at end for seamless loop
-  track.appendChild(slides[0].cloneNode(true));
-  let idx=0, timer=null, inView=true;
-  for(let i=0;i<N;i++){
-    const d=document.createElement('div');
-    d.className='hdot'+(i===0?' active':'');
-    d.onclick=()=>{go(i);reset();};
-    if(dotsWrap) dotsWrap.appendChild(d);
-  }
-  const dots=document.querySelectorAll('.hero-dots .hdot');
+  const clone=slides[0].cloneNode(true); clone.classList.add('__clone'); track.appendChild(clone);
+  let idx=0, inView=true;
+  for(let i=0;i<N;i++){ const d=document.createElement('div'); d.className='hdot'+(i===0?' active':''); d.onclick=()=>{go(i);reset();}; if(dotsWrap) dotsWrap.appendChild(d); }
+  const dots=dotsWrap?dotsWrap.querySelectorAll('.hdot'):[];
   function setDots(){ const a=((idx%N)+N)%N; dots.forEach((d,i)=>d.classList.toggle('active',i===a)); }
-  // snap to a valid real slide instantly (no animation) — recovers from any drift
-  function snap(n){
-    idx=n;
-    track.style.transition='none';
-    track.style.transform='translateX('+(-idx*100)+'%)';
-    void track.offsetWidth;            // force reflow
-    track.style.transition=EASE;
-    setDots();
-  }
-  function go(n){
-    idx=n;
-    track.style.transition=EASE;
-    track.style.transform='translateX('+(-idx*100)+'%)';
-    setDots();
-  }
-  track.addEventListener('transitionend',function(e){
-    if(e.target!==track) return;
-    if(idx>=N) snap(0);                 // reached clone (or beyond) -> back to first
-  });
-  function next(){
-    if(idx>=N){ snap(0); }              // safety: never sit past the clone
-    go(idx+1);
-  }
-  function stop(){ if(timer){clearInterval(timer);timer=null;} }
-  function start(){ stop(); if(inView && !document.hidden) timer=setInterval(next,4500); }
+  function snap(n){ idx=n; track.style.transition='none'; track.style.transform='translateX('+(-idx*100)+'%)'; void track.offsetWidth; track.style.transition=EASE; setDots(); }
+  function go(n){ idx=n; track.style.transition=EASE; track.style.transform='translateX('+(-idx*100)+'%)'; setDots(); }
+  track.addEventListener('transitionend',function(e){ if(e.target!==track) return; if(idx>=N) snap(0); });
+  function next(){ if(idx>=N){ snap(0); } go(idx+1); }
+  function stop(){ if(window.__heroTimer){clearInterval(window.__heroTimer);window.__heroTimer=null;} }
+  function start(){ stop(); if(inView && !document.hidden) window.__heroTimer=setInterval(next,4500); }
   function reset(){ start(); }
-  // Pause auto-slide when hero is off-screen; resume (and fix position) when it returns
   if('IntersectionObserver' in window && hero){
-    new IntersectionObserver(function(ents){
-      ents.forEach(function(en){
-        inView=en.isIntersecting;
-        if(inView){ if(idx>=N) snap(0); start(); }
-        else stop();
-      });
-    },{threshold:0.15}).observe(hero);
+    window.__heroObs=new IntersectionObserver(function(ents){ ents.forEach(function(en){ inView=en.isIntersecting; if(inView){ if(idx>=N) snap(0); start(); } else stop(); }); },{threshold:0.15});
+    window.__heroObs.observe(hero);
   }
-  start();
-  document.addEventListener('visibilitychange',function(){
-    if(document.hidden){ stop(); }
-    else { if(idx>=N) snap(0); start(); }
-  });
-})();
+  window.__heroVis=function(){ if(document.hidden){ stop(); } else { if(idx>=N) snap(0); start(); } };
+  document.addEventListener('visibilitychange', window.__heroVis);
+  snap(0); start();
+};
+window.buildHero();
 
 // ===== Testimonials auto-slider (cards slide hote rehte hain) =====
 (function(){
