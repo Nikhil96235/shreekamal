@@ -179,5 +179,36 @@
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+// Brands (admin panel se add/edit/delete) — page bhi update ho
+try{
+  const { firebaseConfig } = await import("./firebase-config.js");
+  if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, collection, getDocs, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const db=getFirestore(initializeApp(firebaseConfig));
+    const snap=await getDocs(query(collection(db,"brands"), orderBy("order")));
+    if(!snap.empty){
+      const grid=document.querySelector(".pd-brands");
+      if(grid){
+        grid.innerHTML="";
+        snap.forEach(d=>{ const b=d.data()||{};
+          const card=document.createElement("div"); card.className="pd-brand"; card.style.cursor="pointer";
+          card.onclick=()=>{ location.href='cattle-feed-cake.html'; };
+          const imgw=document.createElement("div"); imgw.className="pd-brand-img";
+          const img=document.createElement("img"); img.loading="lazy"; img.decoding="async"; img.src=b.photoURL||""; img.alt=b.name||"Brand";
+          imgw.appendChild(img);
+          const body=document.createElement("div"); body.className="pd-brand-body";
+          const nm=document.createElement("div"); nm.className="pd-brand-name"; nm.textContent=b.name||"";
+          const tags=document.createElement("div"); tags.className="pd-brand-tags";
+          tags.innerHTML='<span class="pd-brand-tag">COTTON SEED OIL CAKE</span><span class="pd-brand-tag">100% PURE</span>';
+          body.appendChild(nm); body.appendChild(tags);
+          card.appendChild(imgw); card.appendChild(body); grid.appendChild(card);
+        });
+      }
+    }
+  }
+}catch(e){}
+</script>
 </body>
 </html>
