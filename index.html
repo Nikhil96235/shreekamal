@@ -424,7 +424,7 @@
       <p class="cf-text">Shreekamal Oil Industries traces its roots to a family trade in cotton seed oil cake that began decades ago.</p>
       <a href="about.html" class="cf-btn">More About Us <span>›</span></a>
       <div class="cf-photo reveal rv-open">
-        <img src="images/infra.jpeg?v=1" alt="Shreekamal Oil Industries — infrastructure" loading="lazy"/>
+        <img data-imgkey="infra" src="images/infra.jpeg?v=1" alt="Shreekamal Oil Industries — infrastructure" loading="lazy"/>
       </div>
     </div>
     <div class="cf-right">
@@ -849,6 +849,7 @@ try{
       ps.forEach(d=>{ const x=d.data()||{};
         if(d.id==="siteText"){ applySiteText(x); }
         else if(d.id.indexOf("hero_")===0){ if(x.photoURL && !x.deleted) heroItems.push({url:x.photoURL, order:x.order||0}); }
+        else if(d.id.indexOf("img_")===0){ if(x.photoURL && !x.deleted){ var _ik=d.id.slice(4); document.querySelectorAll('[data-imgkey="'+_ik+'"]').forEach(img=>{ img.src=x.photoURL; }); } }
         else if(x.photoURL){ document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=x.photoURL; }); }
       });
       if(heroItems.length){

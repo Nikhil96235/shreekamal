@@ -140,7 +140,7 @@
   <!-- PRODUCTS -->
   <div class="panel" id="panel-products">
     <h2>Product Images</h2>
-    <div class="sub">Products ki photo badlein. Home page aur Products page — dono par change ho jayegi.</div>
+    <div class="sub">Products ki photo badlein — Home page aur Products page dono par change ho jayegi. Neeche Infrastructure image (Home page ki factory wali photo) bhi badal sakte hain.</div>
     <div id="prodimg-list"><p class="muted">Loading…</p></div>
   </div>
 
@@ -596,7 +596,8 @@ if(brandSeedBtn) brandSeedBtn.onclick=async()=>{
 const PRODUCTS_LIST = [
   {key:"cake", name:"Cotton Seed Oil Cake", def:"images/c2.jpg?v=1"},
   {key:"cottonseed", name:"Cotton Seed", def:"images/cseed2.jpg?v=1"},
-  {key:"oil", name:"Cotton Seed Wash Oil", def:"images/coil.jpg?v=1"}
+  {key:"oil", name:"Cotton Seed Wash Oil", def:"images/coil.jpg?v=1"},
+  {key:"img_infra", name:"🏭 Infrastructure Image (Home page — 'Our Infrastructure')", def:"images/infra.jpeg?v=1"}
 ];
 async function loadProductImages(){
   const list=$("prodimg-list"); if(!list) return;
