@@ -62,11 +62,11 @@
         </div>
         <div class="contact-item">
           <div class="contact-icon">📍</div>
-          <div><div class="contact-lbl">ADDRESS</div><div class="contact-val">Mauza Kohli, Jamb Road<br/>Hinganghat — 442301<br/>Maharashtra, India</div></div>
+          <div><div class="contact-lbl">ADDRESS</div><div class="contact-val" data-txt="contact_address">Mauza Kohli, Jamb Road<br/>Hinganghat — 442301<br/>Maharashtra, India</div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">⏰</div>
-          <div><div class="contact-lbl">BUSINESS HOURS</div><div class="contact-val">Mon–Sat, 9:00 AM – 6:00 PM</div></div>
+          <div><div class="contact-lbl">BUSINESS HOURS</div><div class="contact-val" data-txt="contact_hours">Mon–Sat, 9:00 AM – 6:00 PM</div></div>
         </div>
 
         <!-- GOOGLE MAP -->
@@ -181,5 +181,28 @@
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+// Site text overrides (admin panel se)
+function applySiteText(data){
+  if(!data) return;
+  Object.keys(data).forEach(function(k){
+    var val=data[k]; if(val===undefined||val===null) return;
+    document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
+      if(k==='contact_address'){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else { el.textContent=val; }
+    });
+  });
+}
+try{
+  const { firebaseConfig } = await import("./firebase-config.js");
+  if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const db=getFirestore(initializeApp(firebaseConfig));
+    const snap=await getDoc(doc(db,"products","siteText"));
+    if(snap.exists()) applySiteText(snap.data());
+  }
+}catch(e){}
+</script>
 </body>
 </html>

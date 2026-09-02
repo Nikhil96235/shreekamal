@@ -102,6 +102,7 @@
     <button class="tab" data-tab="products">Products</button>
     <button class="tab" data-tab="hero">Hero Images</button>
     <button class="tab" data-tab="gallery">Gallery</button>
+    <button class="tab" data-tab="sitetext">Site Text</button>
     <button class="tab" data-tab="brands">Brands</button>
     <button class="tab masterOnly" data-tab="admins">Manage Admins</button>
   </div>
@@ -177,6 +178,17 @@
     </div>
     <div class="note">Jab tak yahan koi photo add/import nahi karte, website ki current gallery waise hi rahegi.</div>
     <div id="gal-list"><p class="muted">Loading…</p></div>
+  </div>
+
+  <!-- SITE TEXT -->
+  <div class="panel" id="panel-sitetext">
+    <h2>Site Text</h2>
+    <div class="sub">Website ke text badlein — numbers, headings, product descriptions, address, timing. Save dabate hi live ho jayega.</div>
+    <div id="stext-form"></div>
+    <div class="row-actions" style="margin-top:10px;">
+      <button class="btn btn-primary" style="width:auto;margin:0;" id="stext-save">Save Text</button>
+      <span class="ok" id="stext-msg"></span>
+    </div>
   </div>
 
   <!-- BRANDS -->
@@ -299,6 +311,7 @@ onAuthStateChanged(auth, async (user) => {
   loadProductImages();
   loadHeroSlides();
   loadGallery();
+  loadSiteText();
   loadBrands();
   if(myRole==="master") loadAdmins();
 });
@@ -716,6 +729,52 @@ if(galSeedBtn) galSeedBtn.onclick=async()=>{
   try{ for(let i=0;i<defs.length;i++){ await setDoc(doc(db,"products","gallery_seed"+i),{photoURL:defs[i].url, caption:defs[i].cap, order:i+1}); } $("gal-msg").textContent="Imported ✓"; loadGallery(); }
   catch(e){ $("gal-msg").textContent="Import fail: "+(e.code||e.message); }
   galSeedBtn.disabled=false;
+};
+
+// ---------- SITE TEXT ----------
+const SITETEXT_FIELDS=[
+  {g:"Home — Numbers"},
+  {key:"stat1_num",label:"Happy Clients — number",def:"5"},
+  {key:"stat1_lbl",label:"Happy Clients — label",def:"Happy Clients"},
+  {key:"stat2_num",label:"Years Legacy — number",def:"55"},
+  {key:"stat2_lbl",label:"Years Legacy — label",def:"Years Legacy"},
+  {key:"stat3_num",label:"States Served — number",def:"7"},
+  {key:"stat3_lbl",label:"States Served — label",def:"States Served"},
+  {g:"Home — Headings"},
+  {key:"prod_eyebrow",label:"Products section — heading",def:"Our Products"},
+  {key:"prod_title",label:"Products section — sub heading",def:"Pure Quality, Straight from Our Mill"},
+  {key:"prod_desc",label:"Products section — line",ta:1,def:"Every product is carefully processed and quality-checked. No compromise on purity, ever."},
+  {g:"Product Descriptions (Home cards)"},
+  {key:"prod1_desc",label:"Cotton Seed Oil Cake",ta:1,def:"High-protein cotton seed oil cake for better animal health and increased milk production. Nutritious, palatable and cost-effective for farmers."},
+  {key:"prod2_desc",label:"Cotton Seed",ta:1,def:"Premium quality cotton seed for oil extraction and animal feed. Consistent quality and competitive pricing for businesses of all sizes."},
+  {key:"prod3_desc",label:"Cotton Seed Wash Oil",ta:1,def:"Pure cotton seed oil extracted from premium binola - Clean, quality-checked and available in bulk."},
+  {g:"Contact"},
+  {key:"contact_address",label:"Address (nayi line ke liye Enter dabayein)",ta:1,def:"Mauza Kohli, Jamb Road\nHinganghat — 442301\nMaharashtra, India"},
+  {key:"contact_hours",label:"Business Hours",def:"Mon–Sat, 9:00 AM – 6:00 PM"}
+];
+async function loadSiteText(){
+  const wrap=$("stext-form"); if(!wrap) return;
+  let saved={};
+  try{ const snap=await getDoc(doc(db,"products","siteText")); if(snap.exists()) saved=snap.data()||{}; }catch(e){}
+  wrap.innerHTML="";
+  SITETEXT_FIELDS.forEach(f=>{
+    if(f.g){ const h=document.createElement("div"); h.style.cssText="font-weight:600;color:var(--gm);margin:18px 0 2px;font-size:14px;"; h.textContent=f.g; wrap.appendChild(h); return; }
+    const lab=document.createElement("label"); lab.textContent=f.label; wrap.appendChild(lab);
+    let inp = f.ta ? document.createElement("textarea") : document.createElement("input");
+    if(f.ta) inp.rows=2;
+    inp.id="st-"+f.key;
+    inp.value = (saved[f.key]!==undefined && saved[f.key]!==null) ? saved[f.key] : f.def;
+    wrap.appendChild(inp);
+  });
+}
+const stextSaveBtn=$("stext-save");
+if(stextSaveBtn) stextSaveBtn.onclick=async()=>{
+  const obj={};
+  SITETEXT_FIELDS.forEach(f=>{ if(f.g) return; const el=$("st-"+f.key); if(el) obj[f.key]=el.value; });
+  stextSaveBtn.disabled=true; $("stext-msg").textContent="Saving…";
+  try{ await setDoc(doc(db,"products","siteText"), obj); $("stext-msg").textContent="Saved ✓ (site pe live)"; }
+  catch(e){ $("stext-msg").textContent="Fail: "+(e.code||e.message); }
+  stextSaveBtn.disabled=false;
 };
 
 function escapeHtml(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
