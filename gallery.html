@@ -203,7 +203,7 @@ try{
     const db=getFirestore(initializeApp(firebaseConfig));
     const snap=await getDocs(collection(db,"products"));
     const items=[];
-    snap.forEach(d=>{ if(d.id.indexOf("gallery_")===0){ const x=d.data()||{}; if(x.photoURL) items.push({url:x.photoURL, cap:x.caption||"", order:x.order||0}); } });
+    snap.forEach(d=>{ if(d.id.indexOf("gallery_")===0){ const x=d.data()||{}; if(x.photoURL && !x.deleted) items.push({url:x.photoURL, cap:x.caption||"", order:x.order||0}); } });
     if(items.length){
       items.sort((a,b)=>a.order-b.order);
       const grid=document.getElementById("galGrid");

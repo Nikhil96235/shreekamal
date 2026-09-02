@@ -838,7 +838,7 @@ try{
       const heroItems=[];
       ps.forEach(d=>{ const x=d.data()||{};
         if(d.id==="siteText"){ applySiteText(x); }
-        else if(d.id.indexOf("hero_")===0){ if(x.photoURL) heroItems.push({url:x.photoURL, order:x.order||0}); }
+        else if(d.id.indexOf("hero_")===0){ if(x.photoURL && !x.deleted) heroItems.push({url:x.photoURL, order:x.order||0}); }
         else if(x.photoURL){ document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=x.photoURL; }); }
       });
       if(heroItems.length){
@@ -860,7 +860,7 @@ try{
         const track = document.getElementById("brandsTrack");
         if(track){
           track.innerHTML="";
-          bs.forEach(d=>{ const b=d.data(); const card=document.createElement("div");
+          bs.forEach(d=>{ const b=d.data()||{}; if(b.deleted) return; const card=document.createElement("div");
             card.className="brand-card reveal";
             card.onclick=()=>{ window.location.href='brands.html'; };
             card.innerHTML='<div class="brand-img-wrap"><img loading="lazy" decoding="async" src="'+esc(b.photoURL)+'" alt="'+esc(b.name)+'"/></div>'+

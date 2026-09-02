@@ -192,7 +192,7 @@ try{
       const grid=document.querySelector(".pd-brands");
       if(grid){
         grid.innerHTML="";
-        snap.forEach(d=>{ const b=d.data()||{};
+        snap.forEach(d=>{ const b=d.data()||{}; if(b.deleted) return;
           const card=document.createElement("div"); card.className="pd-brand"; card.style.cursor="pointer";
           card.onclick=()=>{ location.href='cattle-feed-cake.html'; };
           const imgw=document.createElement("div"); imgw.className="pd-brand-img";
