@@ -58,7 +58,7 @@
 <!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
 <div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
   <picture>
-    <img src="images/splash6.jpg?v=1" alt="Shreekamal Oil Industries — Uttam Pashu Aahar" class="sk-intro-img"/>
+    <img src="images/spupdate.jpg?v=1" alt="Shreekamal Oil Industries — Uttam Pashu Aahar" class="sk-intro-img"/>
   </picture>
 </div>
 <style>
@@ -67,10 +67,13 @@
     opacity:1;transition:opacity .6s ease;cursor:pointer;}
   .sk-intro.sk-hide{opacity:0;pointer-events:none;}
   .sk-intro picture{display:contents;}
-  .sk-intro-img{width:auto;height:auto;max-width:min(1180px,94vw);max-height:82vh;object-fit:contain;object-position:center;
+  .sk-intro-img{width:100%;height:100%;object-fit:cover;object-position:center;
     animation:skZoom 2.6s ease forwards;}
   @keyframes skZoom{0%{transform:scale(1.02);opacity:0;} 14%{opacity:1;} 100%{transform:scale(1);opacity:1;}}
-  @media (max-aspect-ratio:1/1){ .sk-intro-img{max-width:94vw;max-height:70vh;} }
+  @media (max-aspect-ratio:1/1){
+    .sk-intro{background:linear-gradient(180deg,#bad1dc 0%,#aec3c2 32%,#b09468 64%,#ab7f59 100%);}
+    .sk-intro-img{width:auto;height:auto;max-width:100vw;max-height:100vh;object-fit:contain;}
+  }
   body.sk-lock{overflow:hidden;}
 </style>
 <script>
