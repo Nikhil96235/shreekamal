@@ -172,7 +172,7 @@
     </div>
     <div class="products-grid" id="productsGrid">
       <a href="cattle-feed-cake.html" class="product-card reveal">
-        <img class="product-img" src="images/c2.jpg?v=1" alt="Cotton Seed Oil Cake — pashu aahar khal" loading="lazy"/>
+        <img class="product-img" data-pkey="cake" src="images/c2.jpg?v=1" alt="Cotton Seed Oil Cake — pashu aahar khal" loading="lazy"/>
         <div class="product-icon pi-g">🐄</div>
         <div class="product-name">Cotton Seed Oil Cake</div>
         <p class="product-desc">High-protein cotton seed oil cake for better animal health and increased milk production. Nutritious, palatable and cost-effective for farmers.</p>
@@ -180,7 +180,7 @@
         <span class="product-cta">View Details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
       <a href="cotton-seed.html" class="product-card reveal">
-        <img class="product-img" src="images/cseed2.jpg?v=1" alt="Premium Cotton Seed — asli binola" loading="lazy"/>
+        <img class="product-img" data-pkey="cottonseed" src="images/cseed2.jpg?v=1" alt="Premium Cotton Seed — asli binola" loading="lazy"/>
         <div class="product-icon pi-p">🌱</div>
         <div class="product-name">Cotton Seed</div>
         <p class="product-desc">Premium quality cotton seed for oil extraction and animal feed. Consistent quality and competitive pricing for businesses of all sizes.</p>
@@ -188,7 +188,7 @@
         <span class="product-cta">View Details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
       <a href="cotton-seed-oil.html" class="product-card reveal">
-        <img class="product-img" src="images/coil.jpg?v=1" alt="Cotton Seed Wash Oil — shudh binola tel" loading="lazy"/>
+        <img class="product-img" data-pkey="oil" src="images/coil.jpg?v=1" alt="Cotton Seed Wash Oil — shudh binola tel" loading="lazy"/>
         <div class="product-icon pi-g">🛢️</div>
         <div class="product-name">Cotton Seed Wash Oil</div>
         <p class="product-desc">Pure cotton seed oil extracted from premium binola - Clean, quality-checked and available in bulk.</p>
@@ -821,24 +821,12 @@ try{
       }
     }catch(e){}
 
-    // load products (agar database mein hain to)
+    // load product image overrides (admin se badli hui photos)
     try{
-      const ps = await getDocs(query(collection(db,"products"), orderBy("order")));
-      if(!ps.empty){
-        const grid=document.getElementById("productsGrid");
-        if(grid){
-          grid.innerHTML="";
-          const arrow='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-          ps.forEach(d=>{ const p=d.data(); const a=document.createElement("a");
-            a.className="product-card reveal"; a.href=p.link||"#";
-            a.innerHTML='<div class="product-icon '+esc(p.iconClass||"pi-g")+'">'+esc(p.icon||"📦")+'</div>'+
-              '<div class="product-name">'+esc(p.name)+'</div>'+
-              '<p class="product-desc">'+esc(p.desc||"")+'</p>'+
-              '<span class="product-cta">View Details '+arrow+'</span>';
-            grid.appendChild(a);
-          });
-        }
-      }
+      const pim = await getDocs(collection(db,"products"));
+      pim.forEach(d=>{ const u=(d.data()||{}).photoURL; if(!u) return;
+        document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=u; });
+      });
     }catch(e){}
 
     // load brands (agar database mein hain to) -> carousel rebuild
