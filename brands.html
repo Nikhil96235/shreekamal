@@ -43,8 +43,8 @@
   <div class="pd-body-inner">
 
     <div class="pd-block">
-      <h2 class="pd-block-title">All Our Cattle Feed Brands</h2>
-      <p class="pd-block-sub">Click any brand to see full product details, specifications and pack sizes.</p>
+      <h2 class="pd-block-title" data-txt="brandp_title">All Our Cattle Feed Brands</h2>
+      <p class="pd-block-sub" data-txt="brandp_sub">Click any brand to see full product details, specifications and pack sizes.</p>
       <div class="pd-brands">
 
         <div class="pd-brand" style="cursor:pointer;" onclick="location.href='cattle-feed-cake.html'">
@@ -180,13 +180,24 @@
 
 <script src="script.js"></script>
 <script type="module">
-// Brands (admin panel se add/edit/delete) — page bhi update ho
+// Brands + site text (admin panel se)
+function applySiteText(data){
+  if(!data) return;
+  Object.keys(data).forEach(function(k){
+    var val=data[k]; if(val===undefined||val===null) return;
+    document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
+      if(String(val).indexOf('\n')>=0){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else { el.textContent=val; }
+    });
+  });
+}
 try{
   const { firebaseConfig } = await import("./firebase-config.js");
   if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-    const { getFirestore, collection, getDocs, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const { getFirestore, collection, getDocs, query, orderBy, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
     const db=getFirestore(initializeApp(firebaseConfig));
+    try{ const _st=await getDoc(doc(db,"products","siteText")); if(_st.exists()) applySiteText(_st.data()); }catch(e){}
     const snap=await getDocs(query(collection(db,"brands"), orderBy("order")));
     if(!snap.empty){
       const grid=document.querySelector(".pd-brands");

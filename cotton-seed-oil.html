@@ -44,9 +44,9 @@
       <img loading="lazy" decoding="async" src="images/coil.jpg?v=1" alt="Cotton Seed Wash Oil — shudh binola tel"/>
     </div>
     <div>
-      <span class="pd-eyebrow">EDIBLE & INDUSTRIAL OIL</span>
-      <h1 class="pd-title">Cotton Seed Wash Oil</h1>
-      <p class="pd-desc">Pure cotton seed oil extracted from premium binola — clean, quality-checked and suitable for both edible use and industrial supply. Reliable bulk availability with consistent quality that businesses of every size can depend on.</p>
+      <span class="pd-eyebrow" data-txt="cso_eyebrow">EDIBLE & INDUSTRIAL OIL</span>
+      <h1 class="pd-title" data-txt="cso_title">Cotton Seed Wash Oil</h1>
+      <p class="pd-desc" data-txt="cso_desc">Pure cotton seed oil extracted from premium binola — clean, quality-checked and suitable for both edible use and industrial supply. Reliable bulk availability with consistent quality that businesses of every size can depend on.</p>
       <div class="pd-tags"><span class="pd-tag">PURE &amp; NATURAL</span><span class="pd-tag">BULK AVAILABLE</span><span class="pd-tag">QUALITY CHECKED</span><span class="pd-tag">EDIBLE &amp; INDUSTRIAL</span></div>
       <div class="pd-cta-row">
         <a href="contact.html" class="btn-primary">Get Quote →</a>
@@ -66,18 +66,18 @@
       <div class="pd-benefits">
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon">💧</div>
-        <div class="pd-benefit-title">Pure &amp; Natural</div>
-        <div class="pd-benefit-text">Extracted from premium binola and carefully filtered for a clean, consistent oil.</div>
+        <div class="pd-benefit-title" data-txt="cso_b1t">Pure &amp; Natural</div>
+        <div class="pd-benefit-text" data-txt="cso_b1x">Extracted from premium binola and carefully filtered for a clean, consistent oil.</div>
       </div>
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon">🍳</div>
-        <div class="pd-benefit-title">Edible &amp; Industrial Use</div>
-        <div class="pd-benefit-text">Versatile oil suited for cooking as well as a range of industrial applications.</div>
+        <div class="pd-benefit-title" data-txt="cso_b2t">Edible &amp; Industrial Use</div>
+        <div class="pd-benefit-text" data-txt="cso_b2x">Versatile oil suited for cooking as well as a range of industrial applications.</div>
       </div>
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon">📦</div>
-        <div class="pd-benefit-title">Reliable Bulk Supply</div>
-        <div class="pd-benefit-text">Steady availability and consistent quality for businesses that need volume.</div>
+        <div class="pd-benefit-title" data-txt="cso_b3t">Reliable Bulk Supply</div>
+        <div class="pd-benefit-text" data-txt="cso_b3x">Steady availability and consistent quality for businesses that need volume.</div>
       </div>
       </div>
     </div>
@@ -106,8 +106,8 @@
 
 <!-- CTA BAND -->
 <div class="pd-cta-band">
-  <div class="pd-cta-band-title">Interested in Cotton Seed Wash Oil?</div>
-  <div class="pd-cta-band-sub">Available for edible and industrial buyers in bulk. Send your quantity and destination for a quick quote.</div>
+  <div class="pd-cta-band-title" data-txt="cso_ctat">Interested in Cotton Seed Wash Oil?</div>
+  <div class="pd-cta-band-sub" data-txt="cso_ctax">Available for edible and industrial buyers in bulk. Send your quantity and destination for a quick quote.</div>
   <div class="pd-cta-row">
     <a href="contact.html" class="btn-primary">Send Inquiry →</a>
     <a href="https://wa.me/919411254606" target="_blank" class="btn-wa">Chat on WhatsApp</a>
@@ -173,5 +173,27 @@
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+function applySiteText(data){
+  if(!data) return;
+  Object.keys(data).forEach(function(k){
+    var val=data[k]; if(val===undefined||val===null) return;
+    document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
+      if(String(val).indexOf('\n')>=0){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else { el.textContent=val; }
+    });
+  });
+}
+try{
+  const { firebaseConfig } = await import("./firebase-config.js");
+  if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const db=getFirestore(initializeApp(firebaseConfig));
+    const snap=await getDoc(doc(db,"products","siteText"));
+    if(snap.exists()) applySiteText(snap.data());
+  }
+}catch(e){}
+</script>
 </body>
 </html>

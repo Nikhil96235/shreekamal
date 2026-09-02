@@ -203,8 +203,8 @@
 <section class="video-section">
   <div class="section-inner">
     <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto;">
-      <span class="section-eyebrow" style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:0;text-transform:none;color:var(--gr);display:block;margin-bottom:6px;">Swasth Pashu, Adhik Doodh</span>
-      <p class="section-desc">Dekhiye Shreekamal ki do kahaniyan — asli kisaan, asli pashu, asli doodh.</p>
+      <span class="section-eyebrow" style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:0;text-transform:none;color:var(--gr);display:block;margin-bottom:6px;" data-txt="home_video_eb">Swasth Pashu, Adhik Doodh</span>
+      <p class="section-desc" data-txt="home_video_desc">Dekhiye Shreekamal ki do kahaniyan — asli kisaan, asli pashu, asli doodh.</p>
     </div>
     <div class="video-grid reveal">
       <div class="video-card">
@@ -551,8 +551,8 @@
 <section class="testi-section" id="testimonials">
   <div class="section-inner">
     <div class="reveal">
-      <span class="section-eyebrow">CUSTOMER TESTIMONIALS</span>
-      <h2 class="section-title">Success Stories<br/>From Our Customers</h2>
+      <span class="section-eyebrow" data-txt="home_testi_eb">CUSTOMER TESTIMONIALS</span>
+      <h2 class="section-title" data-txt="home_testi_title">Success Stories<br/>From Our Customers</h2>
       <p class="section-desc">Lakhs of farmers and dairy owners trust our feed every day. Here's what some of them have to say.</p>
     </div>
     <div class="testi-slider-wrap"><div class="testi-grid" id="testiGrid">
@@ -622,9 +622,9 @@
   <div class="section-inner">
     <div class="contact-grid">
       <div class="reveal">
-        <span class="section-eyebrow">GET IN TOUCH</span>
-        <h2 class="section-title">Let's Talk Business</h2>
-        <p class="section-desc" style="margin-bottom:32px;">Bulk orders, dealership enquiries, or product queries — we respond fast.</p>
+        <span class="section-eyebrow" data-txt="home_contact_eb">GET IN TOUCH</span>
+        <h2 class="section-title" data-txt="home_contact_title">Let's Talk Business</h2>
+        <p class="section-desc" style="margin-bottom:32px;" data-txt="home_contact_desc">Bulk orders, dealership enquiries, or product queries — we respond fast.</p>
 
         <div class="contact-item">
           <div class="contact-icon">📞</div>
@@ -794,7 +794,7 @@ function applySiteText(data){
     var val=data[k]; if(val===undefined||val===null) return;
     document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
       if(el.classList.contains('cf-count')){ el.setAttribute('data-target', val); el.textContent=val; }
-      else if(k==='contact_address'){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else if(String(val).indexOf('\n')>=0){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
       else { el.textContent=val; }
     });
   });

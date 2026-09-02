@@ -64,9 +64,9 @@
 <section class="pd-hero">
   <div class="pd-breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; Gallery</div>
   <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2;text-align:center;">
-    <span class="pd-eyebrow">GALLERY</span>
-    <h1 class="pd-title">Our Products &amp; Brands</h1>
-    <p class="pd-desc" style="max-width:620px;margin:0 auto 0;">Kisi bhi image par click karein — woh badी view mein khulegi. Hamare premium cattle feed brands aur products ek jagah.</p>
+    <span class="pd-eyebrow" data-txt="galp_eb">GALLERY</span>
+    <h1 class="pd-title" data-txt="galp_title">Our Products &amp; Brands</h1>
+    <p class="pd-desc" style="max-width:620px;margin:0 auto 0;" data-txt="galp_desc">Kisi bhi image par click karein — woh badी view mein khulegi. Hamare premium cattle feed brands aur products ek jagah.</p>
   </div>
 </section>
 
@@ -194,7 +194,17 @@ window.buildGallery=function(){
 })();
 </script>
 <script type="module">
-// Gallery photos (admin panel se add/delete)
+// Gallery photos + site text (admin panel se)
+function applySiteText(data){
+  if(!data) return;
+  Object.keys(data).forEach(function(k){
+    var val=data[k]; if(val===undefined||val===null) return;
+    document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
+      if(String(val).indexOf('\n')>=0){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else { el.textContent=val; }
+    });
+  });
+}
 try{
   const { firebaseConfig } = await import("./firebase-config.js");
   if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
@@ -203,7 +213,7 @@ try{
     const db=getFirestore(initializeApp(firebaseConfig));
     const snap=await getDocs(collection(db,"products"));
     const items=[];
-    snap.forEach(d=>{ if(d.id.indexOf("gallery_")===0){ const x=d.data()||{}; if(x.photoURL && !x.deleted) items.push({url:x.photoURL, cap:x.caption||"", order:x.order||0}); } });
+    snap.forEach(d=>{ if(d.id==="siteText"){ applySiteText(d.data()); return; } if(d.id.indexOf("gallery_")===0){ const x=d.data()||{}; if(x.photoURL && !x.deleted) items.push({url:x.photoURL, cap:x.caption||"", order:x.order||0}); } });
     if(items.length){
       items.sort((a,b)=>a.order-b.order);
       const grid=document.getElementById("galGrid");

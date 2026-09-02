@@ -44,9 +44,9 @@
       <img loading="lazy" decoding="async" src="images/c2.jpg?v=1" alt="Cotton Seed Oil Cake — pashu aahar khal"/>
     </div>
     <div>
-      <span class="pd-eyebrow">ANIMAL NUTRITION</span>
-      <h1 class="pd-title">Cotton Seed Oil Cake</h1>
-      <p class="pd-desc">Nutrient-dense oil cake made from premium mustard and cotton seed, packed with protein and natural oils. A cost-effective, highly palatable feed that improves milk yield, digestion and overall health of cattle and buffaloes.</p>
+      <span class="pd-eyebrow" data-txt="cake_eyebrow">ANIMAL NUTRITION</span>
+      <h1 class="pd-title" data-txt="cake_title">Cotton Seed Oil Cake</h1>
+      <p class="pd-desc" data-txt="cake_desc">Nutrient-dense oil cake made from premium mustard and cotton seed, packed with protein and natural oils. A cost-effective, highly palatable feed that improves milk yield, digestion and overall health of cattle and buffaloes.</p>
       <div class="pd-tags"><span class="pd-tag">HIGH PROTEIN</span><span class="pd-tag">BULK AVAILABLE</span><span class="pd-tag">FARM TRUSTED</span><span class="pd-tag">GOOD DIGESTIBILITY</span></div>
       <div class="pd-cta-row">
         <a href="contact.html" class="btn-primary">Get Quote →</a>
@@ -76,18 +76,18 @@
       <div class="pd-benefits">
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon"><img src="images/icon1.png?v=2" alt="More milk yield"/></div>
-        <div class="pd-benefit-title">More Milk Yield</div>
-        <div class="pd-benefit-text">Balanced protein and energy help dairy animals produce richer, higher-volume milk.</div>
+        <div class="pd-benefit-title" data-txt="cake_b1t">More Milk Yield</div>
+        <div class="pd-benefit-text" data-txt="cake_b1x">Balanced protein and energy help dairy animals produce richer, higher-volume milk.</div>
       </div>
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon"><img src="images/icon2.png?v=2" alt="Better animal health"/></div>
-        <div class="pd-benefit-title">Better Animal Health</div>
-        <div class="pd-benefit-text">Supports healthy weight, coat and digestion — keeping cattle strong and active.</div>
+        <div class="pd-benefit-title" data-txt="cake_b2t">Better Animal Health</div>
+        <div class="pd-benefit-text" data-txt="cake_b2x">Supports healthy weight, coat and digestion — keeping cattle strong and active.</div>
       </div>
       <div class="pd-benefit reveal">
         <div class="pd-benefit-icon">💰</div>
-        <div class="pd-benefit-title">Cost-Effective Feed</div>
-        <div class="pd-benefit-text">High nutrition per rupee. Ideal for farmers and dairies buying in bulk.</div>
+        <div class="pd-benefit-title" data-txt="cake_b3t">Cost-Effective Feed</div>
+        <div class="pd-benefit-text" data-txt="cake_b3x">High nutrition per rupee. Ideal for farmers and dairies buying in bulk.</div>
       </div>
       </div>
     </div>
@@ -195,8 +195,8 @@
 
 <!-- CTA BAND -->
 <div class="pd-cta-band">
-  <div class="pd-cta-band-title">Interested in Cotton Seed Oil Cake?</div>
-  <div class="pd-cta-band-sub">Supplied in 50 kg bags and full truck loads across 7 states. Tell us your monthly requirement for wholesale rates.</div>
+  <div class="pd-cta-band-title" data-txt="cake_ctat">Interested in Cotton Seed Oil Cake?</div>
+  <div class="pd-cta-band-sub" data-txt="cake_ctax">Supplied in 50 kg bags and full truck loads across 7 states. Tell us your monthly requirement for wholesale rates.</div>
   <div class="pd-cta-row">
     <a href="contact.html" class="btn-primary">Send Inquiry →</a>
     <a href="https://wa.me/919411254606" target="_blank" class="btn-wa">Chat on WhatsApp</a>
@@ -262,5 +262,27 @@
 </a>
 
 <script src="script.js"></script>
+<script type="module">
+function applySiteText(data){
+  if(!data) return;
+  Object.keys(data).forEach(function(k){
+    var val=data[k]; if(val===undefined||val===null) return;
+    document.querySelectorAll('[data-txt="'+k+'"]').forEach(function(el){
+      if(String(val).indexOf('\n')>=0){ el.innerHTML=String(val).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}).replace(/\n/g,'<br/>'); }
+      else { el.textContent=val; }
+    });
+  });
+}
+try{
+  const { firebaseConfig } = await import("./firebase-config.js");
+  if(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN")){
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const db=getFirestore(initializeApp(firebaseConfig));
+    const snap=await getDoc(doc(db,"products","siteText"));
+    if(snap.exists()) applySiteText(snap.data());
+  }
+}catch(e){}
+</script>
 </body>
 </html>
