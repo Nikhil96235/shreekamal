@@ -142,6 +142,27 @@
     <h2>Product Images</h2>
     <div class="sub">Products ki photo badlein — Home page aur Products page dono par change ho jayegi. Neeche Infrastructure image (Home page ki factory wali photo) bhi badal sakte hain.</div>
     <div id="prodimg-list"><p class="muted">Loading…</p></div>
+
+    <hr style="margin:28px 0;border:none;border-top:1px solid #eee;"/>
+    <h2>New Products — Add / Delete</h2>
+    <div class="sub">Naya product add karein. Ye Home page aur Products page dono par card ki tarah dikhega, aur click karne par iska apna detail page khulega (bilkul baaki 3 products jaisa). Delete karne par Recently Deleted me chala jayega (wapas laa sakte ho).</div>
+    <div class="form-card">
+      <label>Product ka naam</label>
+      <input id="np-name" type="text" placeholder="jaise: Mustard Oil Cake"/>
+      <label style="margin-top:10px;">Short description (card aur page par dikhega)</label>
+      <textarea id="np-desc" rows="3" placeholder="Is product ke baare me 1-2 line..."></textarea>
+      <label style="margin-top:10px;">Tags — optional (comma se alag karein)</label>
+      <input id="np-tags" type="text" placeholder="HIGH PROTEIN, BULK AVAILABLE"/>
+      <label style="margin-top:10px;">Extra details — optional (page par lamba text)</label>
+      <textarea id="np-details" rows="3" placeholder="Zyada jankari (optional)..."></textarea>
+      <label style="margin-top:10px;">Product photo</label>
+      <input id="np-file" type="file" accept="image/*"/>
+      <div class="row-actions" style="margin-top:12px;">
+        <button class="btn btn-primary" style="width:auto;margin:0;" id="np-add">Add Product</button>
+        <span class="ok" id="np-msg"></span>
+      </div>
+    </div>
+    <div id="np-list"><p class="muted">Loading…</p></div>
   </div>
 
   <!-- HERO IMAGES -->
@@ -317,6 +338,7 @@ onAuthStateChanged(auth, async (user) => {
   loadReviews();
   loadPending();
   loadProductImages();
+  loadNewProducts();
   loadHeroSlides();
   loadGallery();
   loadSiteText();
@@ -633,6 +655,59 @@ async function loadProductImages(){
   });
 }
 
+// ---------- NEW PRODUCTS (add / delete) ----------
+window.loadNewProducts = async function loadNewProducts(){
+  const list=$("np-list"); if(!list) return;
+  list.innerHTML='<p class="muted">Loading…</p>';
+  let items=[];
+  try{
+    const snap=await getDocs(collection(db,"products"));
+    snap.forEach(d=>{ if(d.id.indexOf("prod_")===0){ const x=d.data()||{}; if(!x.deleted) items.push(Object.assign({id:d.id},x)); } });
+  }catch(e){ list.innerHTML='<p class="err">Load fail: '+(e.code||e.message)+'</p>'; return; }
+  items.sort((a,b)=>(a.order||0)-(b.order||0));
+  if(!items.length){ list.innerHTML='<p class="muted">Abhi koi naya product nahi. Upar wale form se add karein.</p>'; return; }
+  list.innerHTML="";
+  items.forEach(p=>{
+    const div=document.createElement("div"); div.className="list-item";
+    const img=document.createElement("img"); img.src=p.photoURL||""; img.alt=""; img.style.borderRadius="10px";
+    const body=document.createElement("div"); body.className="it-body";
+    const t=document.createElement("div"); t.className="it-text";
+    const b=document.createElement("b"); b.textContent=p.name||"(no name)"; t.appendChild(b);
+    const small=document.createElement("div"); small.className="small"; small.textContent=(p.desc||"").slice(0,90); t.appendChild(small);
+    body.appendChild(t);
+    const acts=document.createElement("div"); acts.className="row-actions";
+    const del=document.createElement("button"); del.className="btn btn-danger btn-sm"; del.style.width="auto"; del.style.margin="0"; del.textContent="Delete";
+    del.onclick=async()=>{ if(!confirm("Ye product delete karein? (Recently Deleted me chala jayega, wapas laa sakte ho)")) return; del.disabled=true;
+      try{ await updateDoc(doc(db,"products",p.id),{deleted:true,deletedAt:Date.now()}); loadNewProducts(); loadTrash(); }
+      catch(e){ alert("Delete fail: "+(e.code||e.message)); del.disabled=false; } };
+    acts.appendChild(del); body.appendChild(acts);
+    div.appendChild(img); div.appendChild(body); list.appendChild(div);
+  });
+};
+(function(){
+  const add=$("np-add"); if(!add) return;
+  add.onclick=async()=>{
+    const name=($("np-name").value||"").trim();
+    const desc=($("np-desc").value||"").trim();
+    const tags=($("np-tags").value||"").trim();
+    const details=($("np-details").value||"").trim();
+    const f=$("np-file").files[0], msg=$("np-msg");
+    if(!name){ msg.textContent="Product ka naam likhein."; return; }
+    if(!f){ msg.textContent="Product photo chunein."; return; }
+    add.disabled=true; msg.textContent="Saving…";
+    try{
+      let url=await compressToDataURL(f,1000,0.82);
+      if(url.length>900000) url=await compressToDataURL(f,780,0.72);
+      const id="prod_"+Date.now();
+      await setDoc(doc(db,"products",id),{name,desc,tags,details,photoURL:url,order:Date.now(),deleted:false});
+      msg.textContent="Added ✓";
+      $("np-name").value=""; $("np-desc").value=""; $("np-tags").value=""; $("np-details").value=""; $("np-file").value="";
+      loadNewProducts();
+    }catch(e){ msg.textContent="Fail: "+(e.code||e.message); }
+    add.disabled=false;
+  };
+})();
+
 // ---------- HERO IMAGES ----------
 async function loadHeroSlides(){
   const list=$("hero-list"); if(!list) return;
@@ -907,7 +982,8 @@ async function loadTrash(){
   const items=[];
   try{
     const ps=await getDocs(collection(db,"products"));
-    ps.forEach(d=>{ const x=d.data()||{}; if(x.deleted && (d.id.indexOf("hero_")===0||d.id.indexOf("gallery_")===0)){ items.push({coll:"products",id:d.id,url:x.photoURL,label:(d.id.indexOf("hero_")===0?"Hero image":"Gallery photo")+(x.caption?(" — "+x.caption):"")}); } });
+    ps.forEach(d=>{ const x=d.data()||{}; if(x.deleted && (d.id.indexOf("hero_")===0||d.id.indexOf("gallery_")===0)){ items.push({coll:"products",id:d.id,url:x.photoURL,label:(d.id.indexOf("hero_")===0?"Hero image":"Gallery photo")+(x.caption?(" — "+x.caption):"")}); }
+      else if(x.deleted && d.id.indexOf("prod_")===0){ items.push({coll:"products",id:d.id,url:x.photoURL,label:"Product — "+(x.name||"")}); } });
     const bs=await getDocs(collection(db,"brands"));
     bs.forEach(d=>{ const x=d.data()||{}; if(x.deleted){ items.push({coll:"brands",id:d.id,url:x.photoURL,label:"Brand — "+(x.name||"")}); } });
     const ts=await getDocs(collection(db,"testimonials"));
@@ -927,7 +1003,7 @@ async function loadTrash(){
   });
 }
 async function restoreItem(coll,id){
-  try{ await updateDoc(doc(db,coll,id),{deleted:false}); loadTrash(); loadHeroSlides(); loadGallery(); loadBrands(); loadReviews(); }
+  try{ await updateDoc(doc(db,coll,id),{deleted:false}); loadTrash(); loadHeroSlides(); loadGallery(); loadBrands(); loadReviews(); if(window.loadNewProducts) loadNewProducts(); }
   catch(e){ alert("Restore fail: "+(e.code||e.message)); }
 }
 async function purgeItem(coll,id){

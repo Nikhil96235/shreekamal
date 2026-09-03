@@ -846,12 +846,19 @@ try{
     try{
       const ps = await getDocs(collection(db,"products"));
       const heroItems=[];
+      const newProds=[];
       ps.forEach(d=>{ const x=d.data()||{};
         if(d.id==="siteText"){ applySiteText(x); }
         else if(d.id.indexOf("hero_")===0){ if(x.photoURL && !x.deleted) heroItems.push({url:x.photoURL, order:x.order||0}); }
         else if(d.id.indexOf("img_")===0){ if(x.photoURL && !x.deleted){ var _ik=d.id.slice(4); document.querySelectorAll('[data-imgkey="'+_ik+'"]').forEach(img=>{ img.src=x.photoURL; }); } }
+        else if(d.id.indexOf("prod_")===0){ if(!x.deleted && x.name) newProds.push({id:d.id, x:x}); }
         else if(x.photoURL){ document.querySelectorAll('.product-img[data-pkey="'+d.id+'"]').forEach(img=>{ img.src=x.photoURL; }); }
       });
+      if(newProds.length){
+        newProds.sort((a,b)=>(a.x.order||0)-(b.x.order||0));
+        const grid=document.querySelector('.products-grid');
+        if(grid) newProds.forEach(p=>{ grid.appendChild(window.makeProductCard(p.id,p.x)); });
+      }
       if(heroItems.length){
         heroItems.sort((a,b)=>a.order-b.order);
         const track=document.getElementById("hsTrack");

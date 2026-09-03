@@ -41,7 +41,7 @@
     <div class="pd-img-wrap">
       <!-- Apni image yahan lagayein: src ko images/cattle-feed-cake.jpg se replace karein -->
       <!-- <img loading="lazy" decoding="async" src="images/cattle-feed-cake.jpg?v=2" alt="Cotton Seed Oil Cake"/> -->
-      <img loading="lazy" decoding="async" src="images/c2.jpg?v=1" alt="Cotton Seed Oil Cake — pashu aahar khal"/>
+      <img data-pkey="cake" loading="lazy" decoding="async" src="images/c2.jpg?v=1" alt="Cotton Seed Oil Cake — pashu aahar khal"/>
     </div>
     <div>
       <span class="pd-eyebrow" data-txt="cake_eyebrow">ANIMAL NUTRITION</span>
@@ -291,6 +291,7 @@ try{
     const db=getFirestore(initializeApp(firebaseConfig));
     const snap=await getDoc(doc(db,"products","siteText"));
     if(snap.exists()) applySiteText(snap.data());
+    try{ const _p=await getDoc(doc(db,"products","cake")); if(_p.exists()){ const _x=_p.data()||{}; if(_x.photoURL) document.querySelectorAll('[data-pkey="cake"]').forEach(function(im){im.src=_x.photoURL;}); } }catch(e){}
   }
 }catch(e){}
 </script>

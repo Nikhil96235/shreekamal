@@ -278,3 +278,31 @@ window.buildHero();
     vids.forEach(function(v){ io.observe(v); });
   }
 })();
+
+// ---------- Dynamic product card builder (admin se add kiye naye products) ----------
+window.makeProductCard = function(id, x){
+  function esc2(s){ return String(s==null?"":s); }
+  var a=document.createElement("a");
+  a.href="product.html?id="+encodeURIComponent(id);
+  a.className="product-card reveal";
+  var img=document.createElement("img");
+  img.className="product-img"; img.loading="lazy";
+  img.src=x.photoURL||"images/c2.jpg?v=1"; img.alt=esc2(x.name||"Product");
+  a.appendChild(img);
+  var ic=document.createElement("div"); ic.className="product-icon pi-g"; ic.textContent="📦"; a.appendChild(ic);
+  var nm=document.createElement("div"); nm.className="product-name"; nm.textContent=esc2(x.name||"Product"); a.appendChild(nm);
+  var ds=document.createElement("p"); ds.className="product-desc";
+  var dtext=String(x.desc||"");
+  // card par sirf pehli 160 char (chhota preview)
+  if(dtext.length>160) dtext=dtext.slice(0,157).replace(/\s+\S*$/,"")+"…";
+  ds.textContent=dtext; a.appendChild(ds);
+  if(x.tags){
+    var tg=document.createElement("div"); tg.className="product-tags";
+    String(x.tags).split(",").forEach(function(t){ t=t.trim(); if(!t) return; var s=document.createElement("span"); s.className="tag tgn"; s.textContent=t; tg.appendChild(s); });
+    if(tg.children.length) a.appendChild(tg);
+  }
+  var cta=document.createElement("span"); cta.className="product-cta";
+  cta.innerHTML='View Details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  a.appendChild(cta);
+  return a;
+};

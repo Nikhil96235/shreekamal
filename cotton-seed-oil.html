@@ -41,7 +41,7 @@
     <div class="pd-img-wrap">
       <!-- Apni image yahan lagayein: src ko images/cotton-seed-oil.jpg se replace karein -->
       <!-- <img loading="lazy" decoding="async" src="images/cotton-seed-oil.jpg?v=2" alt="Cotton Seed Wash Oil"/> -->
-      <img loading="lazy" decoding="async" src="images/coil.jpg?v=1" alt="Cotton Seed Wash Oil — shudh binola tel"/>
+      <img data-pkey="oil" loading="lazy" decoding="async" src="images/coil.jpg?v=1" alt="Cotton Seed Wash Oil — shudh binola tel"/>
     </div>
     <div>
       <span class="pd-eyebrow" data-txt="cso_eyebrow">EDIBLE & INDUSTRIAL OIL</span>
@@ -202,6 +202,7 @@ try{
     const db=getFirestore(initializeApp(firebaseConfig));
     const snap=await getDoc(doc(db,"products","siteText"));
     if(snap.exists()) applySiteText(snap.data());
+    try{ const _p=await getDoc(doc(db,"products","oil")); if(_p.exists()){ const _x=_p.data()||{}; if(_x.photoURL) document.querySelectorAll('[data-pkey="oil"]').forEach(function(im){im.src=_x.photoURL;}); } }catch(e){}
   }
 }catch(e){}
 </script>
