@@ -54,6 +54,7 @@
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body class="has-topbar janm-on">
+<script>try{if(new Date()>=new Date('2026-09-06T00:00:00')){document.body.classList.remove('janm-on');}}catch(e){}</script>
 
 <!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
 <div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
@@ -61,6 +62,14 @@
     <source media="(max-aspect-ratio:1/1)" srcset="images/spupdamob.jpg?v=1"/>
     <img src="images/spupdate.jpg?v=1" alt="Shreekamal Oil Industries — Uttam Pashu Aahar" class="sk-intro-img"/>
   </picture>
+  <div class="sk-fest">
+    <div class="skf-shade"></div>
+    <div class="skf-frame"></div>
+    <span class="skf-pk tl">🦚</span><span class="skf-pk tr">🦚</span>
+    <span class="skf-pk bl">🦚</span><span class="skf-pk br">🦚</span>
+    <div class="skf-rib"><span class="skf-f">🦚</span><span class="skf-txt"><span class="skf-rr">राधे राधे &nbsp;•&nbsp; </span><b>Happy Janmashtami</b><span class="skf-rr"> &nbsp;•&nbsp; राधे राधे</span></span><span class="skf-f">🙏</span></div>
+    <div class="skf-bot"><div class="skf-hi">जन्माष्टमी की हार्दिक शुभकामनाएं</div><div class="skf-en">Shreekamal Oil Industries</div></div>
+  </div>
 </div>
 <style>
   .sk-intro{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
@@ -75,6 +84,30 @@
     .sk-intro-img{object-fit:cover;}
   }
   body.sk-lock{overflow:hidden;}
+  /* Janmashtami festive splash overlay (6 Sep ko apne aap band) */
+  .sk-fest{display:none;}
+  .janm-on .sk-fest{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;}
+  .sk-fest .skf-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,26,.5) 0%,transparent 20%,transparent 78%,rgba(8,8,26,.58) 100%);}
+  .sk-fest .skf-frame{position:absolute;inset:16px;border:2px solid rgba(245,208,48,.9);border-radius:10px;box-shadow:0 0 0 6px rgba(245,208,48,.12),inset 0 0 24px rgba(245,208,48,.18);}
+  .sk-fest .skf-frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(245,208,48,.55);border-radius:7px;}
+  .sk-fest .skf-pk{position:absolute;font-size:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));}
+  .sk-fest .skf-pk.tl{top:24px;left:26px;transform:scaleX(-1);}
+  .sk-fest .skf-pk.tr{top:24px;right:26px;}
+  .sk-fest .skf-pk.bl{bottom:22px;left:26px;transform:scaleX(-1) rotate(180deg);}
+  .sk-fest .skf-pk.br{bottom:22px;right:26px;transform:rotate(180deg);}
+  .sk-fest .skf-rib{position:absolute;top:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:9px 24px;border-radius:30px;white-space:nowrap;background:linear-gradient(90deg,#1a1a4e,#3b2a7a,#6a1b9a,#3b2a7a,#1a1a4e);border:1px solid rgba(245,208,48,.6);box-shadow:0 8px 26px rgba(0,0,0,.4);}
+  .sk-fest .skf-rib b{color:#fff;}
+  .sk-fest .skf-txt{color:#ffe082;font-size:14px;letter-spacing:.4px;}
+  .sk-fest .skf-f{font-size:16px;}
+  .sk-fest .skf-bot{position:absolute;bottom:40px;left:0;right:0;text-align:center;padding:0 16px;}
+  .sk-fest .skf-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:clamp(22px,4vw,30px);font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.65);line-height:1.25;}
+  .sk-fest .skf-en{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-top:6px;opacity:.92;text-shadow:0 2px 8px rgba(0,0,0,.65);}
+  @media(max-width:768px){
+    .sk-fest .skf-rr{display:none;}
+    .sk-fest .skf-pk{font-size:26px;}
+    .sk-fest .skf-frame{inset:12px;}
+    .sk-fest .skf-bot{bottom:34px;}
+  }
 </style>
 <script>
   document.body.classList.add('sk-lock');
@@ -112,7 +145,8 @@
 <style>
   .janm-strip{position:fixed;top:0;left:0;right:0;height:34px;z-index:1001;overflow:hidden;
     background:linear-gradient(90deg,#1a1a4e,#3b2a7a,#6a1b9a,#3b2a7a,#1a1a4e);
-    border-bottom:1px solid rgba(245,208,48,.5);display:flex;align-items:center;justify-content:center;}
+    border-bottom:1px solid rgba(245,208,48,.5);display:none;align-items:center;justify-content:center;}
+  .janm-on .janm-strip{display:flex;}
   .janm-strip::after{content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;
     background:linear-gradient(90deg,transparent,rgba(255,224,130,.28),transparent);animation:janmShine 4.5s linear infinite;}
   @keyframes janmShine{0%{left:-60%}100%{left:120%}}
@@ -126,7 +160,7 @@
     .janm-strip-inner{font-size:11.5px;gap:7px;}
     .janm-on .hero{padding-top:126px;}
   }
-  .janm-pop-ov{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;
+  .janm-pop-ov{position:fixed;inset:0;z-index:99990;display:none;align-items:center;justify-content:center;
     background:rgba(8,8,26,.72);backdrop-filter:blur(4px);transition:opacity .35s ease;padding:20px;}
   .janm-pop-card{position:relative;width:100%;max-width:380px;text-align:center;padding:38px 28px 30px;border-radius:24px;
     background:radial-gradient(120% 90% at 50% 0%,#3a2a7d 0%,#241a54 55%,#171036 100%);
@@ -144,6 +178,7 @@
   .janm-pop-btn{margin-top:20px;background:linear-gradient(135deg,#f5c030,#ffde7a,#f0b429);color:#3a1d5a;border:none;
     font-weight:700;font-size:15px;padding:11px 26px;border-radius:30px;cursor:pointer;box-shadow:0 8px 22px rgba(245,192,48,.35);}
   .janm-pop-btn:hover{filter:brightness(1.05);}
+  .janm-on .janm-pop-ov{display:flex;}
 </style>
 <script>
   function janmClose(){var p=document.getElementById('janmPopup');if(p){p.style.opacity='0';setTimeout(function(){p.style.display='none';},350);}}
