@@ -218,6 +218,7 @@
     <img class="nav-logo-full" src="images/shreekamal-logo.png?v=3" alt="Shreekamal Oil Industries logo"/>
     <div class="nav-brand-sub">EST. 2011</div>
   </a>
+  <img class="janm-logo-deco" src="images/janm_card.png?v=1" alt=""/>
   <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
@@ -1029,6 +1030,28 @@ try{
   @keyframes krFloat{0%,100%{transform:translateY(0) rotate(-2.5deg);}50%{transform:translateY(-16px) rotate(2.5deg);}}
   @media(max-width:768px){.janm-krishna{width:84px;left:10px;bottom:74px;}}
 </style>
+
+<!-- Janmashtami matki decoration (6 Sep ko apne aap hat jayega) -->
+<style>
+  .janm-logo-deco{height:44px;width:auto;margin-left:8px;vertical-align:middle;pointer-events:none;display:none;
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.15));}
+  .janm-on .janm-logo-deco{display:inline-block;}
+  .janm-deco{position:absolute;top:8px;right:6px;width:200px;opacity:.9;pointer-events:none;z-index:1;
+    filter:drop-shadow(0 5px 12px rgba(0,0,0,.14));}
+  @media(max-width:768px){.janm-logo-deco{display:none!important;} .janm-deco{display:none!important;}}
+</style>
+<script>
+  (function(){
+    if(!document.body.classList.contains('janm-on')) return;
+    document.querySelectorAll('.section-inner').forEach(function(si){
+      if(si.querySelector('.cotton-grid, .cotton-img-wrap')) return;
+      si.style.position='relative';
+      var d=document.createElement('img');
+      d.src='images/janm_card.png?v=1'; d.className='janm-deco'; d.alt='';
+      si.insertBefore(d, si.firstChild);
+    });
+  })();
+</script>
 
 </body>
 </html>
