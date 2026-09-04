@@ -53,7 +53,7 @@
 </script>
 <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="has-topbar">
+<body class="has-topbar janm-on">
 
 <!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
 <div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
@@ -90,6 +90,76 @@
 <!-- ===== END INTRO SPLASH ===== -->
 
 <!-- TOP CONTACT BAR -->
+<!-- ===== JANMASHTAMI FESTIVE (6 Sep 2026 ko apne aap hat jayega) ===== -->
+<div id="janmStrip" class="janm-strip">
+  <div class="janm-strip-inner">
+    <span class="janm-fx">🦚</span>
+    <span class="janm-txt">राधे राधे &nbsp;•&nbsp; <b>Happy Janmashtami</b> &nbsp;•&nbsp; राधे राधे &nbsp;🙏</span>
+    <span class="janm-fx">🦚</span>
+  </div>
+</div>
+<div id="janmPopup" class="janm-pop-ov">
+  <div class="janm-pop-card">
+    <button class="janm-pop-x" onclick="janmClose()" aria-label="close">✕</button>
+    <div class="janm-feather">🦚</div>
+    <div class="janm-hi">जन्माष्टमी की<br/>हार्दिक शुभकामनाएं</div>
+    <div class="janm-en">Happy Janmashtami</div>
+    <div class="janm-flute">🪈 &nbsp;·&nbsp; 🙏 &nbsp;·&nbsp; 🪈</div>
+    <div class="janm-from">Shreekamal Oil Industries<br/><span>राधे राधे 🙏</span></div>
+    <button class="janm-pop-btn" onclick="janmClose()">जय श्री कृष्ण 🙏</button>
+  </div>
+</div>
+<style>
+  .janm-strip{position:fixed;top:0;left:0;right:0;height:34px;z-index:1001;overflow:hidden;
+    background:linear-gradient(90deg,#1a1a4e,#3b2a7a,#6a1b9a,#3b2a7a,#1a1a4e);
+    border-bottom:1px solid rgba(245,208,48,.5);display:flex;align-items:center;justify-content:center;}
+  .janm-strip::after{content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,224,130,.28),transparent);animation:janmShine 4.5s linear infinite;}
+  @keyframes janmShine{0%{left:-60%}100%{left:120%}}
+  .janm-strip-inner{display:flex;align-items:center;gap:12px;color:#ffe082;font-size:13.5px;letter-spacing:.3px;white-space:nowrap;padding:0 12px;}
+  .janm-strip-inner b{color:#fff;}
+  .janm-fx{font-size:15px;filter:drop-shadow(0 0 3px rgba(245,208,48,.5));}
+  .janm-on .topbar{top:34px;}
+  .janm-on .navbar{top:74px;}
+  .janm-on .hero{padding-top:146px;}
+  @media(max-width:768px){
+    .janm-strip-inner{font-size:11.5px;gap:7px;}
+    .janm-on .hero{padding-top:126px;}
+  }
+  .janm-pop-ov{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;
+    background:rgba(8,8,26,.72);backdrop-filter:blur(4px);transition:opacity .35s ease;padding:20px;}
+  .janm-pop-card{position:relative;width:100%;max-width:380px;text-align:center;padding:38px 28px 30px;border-radius:24px;
+    background:radial-gradient(120% 90% at 50% 0%,#3a2a7d 0%,#241a54 55%,#171036 100%);
+    border:1.5px solid rgba(245,208,48,.55);box-shadow:0 24px 70px rgba(0,0,0,.55),inset 0 0 40px rgba(106,27,154,.35);
+    animation:janmPop .5s cubic-bezier(.2,.7,.3,1.2);}
+  @keyframes janmPop{0%{transform:scale(.85) translateY(14px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+  .janm-pop-x{position:absolute;top:12px;right:14px;background:transparent;border:none;color:rgba(255,224,130,.75);font-size:18px;cursor:pointer;}
+  .janm-feather{font-size:46px;line-height:1;filter:drop-shadow(0 4px 10px rgba(245,208,48,.35));animation:janmSway 3.5s ease-in-out infinite;}
+  @keyframes janmSway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+  .janm-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:26px;font-weight:700;line-height:1.3;margin-top:12px;text-shadow:0 2px 12px rgba(245,208,48,.25);}
+  .janm-en{color:#fff;font-size:14px;letter-spacing:3px;text-transform:uppercase;margin-top:8px;opacity:.9;}
+  .janm-flute{color:#ffd54f;font-size:18px;margin:16px 0 14px;}
+  .janm-from{color:rgba(255,255,255,.82);font-size:13.5px;line-height:1.6;}
+  .janm-from span{color:#ffd54f;font-size:12.5px;letter-spacing:1px;}
+  .janm-pop-btn{margin-top:20px;background:linear-gradient(135deg,#f5c030,#ffde7a,#f0b429);color:#3a1d5a;border:none;
+    font-weight:700;font-size:15px;padding:11px 26px;border-radius:30px;cursor:pointer;box-shadow:0 8px 22px rgba(245,192,48,.35);}
+  .janm-pop-btn:hover{filter:brightness(1.05);}
+</style>
+<script>
+  function janmClose(){var p=document.getElementById('janmPopup');if(p){p.style.opacity='0';setTimeout(function(){p.style.display='none';},350);}}
+  (function(){
+    try{
+      // 6 September 2026 se sab apne aap hat jayega (2 din: 4 & 5 Sep)
+      var over = new Date() >= new Date('2026-09-06T00:00:00');
+      if(over){
+        document.body.classList.remove('janm-on');
+        var s=document.getElementById('janmStrip'); if(s) s.style.display='none';
+        var p=document.getElementById('janmPopup'); if(p) p.style.display='none';
+      }
+    }catch(e){}
+  })();
+</script>
+
 <div class="topbar">
   <div class="topbar-left">Pure · Natural · Trusted · Est. 2011</div>
   <div class="topbar-right">
