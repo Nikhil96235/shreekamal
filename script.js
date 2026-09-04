@@ -50,8 +50,16 @@ function brandOneTimeListeners(){
     if(brandIndex>=brandOrig*2){ brandIndex-=brandOrig; brandApply(false); }
     else if(brandIndex<brandOrig){ brandIndex+=brandOrig; brandApply(false); }
   });
-  // Brands slider hamesha auto-move kare (scroll ya tab-switch ke baad bhi)
-  document.addEventListener('visibilitychange',function(){ if(!document.hidden) brandResetTimer(); });
+  // Brands slider: tab background me jaaye to timer rok do (warna counter badhta rehta aur slide gayab ho jaati); wapas aane par position theek karke chaalu karo
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){ if(brandTimer){clearInterval(brandTimer);brandTimer=null;} }
+    else {
+      brandMeasure();
+      if(brandOrig>0){ brandIndex=brandOrig + (((brandIndex-brandOrig)%brandOrig)+brandOrig)%brandOrig; }
+      brandApply(false);
+      brandResetTimer();
+    }
+  });
   window.addEventListener('resize',()=>{ brandMeasure(); brandApply(false); });
 }
 
