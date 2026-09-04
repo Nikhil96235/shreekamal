@@ -1044,7 +1044,7 @@ try{
   (function(){
     if(!document.body.classList.contains('janm-on')) return;
     document.querySelectorAll('.section-inner').forEach(function(si){
-      if(si.querySelector('.cotton-grid, .cotton-img-wrap')) return;
+      if(si.querySelector('form, .cotton-grid, .cotton-img-wrap')) return;
       si.style.position='relative';
       var d=document.createElement('img');
       d.src='images/janm_card.png?v=1'; d.className='janm-deco'; d.alt='';
