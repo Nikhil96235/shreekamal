@@ -91,6 +91,9 @@
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
 
+**7 September 2026:**
+- **Customer testimonials me location add.** Home testimonials (hardcoded cards, Firebase testimonials empty hone par ye dikhte hain): customer3 → "📍 Dasna, Ghaziabad (UP)", customer4 → "📍 Pilkhuwa (UP)", customer5 → "📍 Pilkhuwa (UP)" — photo ke NEECHE. customer1/2 blank (jaise the). index.html me un 3 `.testi-person` par `has-loc` class + `.testi-loc` div; style.css me `.testi-person.has-loc{flex-direction:column;align-items:flex-start;gap:9px;}` + `.testi-loc{13.5px, green var(--gm), 600}`. Render-verified locations sahi, no err. NOTE: Janmashtami festive (splash/strip/popup/Krishna/matki) 6 Sep ko auto-expire ho chuka (janm-on early script), ab site normal.
+
 **4 September 2026:**
 - **BUG FIX — brands slider tab-switch par gayab.** Problem: tab background me jaane par `setInterval(nextBrand)` chalta rehta tha par CSS transition/transitionend background me pause → `brandIndex` unbounded badhta → wapas aane par track bahut door translate ho ke slide screen se bahar (gayab). Fix (script.js visibilitychange handler): `document.hidden` par timer **clearInterval** (pause), aur visible par `brandIndex` ko `[brandOrig, 2*brandOrig)` me **normalize** karke `brandApply(false)` (instant reposition) + `brandResetTimer()`. Render-verified: no err, brands sahi init (transform sane).
 - **Hero images #2, #3 & #5 badli.** User ne nayi hero images daali → optimize karke overwrite: `hero new 3.png` (farmer+cows+Radha Govind) → **hu2.jpg**; `HERO NEW7.png` (Panchratan Shri+cow) → **hu3.jpg**; `HERO NEW 8.png` (Amrit Kalash+cows/calves) → **hu5.jpg**. Sab 1920 wide JPG q82 + UnsharpMask (~370-450KB). index.html cache-bust `hu2/hu3/hu5.jpg ?v=1→?v=2`. Render-verified sab load (naturalW 1920), no err. (Hero flow: hu1=purani, hu2/hu3/hu5=nayi, hu4/hu6=purani.)
