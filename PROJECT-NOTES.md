@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 7 September 2026
+> **Last updated:** 10 September 2026
 
 ---
 
@@ -90,6 +90,9 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**10 September 2026:**
+- **Footer me VISIT COUNTER (👁 + number) joda — sabhi 10 pages.** User: footer me visitor counter dikhe, sirf 👁 + number (koi text nahi), starting number maine choose kiya. Footer `.footer-bottom` me "Made with ❤️ in India" line se PEHLE `<div class="footer-copy" id="siteCounter" style="display:none;">👁 <span id="visitCount"></span></div>` add kiya, aur `</body>` se pehle ek Firebase module joda (named app **"skCounter"**, doc **`counters/visits`**). Logic: `BASE=1247` (pehli baar 1,248 dikhega — user ne 12,480 bada laga to 1,248 kar diya), har **session** me sirf **ek baar** increment (`sessionStorage 'skVisited'` guard), display `toLocaleString('en-IN')`. Doc na ho to `setDoc({count:BASE+1})`, warna `updateDoc(increment(1))`. **Fully fallback-safe:** Firebase config/write fail ho to counter chhupa rehta hai (koi error nahi, footer normal). Sabhi 10 pages me daala (index, about, products, gallery, brands, contact, cattle-feed-cake, cotton-seed, cotton-seed-oil, product). Render-verified: element sahi, sirf expected Firebase-network errors (safely caught). **⚠️ ZAROORI Firestore rule (user ko karna hai):** `counters` collection ke liye read+write allow karna, warna counter increment/dikh nahi payega. Rule: `match /counters/{doc} { allow read: if true; allow write: if true; }`.
 
 **7 September 2026:**
 - **Customer testimonials me location add.** Home testimonials (hardcoded cards, Firebase testimonials empty hone par ye dikhte hain): customer3 → "📍 Dasna, Ghaziabad (UP)", customer4 → "📍 Pilkhuwa (UP)", customer5 → "📍 Pilkhuwa (UP)" — photo ke NEECHE. customer1/2 blank (jaise the). index.html me un 3 `.testi-person` par `has-loc` class + `.testi-loc` div; style.css me `.testi-person.has-loc{flex-direction:column;align-items:flex-start;gap:9px;}` + `.testi-loc{13.5px, green var(--gm), 600}`. Render-verified locations sahi, no err. NOTE: Janmashtami festive (splash/strip/popup/Krishna/matki) 6 Sep ko auto-expire ho chuka (janm-on early script), ab site normal.

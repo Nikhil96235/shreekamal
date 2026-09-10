@@ -147,6 +147,7 @@
   <div class="footer-bottom">
     <div class="footer-copy">© <span id="fyear">2011–2026</span> Shreekamal Oil Industries. All rights reserved. | Hinganghat, Maharashtra 442301</div>
     <script>try{document.getElementById('fyear').textContent='2011–'+new Date().getFullYear();}catch(e){}</script>
+    <div class="footer-copy" id="siteCounter" style="display:none;">👁 <span id="visitCount"></span></div>
     <div class="footer-copy">Made with ❤️ in India</div>
   </div>
 </footer>
@@ -242,5 +243,32 @@ try{
 }catch(e){}
 </script>
 <script src="script.js"></script>
+<script type="module">
+// Visit counter (Firebase) — footer me 👁 number
+(async function(){
+  try{
+    const { firebaseConfig } = await import("./firebase-config.js");
+    if(!(firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("YAHAN"))) return;
+    const { initializeApp, getApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore, doc, getDoc, setDoc, updateDoc, increment } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    let app; try{ app=getApp("skCounter"); }catch(e){ app=initializeApp(firebaseConfig,"skCounter"); }
+    const db = getFirestore(app);
+    const ref = doc(db,"counters","visits");
+    const BASE = 1247;
+    const snap = await getDoc(ref);
+    let n = snap.exists() ? (snap.data().count||BASE) : BASE;
+    let counted=false; try{ counted = sessionStorage.getItem("skVisited")==="1"; }catch(e){}
+    if(!counted){
+      if(snap.exists()){ await updateDoc(ref,{count:increment(1)}); }
+      else { await setDoc(ref,{count:BASE+1}); }
+      n = n + 1;
+      try{ sessionStorage.setItem("skVisited","1"); }catch(e){}
+    }
+    const el=document.getElementById("visitCount"), box=document.getElementById("siteCounter");
+    if(el) el.textContent = Number(n).toLocaleString("en-IN");
+    if(box) box.style.display="";
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
