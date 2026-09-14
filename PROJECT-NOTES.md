@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 10 September 2026
+> **Last updated:** 14 September 2026
 
 ---
 
@@ -90,6 +90,9 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**14 September 2026:**
+- **Visit counter ka DESIGN upgrade + start 10 se.** User ko plain text counter "normal" laga → ek **pill/badge** banaya. Markup badla (sabhi 10 pages): `<div class="site-counter" id="siteCounter" style="display:none;"><span class="sc-dot"></span><span class="sc-eye">👁</span><span id="visitCount"></span></div>`. style.css me `.site-counter` badge styling joda: rounded pill, golden gradient bg + gold border (`rgba(245,192,48,...)` theme se match), ek **hara "live" dot** (`.sc-dot`, `scPulse` animation se blink), eye 14px, `#visitCount` white bold tabular-nums. **Start number `BASE=1247`→`BASE=9`** (pehli baar **10** dikhega — user ne "10 se start" bola). Render-verified: badge sahi (screenshot), 0 pageerror. Deploy: sabhi 10 HTML + style.css device par commit. Counter logic same (session-once increment, fallback-safe). Firestore `counters` rule wahi chahiye.
 
 **10 September 2026:**
 - **Footer me VISIT COUNTER (👁 + number) joda — sabhi 10 pages.** User: footer me visitor counter dikhe, sirf 👁 + number (koi text nahi), starting number maine choose kiya. Footer `.footer-bottom` me "Made with ❤️ in India" line se PEHLE `<div class="footer-copy" id="siteCounter" style="display:none;">👁 <span id="visitCount"></span></div>` add kiya, aur `</body>` se pehle ek Firebase module joda (named app **"skCounter"**, doc **`counters/visits`**). Logic: `BASE=1247` (pehli baar 1,248 dikhega — user ne 12,480 bada laga to 1,248 kar diya), har **session** me sirf **ek baar** increment (`sessionStorage 'skVisited'` guard), display `toLocaleString('en-IN')`. Doc na ho to `setDoc({count:BASE+1})`, warna `updateDoc(increment(1))`. **Fully fallback-safe:** Firebase config/write fail ho to counter chhupa rehta hai (koi error nahi, footer normal). Sabhi 10 pages me daala (index, about, products, gallery, brands, contact, cattle-feed-cake, cotton-seed, cotton-seed-oil, product). Render-verified: element sahi, sirf expected Firebase-network errors (safely caught). **⚠️ ZAROORI Firestore rule (user ko karna hai):** `counters` collection ke liye read+write allow karna, warna counter increment/dikh nahi payega. Rule: `match /counters/{doc} { allow read: if true; allow write: if true; }`.
