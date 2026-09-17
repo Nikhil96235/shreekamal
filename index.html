@@ -53,8 +53,9 @@
 </script>
 <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="has-topbar janm-on">
-<script>try{if(new Date()>=new Date('2026-09-06T00:00:00')){document.body.classList.remove('janm-on');}}catch(e){}</script>
+<body class="has-topbar janm-on vishw-on">
+<script>try{if(new Date()>=new Date('2026-09-06T00:00:00')){document.body.classList.remove('janm-on');}}catch(e){}
+try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remove('vishw-on');}}catch(e){}</script>
 
 <!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
 <div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
@@ -70,7 +71,56 @@
     <div class="skf-rib"><span class="skf-f">🦚</span><span class="skf-txt"><span class="skf-rr">राधे राधे &nbsp;•&nbsp; </span><b>Happy Janmashtami</b><span class="skf-rr"> &nbsp;•&nbsp; राधे राधे</span></span><span class="skf-f">🙏</span></div>
     <div class="skf-bot"><div class="skf-hi">जन्माष्टमी की हार्दिक शुभकामनाएं</div><div class="skf-en">Shreekamal Oil Industries</div></div>
   </div>
+  <div class="sk-fest-v">
+    <div class="skfv-shade"></div>
+    <div class="skfv-d">
+      <div class="skfv-frame"></div>
+      <span class="skfv-g tl">⚙️</span><span class="skfv-g tr">⚙️</span>
+      <span class="skfv-g bl">⚙️</span><span class="skfv-g br">⚙️</span>
+      <div class="skfv-rib"><span class="skfv-f">🔧</span><span class="skfv-txt">जय श्री विश्वकर्मा &nbsp;•&nbsp; <b>Happy Vishwakarma Puja</b></span><span class="skfv-f">🔨</span></div>
+      <div class="skfv-bot"><div class="skfv-hi">विश्वकर्मा जयंती की हार्दिक शुभकामनाएं</div><div class="skfv-en">Shreekamal Oil Industries</div></div>
+    </div>
+    <div class="skfv-m">
+      <span class="skfv-m-gear">⚙️</span>
+      <img class="skfv-m-img" src="images/vishw1.png?v=1" alt=""/>
+      <div class="skfv-m-hi">विश्वकर्मा जयंती की<br/>हार्दिक शुभकामनाएं</div>
+      <div class="skfv-m-en">Happy Vishwakarma Puja</div>
+      <div class="skfv-m-tools">🔧 &nbsp;·&nbsp; 🔨 &nbsp;·&nbsp; ⚙️</div>
+      <div class="skfv-m-from">Shreekamal Oil Industries &nbsp;·&nbsp; जय श्री विश्वकर्मा 🙏</div>
+    </div>
+  </div>
 </div>
+<style>
+  .sk-fest-v{display:none;}
+  .vishw-on .sk-fest-v{display:block;position:absolute;inset:0;z-index:2;pointer-events:none;}
+  .sk-fest-v .skfv-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,18,4,.5) 0%,transparent 22%,transparent 76%,rgba(40,18,4,.6) 100%);}
+  .sk-fest-v .skfv-d{position:absolute;inset:0;}
+  .sk-fest-v .skfv-frame{position:absolute;inset:16px;border:2px solid rgba(255,200,70,.9);border-radius:10px;box-shadow:0 0 0 6px rgba(255,200,70,.12),inset 0 0 24px rgba(255,200,70,.18);}
+  .sk-fest-v .skfv-frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,200,70,.55);border-radius:7px;}
+  .sk-fest-v .skfv-g{position:absolute;font-size:32px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));animation:vishwSpin 8s linear infinite;}
+  .sk-fest-v .skfv-g.tl{top:24px;left:26px;}
+  .sk-fest-v .skfv-g.tr{top:24px;right:26px;animation-direction:reverse;}
+  .sk-fest-v .skfv-g.bl{bottom:22px;left:26px;animation-direction:reverse;}
+  .sk-fest-v .skfv-g.br{bottom:22px;right:26px;}
+  .sk-fest-v .skfv-rib{position:absolute;top:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:9px 24px;border-radius:30px;white-space:nowrap;background:linear-gradient(90deg,#b23907,#d5610a,#f39204,#d5610a,#b23907);border:1px solid rgba(255,208,80,.6);box-shadow:0 8px 26px rgba(0,0,0,.4);}
+  .sk-fest-v .skfv-rib b{color:#fff;}
+  .sk-fest-v .skfv-txt{color:#ffe9b8;font-size:14px;letter-spacing:.4px;}
+  .sk-fest-v .skfv-f{font-size:16px;}
+  .sk-fest-v .skfv-bot{position:absolute;bottom:40px;left:0;right:0;text-align:center;padding:0 16px;}
+  .sk-fest-v .skfv-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:clamp(22px,4vw,30px);font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.65);line-height:1.25;}
+  .sk-fest-v .skfv-en{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-top:6px;opacity:.92;text-shadow:0 2px 8px rgba(0,0,0,.65);}
+  .sk-fest-v .skfv-m{display:none;}
+  @media (max-aspect-ratio:1/1){
+    .sk-fest-v .skfv-d{display:none;}
+    .sk-fest-v .skfv-m{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:absolute;inset:0;padding-top:11%;text-align:center;}
+    .sk-fest-v .skfv-m-gear{position:absolute;top:8%;font-size:200px;opacity:.09;animation:vishwSpin 11s linear infinite;}
+    .sk-fest-v .skfv-m-img{width:150px;height:auto;position:relative;z-index:1;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));animation:vishwFloat 4.5s ease-in-out infinite;}
+    .sk-fest-v .skfv-m-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:26px;font-weight:800;line-height:1.3;margin-top:14px;text-shadow:0 3px 14px rgba(0,0,0,.6);}
+    .sk-fest-v .skfv-m-en{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-top:8px;opacity:.92;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+    .sk-fest-v .skfv-m-tools{color:#ffd54f;font-size:20px;margin-top:12px;}
+    .sk-fest-v .skfv-m-from{color:rgba(255,255,255,.9);font-size:12.5px;margin-top:10px;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+  }
+</style>
 <style>
   .sk-intro{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
     background:linear-gradient(180deg,#bad1dc 0%,#aec3c2 32%,#b09468 64%,#ab7f59 100%);
@@ -142,6 +192,87 @@
     <button class="janm-pop-btn" onclick="janmClose()">जय श्री कृष्ण 🙏</button>
   </div>
 </div>
+
+<!-- ===== VISHWAKARMA JAYANTI FESTIVE (19 Sep 2026 ko apne aap hat jayega) ===== -->
+<div id="vishwStrip" class="vishw-strip">
+  <div class="vishw-strip-inner">
+    <span class="vishw-gear">⚙️</span>
+    <span class="vishw-txt">जय श्री विश्वकर्मा &nbsp;•&nbsp; <b>Happy Vishwakarma Puja</b> &nbsp;•&nbsp; विश्वकर्मा जयंती की हार्दिक शुभकामनाएं &nbsp;🔨</span>
+    <span class="vishw-gear vishw-gear-rev">⚙️</span>
+  </div>
+</div>
+<div id="vishwPopup" class="vishw-pop-ov">
+  <div class="vishw-pop-card">
+    <button class="vishw-pop-x" onclick="vishwClose()" aria-label="close">✕</button>
+    <span class="vishw-cg vishw-cg-tl">⚙️</span>
+    <span class="vishw-cg vishw-cg-br">⚙️</span>
+    <img class="vishw-pop-img" src="images/vishw2.png?v=1" alt="Vishwakarma Bhagwan"/>
+    <div class="vishw-hi">विश्वकर्मा जयंती की<br/>हार्दिक शुभकामनाएं</div>
+    <div class="vishw-en">Happy Vishwakarma Puja</div>
+    <div class="vishw-tools">🔧 &nbsp;·&nbsp; 🔨 &nbsp;·&nbsp; ⚙️</div>
+    <div class="vishw-from">Shreekamal Oil Industries<br/><span>जय श्री विश्वकर्मा 🙏</span></div>
+    <button class="vishw-pop-btn" onclick="vishwClose()">जय श्री विश्वकर्मा 🙏</button>
+  </div>
+</div>
+<div class="vishw-float">
+  <span class="vishw-float-gear">⚙️</span>
+  <img class="vishw-deity" src="images/vishw1.png?v=1" alt="Vishwakarma ji"/>
+</div>
+<style>
+  .vishw-strip{position:fixed;top:0;left:0;right:0;height:34px;z-index:1001;overflow:hidden;display:none;
+    align-items:center;justify-content:center;background:linear-gradient(90deg,#b23907,#d5610a,#f39204,#d5610a,#b23907);}
+  .vishw-on .vishw-strip{display:flex;}
+  .vishw-strip::after{content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,236,179,.32),transparent);animation:vishwShine 4.5s linear infinite;}
+  @keyframes vishwShine{0%{left:-60%}100%{left:120%}}
+  .vishw-strip-inner{display:flex;align-items:center;gap:12px;color:#ffe9b8;font-size:13.5px;letter-spacing:.3px;white-space:nowrap;padding:0 12px;}
+  .vishw-strip-inner b{color:#fff;}
+  .vishw-gear{font-size:15px;display:inline-block;animation:vishwSpin 6s linear infinite;filter:drop-shadow(0 0 3px rgba(255,208,80,.5));}
+  .vishw-gear-rev{animation-direction:reverse;}
+  @keyframes vishwSpin{100%{transform:rotate(360deg)}}
+  .vishw-on .topbar{top:34px;}
+  .vishw-on .navbar{top:74px;}
+  .vishw-on .hero{padding-top:146px;}
+  @media(max-width:768px){
+    .vishw-strip-inner{font-size:11.5px;gap:7px;}
+    .vishw-on .hero{padding-top:126px;}
+  }
+  .vishw-pop-ov{position:fixed;inset:0;z-index:99990;display:none;align-items:center;justify-content:center;
+    background:rgba(40,18,4,.68);backdrop-filter:blur(4px);padding:20px;}
+  .vishw-on .vishw-pop-ov{display:flex;}
+  .vishw-pop-card{position:relative;width:100%;max-width:380px;text-align:center;padding:30px 28px;border-radius:24px;overflow:hidden;
+    background:radial-gradient(circle at 50% 0,#7a2e0c,#4a1c06 72%);border:1.5px solid rgba(255,208,80,.4);
+    box-shadow:0 30px 80px rgba(0,0,0,.5);animation:vishwPop .5s cubic-bezier(.2,.7,.3,1.2);}
+  @keyframes vishwPop{0%{transform:scale(.85) translateY(14px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+  .vishw-pop-x{position:absolute;top:12px;right:14px;background:transparent;border:none;color:rgba(255,233,184,.75);font-size:18px;cursor:pointer;z-index:3;}
+  .vishw-pop-img{width:152px;height:auto;margin:2px auto 4px;display:block;filter:drop-shadow(0 10px 20px rgba(0,0,0,.45));position:relative;z-index:2;}
+  .vishw-cg{position:absolute;font-size:54px;opacity:.13;z-index:1;animation:vishwSpin 9s linear infinite;}
+  .vishw-cg-tl{top:-16px;left:-14px;}
+  .vishw-cg-br{bottom:-18px;right:-14px;animation-direction:reverse;}
+  .vishw-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:24px;font-weight:700;line-height:1.3;margin-top:6px;text-shadow:0 2px 12px rgba(255,180,60,.3);position:relative;z-index:2;}
+  .vishw-en{color:#fff;font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-top:8px;opacity:.9;position:relative;z-index:2;}
+  .vishw-tools{color:#ffd54f;font-size:18px;margin:14px 0 12px;position:relative;z-index:2;}
+  .vishw-from{color:rgba(255,255,255,.82);font-size:13.5px;line-height:1.6;position:relative;z-index:2;}
+  .vishw-from span{color:#ffd54f;font-size:12.5px;letter-spacing:1px;}
+  .vishw-pop-btn{margin-top:18px;background:linear-gradient(135deg,#f5a623,#ffd76a,#f0932b);color:#5a2408;border:none;
+    padding:12px 30px;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;position:relative;z-index:2;box-shadow:0 6px 18px rgba(240,147,43,.4);}
+  .vishw-pop-btn:hover{filter:brightness(1.05);}
+  .vishw-float{position:fixed;left:16px;bottom:14px;width:150px;height:auto;z-index:1500;pointer-events:none;display:none;}
+  .vishw-on .vishw-float{display:block;}
+  .vishw-float-gear{position:absolute;left:52%;top:38%;transform:translate(-50%,-50%);font-size:118px;opacity:.15;animation:vishwSpin 8s linear infinite;z-index:0;}
+  .vishw-deity{position:relative;width:132px;height:auto;z-index:1;display:block;animation:vishwFloat 4.5s ease-in-out infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.28));}
+  @keyframes vishwFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+  @media(max-width:768px){.vishw-float{width:100px;left:10px;bottom:76px;} .vishw-deity{width:90px;} .vishw-float-gear{font-size:80px;}}
+</style>
+<script>
+  function vishwClose(){var p=document.getElementById('vishwPopup');if(p){p.style.opacity='0';setTimeout(function(){p.style.display='none';},350);}}
+  (function(){try{if(new Date()>=new Date('2026-09-19T00:00:00')){
+    document.body.classList.remove('vishw-on');
+    ['vishwStrip','vishwPopup'].forEach(function(i){var e=document.getElementById(i);if(e)e.style.display='none';});
+    var f=document.querySelector('.vishw-float'); if(f) f.style.display='none';
+  }}catch(e){}})();
+</script>
+
 <style>
   .janm-strip{position:fixed;top:0;left:0;right:0;height:34px;z-index:1001;overflow:hidden;
     background:linear-gradient(90deg,#1a1a4e,#3b2a7a,#6a1b9a,#3b2a7a,#1a1a4e);
@@ -1049,6 +1180,25 @@ try{
       si.style.position='relative';
       var d=document.createElement('img');
       d.src='images/janm_card.png?v=1'; d.className='janm-deco'; d.alt='';
+      si.insertBefore(d, si.firstChild);
+    });
+  })();
+</script>
+
+<!-- Vishwakarma section decoration (19 Sep ko apne aap hat jayega) -->
+<style>
+  .vishw-deco{position:absolute;top:8px;right:8px;width:130px;opacity:.85;pointer-events:none;z-index:1;
+    filter:drop-shadow(0 5px 12px rgba(0,0,0,.16));}
+  @media(max-width:768px){.vishw-deco{display:none!important;}}
+</style>
+<script>
+  (function(){
+    if(!document.body.classList.contains('vishw-on')) return;
+    document.querySelectorAll('.section-inner').forEach(function(si){
+      if(si.querySelector('form, .cotton-grid, .cotton-img-wrap')) return;
+      si.style.position='relative';
+      var d=document.createElement('img');
+      d.src='images/vishw2.png?v=1'; d.className='vishw-deco'; d.alt='';
       si.insertBefore(d, si.firstChild);
     });
   })();
