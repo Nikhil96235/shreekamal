@@ -256,6 +256,16 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .yt-float:hover{transform:scale(1.1);}
 @keyframes waBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
+/* WhatsApp Channel CTA (contact section) */
+.wa-channel-cta{display:flex;align-items:center;gap:14px;margin:22px 0 4px;padding:14px 18px;border-radius:16px;text-decoration:none;
+  background:linear-gradient(135deg,#1faa53,#25d366);box-shadow:0 8px 22px rgba(37,211,102,.28);transition:transform .2s,box-shadow .2s;}
+.wa-channel-cta:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(37,211,102,.4);}
+.wa-channel-cta .wac-ic{flex:none;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;}
+.wa-channel-cta .wac-txt{display:flex;flex-direction:column;line-height:1.3;}
+.wa-channel-cta .wac-txt b{color:#fff;font-size:15.5px;font-weight:700;}
+.wa-channel-cta .wac-txt small{color:rgba(255,255,255,.9);font-size:12px;font-weight:500;margin-top:2px;}
+.wa-channel-cta .wac-arrow{margin-left:auto;color:#fff;font-size:20px;font-weight:700;flex:none;}
+
 /* ===== Footer social icons (small, clickable) ===== */
 .footer-social{display:flex;gap:10px;margin-top:18px;}
 .footer-social a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.09);transition:transform .2s,background .2s;}

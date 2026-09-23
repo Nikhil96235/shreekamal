@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 17 September 2026
+> **Last updated:** 23 September 2026
 
 ---
 
@@ -90,6 +90,9 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**23 September 2026:**
+- **WhatsApp CHANNEL link add.** User ne company ka WhatsApp Channel banaya: `https://whatsapp.com/channel/0029Vb8ijnz7tkjEzfmJOX0B`. Pehle footer-social me icon dala tha, par wahan pehle se WA **chat** icon (wa.me/919411254606, class="wa") tha → 2 WhatsApp icon confusing lage, isliye **footer se channel icon hata diya**. Iske badle ek **labeled green CTA button** banaya (`.wa-channel-cta`, style.css me: WA-green gradient pill, icon circle + "Join our WhatsApp Channel" + subtext + arrow, hover lift). Lagaya **index.html** aur **contact.html** ke contact section me (Business Hours item ke baad, map se pehle). Render-verified: dono pages CTA present, footer wapas 4 icons (YT/FB/IG/WA-chat), 0 pageerror. Deploy: index.html + contact.html + style.css. Baaki 8 pages unchanged.
 
 **17 September 2026:**
 - **VISHWAKARMA JAYANTI festive (temporary, 19 Sep ko auto-expire).** Janmashtami jaisa hi, par unique **mechanical (gears ghumte hue)** theme, saffron/gold rang. Sirf **index.html** (home). User ne 2 Vishwakarma images di → rembg (u2net) cutout, upar ka "Happy Vishwakarma Puja" text crop karke → **`images/vishw1.png`** (lotus figure — floating deity + mobile-splash), **`images/vishw2.png`** (torso+globe — popup + section-deco). Body class **`vishw-on`** + early-expiry inline script (`>= 2026-09-19` par class remove, paint se pehle). Elements: (1) top **strip** saffron-gold + ghumte ⚙️ gears + shine (`.vishw-strip`); body offsets `.vishw-on .topbar/.navbar/.hero` (janm jaisa 34px). (2) **Popup** on load (`#vishwPopup`, z 99990 < splash) — vishw2 image + corner spinning gears + greeting + gold button, `vishwClose()`. (3) **Floating deity** bottom-left (`.vishw-float`) — vishw1 float + peeche **spinning gear** (unique). (4) **Splash festive** (`.sk-fest-v`, #skIntro me, `.vishw-on` gated, janm `.sk-fest` se ALAG div): **desktop** (`.skfv-d`) = gold frame + 4 corner spinning gears + top ribbon + bottom greeting; **mobile bhi ab SAME desktop design** (user ne pehle alag mangaa, phir "system jaisa hi mobile" bola → `.skfv-m` hidden kiya, `@media max-aspect-ratio:1/1` me `.skfv-d` responsive tweaks: frame inset 12px, gears 24px, ribbon font 11px). Render-verified mobile portrait me fit sahi. (5) **Section decorations** (`.vishw-deco`, vishw2, 130px top-right har `.section-inner`, form/cotton skip, mobile hidden) — matki jaisa. Render-verified: popup/strip/float/splash-desktop/splash-mobile sahi, 9 section-deco, 0 pageerror, topbar top=34px. Deploy: index.html + vishw1.png + vishw2.png. **NOTE:** Janmashtami code abhi bhi index me hai (expired/hidden) — dono independent gated, koi conflict nahi.
