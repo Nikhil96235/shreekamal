@@ -256,6 +256,11 @@ body{font-family:'Inter',sans-serif;background:var(--cr);color:var(--td);overflo
 .yt-float:hover{transform:scale(1.1);}
 @keyframes waBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
+/* Topbar WhatsApp Channel — green icon so it stands apart from phone/email */
+.tb-wach .tb-ico{background:#25d366;}
+.tb-wach .tb-ico svg{color:#fff;width:13px;height:13px;}
+.tb-wach:hover .tb-ico{background:#1faa53;}
+
 /* WhatsApp Channel CTA (contact section) */
 .wa-channel-cta{display:flex;align-items:center;gap:14px;margin:22px 0 4px;padding:14px 18px;border-radius:16px;text-decoration:none;
   background:linear-gradient(135deg,#1faa53,#25d366);box-shadow:0 8px 22px rgba(37,211,102,.28);transition:transform .2s,box-shadow .2s;}
