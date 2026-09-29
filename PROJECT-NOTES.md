@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 23 September 2026
+> **Last updated:** 29 September 2026
 
 ---
 
@@ -90,6 +90,9 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**29 September 2026:**
+- **Admin panel me "Developed by Nikhil Raghav" credit (sirf MASTER ko).** admin.html me `#appView` ke andar `<div class="dev-credit masterOnly">Developed by <b>Nikhil Raghav</b></div>` joda. CSS `.dev-credit`: fixed bottom-right corner pill (subtle gray text, "Nikhil Raghav" green bold). `.masterOnly` class ki wajah se onAuthStateChanged (line ~336) me `myRole!=="master"` par `.hide` lag jata hai → sirf **master admin** login par dikhta hai, normal admin ko nahi. Render-verified: master=visible, admin=display:none, 0 real pageerror. Deploy: admin.html.
 
 **23 September 2026:**
 - **Facebook link badli.** User ne apne Facebook page ka QR diya → cv2 se decode kiya → link `https://www.facebook.com/share/1EheDLLsnt/`. Purani `https://www.facebook.com/shreekamalagro/` ko is nayi share-link se replace kiya — sabhi 10 pages me 2-2 jagah (footer-social `.fb` + `.fb-float`), total 20 jagah. Deploy: sabhi 10 HTML.
