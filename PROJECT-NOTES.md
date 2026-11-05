@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 4 November 2026
+> **Last updated:** 5 November 2026
 
 ---
 
@@ -96,7 +96,7 @@
   - **Elements (index.html):** (1) top **strip** gold-maroon "शुभ दीपावली • Happy Diwali • …" + diye twinkle; offsets `.diwali-on .topbar/.navbar/.hero`. (2) **Jhilmil string lights** navbar ke neeche (absolute child of navbar, `.diwali-lights` JS se bulbs fill, blink). (3) **Opening FIREWORKS dhamaka** — canvas `#dwFire` (z 100060, splash ke upar bhi), JS `dwFireworks()` immediate bursts + rockets, ~6.5s phir fade+remove, sessionStorage `dwFireShown` once-per-session. (4) **Welcome popup** `#diwaliPopup` — user ki Diwali banner image (`diwali_banner.jpg`, rembg nahi — full scene) + greeting + **live offer** "🎁 दिवाली स्पेशल ऑफर चल रहा है!" (clickable → wa.me) + gold button, `diwaliClose()`. (5) **Splash festive** `.sk-fest-d` (#skIntro me, gold frame + corner diye 🪔 + ribbon + greeting, desktop+mobile). (6) **Floating diya** bottom-left (`.dw-float` 🪔 glow float). (7) **Flaming diya section-deco** — `images/diya.png` (user cartoon diya cutout, rembg), har `.section-inner` corner, `diyaFlick` glow flicker (mobile hidden).
   - **Gallery (gallery.html):** purani 7 images HATAYI → 3 Diwali offer posters: user ke 3 PDFs (Aadit Radha Govind, Diwali Dhamaka/Panchratan, Gaiya) → pymupdf se render → `images/diwali_offer1/2/3.jpg` (1067x1600). gal-item aspect-ratio 3/4→**2/3** (poora poster). captions "Radha Govind/Panchratan/Gaiya Offer".
   - **Gallery nav badge:** sabhi pages ke navbar me Gallery link par `.nav-gallery` + `<span class="gallery-offer-badge">🎆 दिवाली धमाका ऑफर</span>` (upar floating pill, bounce, `.diwali-on` gated). CSS style.css me.
-  - **VIDEO (chhod diya):** user ne "Happy_Diwali_Flow.mp4" (ladka→rocket→dhamaka→Happy Diwali) diya tha, corner me transparent lagane ki koshish ki (chroma-key → VP9 alpha webm `diwali_flow.webm`), par clean nahi aaya (purple scene bg) → **user ne skip bola, remove kar diya**. Future: user transparent-bg ya green-screen video de to clean lagega.
+  - **VIDEO — LIVE (5 Nov):** user ne naya video diya (gray-bg, ladka→rocket→blast→Happy Diwali). Transparent webm banaya `video/diwali_flow.webm` (VP9 yuva420p, broad gray-key sat<30&avg>168; "Happy Diwali" text ko blast se pehle (t<6.0s) gray-paint se chhupaya, 6.0–6.35s fade-in → text SIRF blast par aata hai). `.dw-video` element index.html me (muted playsinline, NO autoplay/loop), bottom-right corner fixed (210px desktop / 150px mobile, pointer-events none, `.diwali-on` gated). **Behavior:** JS cycle (video ke neeche inline script) — page khulne ke 6.5s baad aati hai → ek baar chalti hai → complete (7.9s) hone par gayab → 6.5s gap → dobara (loop). CSS opacity/visibility `.dw-show` class se fade. Purana `Happy_Diwali_Flow.mp4` (purple scene) chhod diya tha.
   - Deploy: 10 HTML + style.css + diya.png + diwali_banner.jpg + diwali_offer1/2/3.jpg. Render-verified desktop+mobile, 0 pageerror. Auto-expire 12 Nov.
 
 **29 September 2026:**
