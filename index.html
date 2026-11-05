@@ -53,9 +53,161 @@
 </script>
 <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="has-topbar janm-on vishw-on">
+<body class="has-topbar janm-on vishw-on diwali-on">
 <script>try{if(new Date()>=new Date('2026-09-06T00:00:00')){document.body.classList.remove('janm-on');}}catch(e){}
-try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remove('vishw-on');}}catch(e){}</script>
+try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remove('vishw-on');}}catch(e){}
+try{if(new Date()>=new Date('2026-11-12T00:00:00')){document.body.classList.remove('diwali-on');}}catch(e){}</script>
+
+<!-- ===== DIWALI FESTIVE (12 Nov 2026 ko apne aap hat jayega) ===== -->
+<div id="diwaliStrip" class="diwali-strip">
+  <div class="diwali-strip-inner">
+    <span class="dw-diya">🪔</span>
+    <span class="dw-txt">शुभ दीपावली &nbsp;•&nbsp; <b>Happy Diwali</b> &nbsp;•&nbsp; आपके जीवन में सुख-समृद्धि आए &nbsp;✨</span>
+    <span class="dw-diya">🪔</span>
+  </div>
+</div>
+<div id="diwaliPopup" class="dw-pop-ov">
+  <div class="dw-pop-card">
+    <button class="dw-pop-x" onclick="diwaliClose()" aria-label="close">✕</button>
+    <img class="dw-pop-img" src="images/diwali_banner.jpg?v=1" alt="Happy Diwali — Shreekamal"/>
+    <div class="dw-hi">दीपावली की हार्दिक शुभकामनाएं</div>
+    <div class="dw-en">Happy Diwali</div>
+    <a href="https://wa.me/919411254606?text=Namaste%2C%20Diwali%20special%20offer%20ke%20baare%20me%20jaankari%20chahiye" target="_blank" rel="noopener" class="dw-offer">🎁 <b>दिवाली स्पेशल ऑफर चल रहा है!</b></a>
+    <div class="dw-from">Shreekamal Oil Industries</div>
+    <button class="dw-pop-btn" onclick="diwaliClose()">शुभ दीपावली 🪔</button>
+  </div>
+</div>
+<div class="dw-float" aria-hidden="true"><span class="dw-float-diya">🪔</span></div>
+<canvas id="dwFire" class="dw-fire" aria-hidden="true"></canvas>
+<style>
+  /* ---- Diwali strip ---- */
+  .diwali-strip{position:fixed;top:0;left:0;right:0;height:34px;z-index:1001;overflow:hidden;display:none;align-items:center;justify-content:center;
+    background:linear-gradient(90deg,#4a0d2e,#7a1838,#b23907,#d5610a,#b23907,#7a1838,#4a0d2e);}
+  .diwali-on .diwali-strip{display:flex;}
+  .diwali-strip::after{content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,224,150,.35),transparent);animation:dwShine 4s linear infinite;}
+  @keyframes dwShine{0%{left:-60%}100%{left:120%}}
+  .diwali-strip-inner{display:flex;align-items:center;gap:12px;color:#ffe9b8;font-size:13.5px;letter-spacing:.3px;white-space:nowrap;padding:0 12px;}
+  .diwali-strip-inner b{color:#fff;}
+  .dw-diya{font-size:15px;animation:dwTwinkle 1.6s ease-in-out infinite;}
+  @keyframes dwTwinkle{0%,100%{filter:drop-shadow(0 0 2px rgba(255,180,60,.6));transform:scale(1);}50%{filter:drop-shadow(0 0 7px rgba(255,180,60,1));transform:scale(1.12);}}
+  .diwali-on .topbar{top:34px;} .diwali-on .navbar{top:74px;} .diwali-on .hero{padding-top:166px;}
+  @media(max-width:768px){ .diwali-strip-inner{font-size:11.5px;gap:7px;} .diwali-on .hero{padding-top:146px;} }
+  /* ---- Jhilmil string lights (navbar ke neeche latakti) ---- */
+  .diwali-lights{display:none;}
+  .diwali-on .diwali-lights{display:flex;justify-content:space-around;align-items:flex-start;position:absolute;top:100%;left:0;right:0;padding:0 10px;border-top:2px solid #3a2a12;}
+  .dw-bulb{width:9px;height:13px;border-radius:50% 50% 50% 50% / 42% 42% 58% 58%;margin-top:-1px;background:currentColor;box-shadow:0 0 8px 1px currentColor;animation:dwBlink 1.5s ease-in-out infinite;}
+  @keyframes dwBlink{0%,100%{opacity:1;filter:brightness(1.15);}50%{opacity:.3;filter:brightness(.6);}}
+  @media(max-width:768px){.dw-bulb{width:7px;height:10px;}}
+  /* ---- Popup ---- */
+  .dw-pop-ov{position:fixed;inset:0;z-index:99990;display:none;align-items:center;justify-content:center;background:rgba(26,6,40,.72);backdrop-filter:blur(4px);padding:20px;}
+  .diwali-on .dw-pop-ov{display:flex;}
+  .dw-pop-card{position:relative;width:100%;max-width:400px;text-align:center;padding:0 0 26px;border-radius:22px;overflow:hidden;
+    background:radial-gradient(circle at 50% 120%,#5a1636,#2a0a3e 75%);border:1.5px solid rgba(255,200,70,.45);box-shadow:0 30px 80px rgba(0,0,0,.55);animation:dwPop .5s cubic-bezier(.2,.7,.3,1.2);}
+  @keyframes dwPop{0%{transform:scale(.85) translateY(14px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+  .dw-pop-x{position:absolute;top:10px;right:12px;z-index:3;background:rgba(0,0,0,.35);border:none;color:#fff;font-size:16px;width:28px;height:28px;border-radius:50%;cursor:pointer;}
+  .dw-pop-img{width:100%;display:block;}
+  .dw-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:23px;font-weight:800;line-height:1.3;margin-top:16px;text-shadow:0 2px 12px rgba(255,180,60,.3);padding:0 18px;}
+  .dw-en{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-top:7px;opacity:.9;}
+  .dw-offer{display:block;text-decoration:none;margin:14px 16px 0;padding:10px 12px;border-radius:12px;background:linear-gradient(135deg,rgba(245,192,48,.22),rgba(255,122,24,.18));border:1px dashed rgba(255,200,70,.7);color:#ffd76a;font-size:13.5px;font-weight:600;transition:filter .2s,transform .2s;}
+  .dw-offer:hover{filter:brightness(1.1);transform:translateY(-1px);}
+  .dw-offer b{color:#fff;}
+  .dw-from{color:rgba(255,255,255,.8);font-size:12.5px;margin-top:14px;letter-spacing:.5px;}
+  .dw-pop-btn{margin-top:16px;background:linear-gradient(135deg,#f5a623,#ffd76a,#f0932b);color:#4a0d2e;border:none;padding:11px 30px;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(240,147,43,.4);}
+  .dw-pop-btn:hover{filter:brightness(1.05);}
+  /* ---- Floating diya (bottom-left) ---- */
+  .dw-float{position:fixed;left:18px;bottom:16px;z-index:1500;pointer-events:none;display:none;}
+  .diwali-on .dw-float{display:block;}
+  .dw-float-diya{font-size:60px;display:block;animation:dwFloat 3.6s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(255,160,40,.9)) drop-shadow(0 0 26px rgba(255,120,20,.5));}
+  @keyframes dwFloat{0%,100%{transform:translateY(0) rotate(-2deg);filter:drop-shadow(0 0 12px rgba(255,160,40,.8));}50%{transform:translateY(-10px) rotate(2deg);filter:drop-shadow(0 0 20px rgba(255,180,60,1));}}
+  @media(max-width:768px){.dw-float{left:10px;bottom:78px;} .dw-float-diya{font-size:44px;}}
+  /* ---- Splash festive (Diwali) ---- */
+  .sk-fest-d{display:none;}
+  .diwali-on .sk-fest-d{display:block;position:absolute;inset:0;z-index:3;pointer-events:none;}
+  .sk-fest-d .skfd-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,6,40,.55) 0%,transparent 24%,transparent 74%,rgba(26,6,40,.62) 100%);}
+  .sk-fest-d .skfd-frame{position:absolute;inset:16px;border:2px solid rgba(255,200,70,.9);border-radius:10px;box-shadow:0 0 0 6px rgba(255,200,70,.12),inset 0 0 26px rgba(255,170,50,.22);}
+  .sk-fest-d .skfd-frame::before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,200,70,.5);border-radius:7px;}
+  .sk-fest-d .skfd-diya{position:absolute;font-size:30px;filter:drop-shadow(0 0 8px rgba(255,160,40,.9));animation:dwTwinkle 1.8s ease-in-out infinite;}
+  .sk-fest-d .skfd-diya.tl{top:24px;left:26px;} .sk-fest-d .skfd-diya.tr{top:24px;right:26px;}
+  .sk-fest-d .skfd-diya.bl{bottom:22px;left:26px;} .sk-fest-d .skfd-diya.br{bottom:22px;right:26px;}
+  .sk-fest-d .skfd-rib{position:absolute;top:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:9px 24px;border-radius:30px;white-space:nowrap;background:linear-gradient(90deg,#4a0d2e,#7a1838,#b23907,#7a1838,#4a0d2e);border:1px solid rgba(255,208,80,.6);box-shadow:0 8px 26px rgba(0,0,0,.45);}
+  .sk-fest-d .skfd-rib b{color:#fff;}
+  .sk-fest-d .skfd-txt{color:#ffe9b8;font-size:14px;letter-spacing:.4px;}
+  .sk-fest-d .skfd-f{font-size:16px;}
+  .sk-fest-d .skfd-bot{position:absolute;bottom:40px;left:0;right:0;text-align:center;padding:0 16px;}
+  .sk-fest-d .skfd-hi{font-family:'Playfair Display',serif;color:#ffe082;font-size:clamp(22px,4vw,30px);font-weight:800;text-shadow:0 3px 14px rgba(0,0,0,.7);line-height:1.25;}
+  .sk-fest-d .skfd-en{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-top:6px;opacity:.92;text-shadow:0 2px 8px rgba(0,0,0,.7);}
+  @media(max-aspect-ratio:1/1){
+    .sk-fest-d .skfd-frame{inset:12px;}
+    .sk-fest-d .skfd-diya{font-size:24px;}
+    .sk-fest-d .skfd-diya.tl{top:18px;left:18px;} .sk-fest-d .skfd-diya.tr{top:18px;right:18px;}
+    .sk-fest-d .skfd-diya.bl{bottom:16px;left:18px;} .sk-fest-d .skfd-diya.br{bottom:16px;right:18px;}
+    .sk-fest-d .skfd-rib{top:24px;padding:7px 15px;gap:7px;max-width:90%;}
+    .sk-fest-d .skfd-txt{font-size:11px;letter-spacing:.2px;}
+    .sk-fest-d .skfd-bot{bottom:34px;}
+  }
+  /* ---- Rangoli/diya section decoration ---- */
+  .dw-deco{position:absolute;top:10px;right:12px;width:78px;height:auto;pointer-events:none;z-index:1;transform-origin:50% 88%;
+    filter:drop-shadow(0 0 6px rgba(255,140,30,.7)) drop-shadow(0 0 14px rgba(255,90,10,.4));animation:diyaFlick 1.1s ease-in-out infinite;}
+  @keyframes diyaFlick{
+    0%{filter:drop-shadow(0 0 5px rgba(255,140,30,.6)) drop-shadow(0 0 12px rgba(255,90,10,.35));transform:scale(1) rotate(0deg);}
+    20%{filter:drop-shadow(0 0 10px rgba(255,175,55,.95)) drop-shadow(0 0 22px rgba(255,110,20,.6));transform:scale(1.02) rotate(.4deg);}
+    40%{filter:drop-shadow(0 0 6px rgba(255,150,40,.7)) drop-shadow(0 0 14px rgba(255,100,15,.4));transform:scale(.99) rotate(-.3deg);}
+    60%{filter:drop-shadow(0 0 11px rgba(255,185,65,1)) drop-shadow(0 0 24px rgba(255,120,25,.65));transform:scale(1.015) rotate(.3deg);}
+    80%{filter:drop-shadow(0 0 7px rgba(255,155,45,.75)) drop-shadow(0 0 16px rgba(255,105,18,.45));transform:scale(1) rotate(-.2deg);}
+    100%{filter:drop-shadow(0 0 5px rgba(255,140,30,.6)) drop-shadow(0 0 12px rgba(255,90,10,.35));transform:scale(1) rotate(0deg);}
+  }
+  @media(max-width:768px){.dw-deco{display:none!important;}}
+  /* ---- Fireworks dhamaka (opening) ---- */
+  .dw-fire{display:none;}
+  .diwali-on .dw-fire{display:block;position:fixed;inset:0;z-index:100060;pointer-events:none;}
+</style>
+<script>
+  function diwaliClose(){var p=document.getElementById('diwaliPopup');if(p){p.style.opacity='0';setTimeout(function(){p.style.display='none';},350);}}
+  (function(){
+    function dwFireworks(){
+      var cv=document.getElementById('dwFire'); if(!cv) return;
+      try{ if(sessionStorage.getItem('dwFireShown')==='1'){ cv.remove(); return;} sessionStorage.setItem('dwFireShown','1'); }catch(e){}
+      var ctx=cv.getContext('2d'), DPR=Math.min(window.devicePixelRatio||1,2), W,H;
+      function resize(){ W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR; cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; }
+      resize(); window.addEventListener('resize',resize);
+      var rockets=[], parts=[], cols=['#ffd21a','#ff3b5c','#28d17c','#2aa7ff','#ff8c1a','#c86bff','#ffffff'];
+      function launch(){ var tx=(0.15+Math.random()*0.7)*W, ty=(0.08+Math.random()*0.34)*H; rockets.push({x:tx,y:H+6,ty:ty,vy:-(9+Math.random()*3)*DPR,col:cols[Math.random()*cols.length|0]}); }
+      function burst(x,y,col){ var n=56+Math.random()*44|0; for(var i=0;i<n;i++){ var a=Math.random()*6.283, sp=(1.4+Math.random()*5.4)*DPR; parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,col:(Math.random()<0.18?'#ffffff':col),sz:(1.6+Math.random()*2.2)*DPR}); } }
+      var start=performance.now(), DUR=6500, last=0;
+      function frame(t){
+        ctx.clearRect(0,0,W,H); ctx.globalCompositeOperation='lighter';
+        for(var i=rockets.length-1;i>=0;i--){ var r=rockets[i]; r.y+=r.vy; r.vy+=0.12*DPR; ctx.globalAlpha=1; ctx.fillStyle=r.col; ctx.beginPath(); ctx.arc(r.x,r.y,2.4*DPR,0,7); ctx.fill(); if(r.vy>=0||r.y<=r.ty){ burst(r.x,r.y,r.col); rockets.splice(i,1);} }
+        for(var j=parts.length-1;j>=0;j--){ var p=parts[j]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.045*DPR; p.vx*=0.985; p.vy*=0.985; p.life-=0.009; if(p.life<=0){parts.splice(j,1);continue;} var lf=Math.max(p.life,0); ctx.fillStyle=p.col; ctx.globalAlpha=lf*0.3; ctx.beginPath(); ctx.arc(p.x,p.y,p.sz*2.6,0,7); ctx.fill(); ctx.globalAlpha=lf; ctx.beginPath(); ctx.arc(p.x,p.y,p.sz,0,7); ctx.fill(); }
+        ctx.globalAlpha=1;
+        var el=t-start;
+        if(el<DUR && t-last>Math.max(200,520-el/16)){ launch(); if(Math.random()<0.5) launch(); last=t; }
+        if(el<DUR+2800 || parts.length || rockets.length){ requestAnimationFrame(frame); }
+        else { cv.style.transition='opacity .7s'; cv.style.opacity='0'; setTimeout(function(){ cv.remove(); },800); }
+      }
+      // instant dhamaka on splash (immediate bursts + rockets)
+      for(var q=0;q<5;q++){ burst((0.12+Math.random()*0.76)*W,(0.1+Math.random()*0.32)*H, cols[Math.random()*cols.length|0]); }
+      launch(); launch(); launch();
+      requestAnimationFrame(frame);
+    }
+    function dwInit(){
+    if(!document.body.classList.contains('diwali-on')) return;
+    dwFireworks();
+    // fill jhilmil lights
+    var L=document.querySelector('.diwali-lights');
+    if(L){ var cols=['#ff3b5c','#ffd21a','#28d17c','#2aa7ff','#ff8c1a','#c86bff']; var N=window.innerWidth<768?16:26;
+      for(var i=0;i<N;i++){ var b=document.createElement('span'); b.className='dw-bulb'; b.style.color=cols[i%cols.length]; b.style.animationDelay=((i%6)*0.18).toFixed(2)+'s'; L.appendChild(b); } }
+    // flaming diya deco on sections
+    document.querySelectorAll('.section-inner').forEach(function(si){
+      if(si.querySelector('form, .cotton-grid, .cotton-img-wrap')) return;
+      si.style.position='relative';
+      var d=document.createElement('img'); d.className='dw-deco'; d.src='images/diya.png?v=3'; d.alt='';
+      si.insertBefore(d, si.firstChild);
+    });
+    }
+    if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', dwInit); } else { dwInit(); }
+  })();
+</script>
+
 
 <!-- ===== INTRO SPLASH SCREEN (opening logo intro) ===== -->
 <div id="skIntro" class="sk-intro" onclick="skHideIntro()" title="Skip">
@@ -88,6 +240,14 @@ try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remo
       <div class="skfv-m-tools">🔧 &nbsp;·&nbsp; 🔨 &nbsp;·&nbsp; ⚙️</div>
       <div class="skfv-m-from">Shreekamal Oil Industries &nbsp;·&nbsp; जय श्री विश्वकर्मा 🙏</div>
     </div>
+  </div>
+  <div class="sk-fest-d">
+    <div class="skfd-shade"></div>
+    <div class="skfd-frame"></div>
+    <span class="skfd-diya tl">🪔</span><span class="skfd-diya tr">🪔</span>
+    <span class="skfd-diya bl">🪔</span><span class="skfd-diya br">🪔</span>
+    <div class="skfd-rib"><span class="skfd-f">🪔</span><span class="skfd-txt">शुभ दीपावली &nbsp;•&nbsp; <b>Happy Diwali</b></span><span class="skfd-f">✨</span></div>
+    <div class="skfd-bot"><div class="skfd-hi">दीपावली की हार्दिक शुभकामनाएं</div><div class="skfd-en">Shreekamal Oil Industries</div></div>
   </div>
 </div>
 <style>
@@ -358,7 +518,7 @@ try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remo
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="brands.html">Brands</a>
-    <a href="gallery.html">Gallery</a>
+    <a href="gallery.html" class="nav-gallery">Gallery<span class="gallery-offer-badge">🎆 दिवाली धमाका ऑफर</span></a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="contact.html" class="nav-cta">Get Quote →</a>
@@ -366,6 +526,7 @@ try{if(new Date()>=new Date('2026-09-19T00:00:00')){document.body.classList.remo
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
+  <div class="diwali-lights" aria-hidden="true"></div>
 </nav>
 
 <!-- HERO -->

@@ -1,6 +1,6 @@
 # 🟢 SHREEKAMAL WEBSITE — MASTER ROOT FILE
 
-> **Last updated:** 29 September 2026
+> **Last updated:** 4 November 2026
 
 ---
 
@@ -90,6 +90,14 @@
 ## 4. CHANGE LOG (kya-kya kaam hua)
 
 *(Purane changes 21 July–3 Aug niche list mein hain — sabse latest sabse upar.)*
+
+**4 November 2026:**
+- **DIWALI FESTIVE package (temporary, 12 Nov ko auto-expire) — LIVE.** Janmashtami/Vishwakarma jaisa, Diwali theme (diye, rangoli lights, fireworks). Body class **`diwali-on`** sabhi 10 pages par + early-expiry inline script (`>= 2026-11-12` par remove). Sirf **index.html** par pura festive (strip/popup/splash/lights/fireworks/floating-diya/section-diye); baaki pages par sirf `diwali-on` + gallery badge.
+  - **Elements (index.html):** (1) top **strip** gold-maroon "शुभ दीपावली • Happy Diwali • …" + diye twinkle; offsets `.diwali-on .topbar/.navbar/.hero`. (2) **Jhilmil string lights** navbar ke neeche (absolute child of navbar, `.diwali-lights` JS se bulbs fill, blink). (3) **Opening FIREWORKS dhamaka** — canvas `#dwFire` (z 100060, splash ke upar bhi), JS `dwFireworks()` immediate bursts + rockets, ~6.5s phir fade+remove, sessionStorage `dwFireShown` once-per-session. (4) **Welcome popup** `#diwaliPopup` — user ki Diwali banner image (`diwali_banner.jpg`, rembg nahi — full scene) + greeting + **live offer** "🎁 दिवाली स्पेशल ऑफर चल रहा है!" (clickable → wa.me) + gold button, `diwaliClose()`. (5) **Splash festive** `.sk-fest-d` (#skIntro me, gold frame + corner diye 🪔 + ribbon + greeting, desktop+mobile). (6) **Floating diya** bottom-left (`.dw-float` 🪔 glow float). (7) **Flaming diya section-deco** — `images/diya.png` (user cartoon diya cutout, rembg), har `.section-inner` corner, `diyaFlick` glow flicker (mobile hidden).
+  - **Gallery (gallery.html):** purani 7 images HATAYI → 3 Diwali offer posters: user ke 3 PDFs (Aadit Radha Govind, Diwali Dhamaka/Panchratan, Gaiya) → pymupdf se render → `images/diwali_offer1/2/3.jpg` (1067x1600). gal-item aspect-ratio 3/4→**2/3** (poora poster). captions "Radha Govind/Panchratan/Gaiya Offer".
+  - **Gallery nav badge:** sabhi pages ke navbar me Gallery link par `.nav-gallery` + `<span class="gallery-offer-badge">🎆 दिवाली धमाका ऑफर</span>` (upar floating pill, bounce, `.diwali-on` gated). CSS style.css me.
+  - **VIDEO (chhod diya):** user ne "Happy_Diwali_Flow.mp4" (ladka→rocket→dhamaka→Happy Diwali) diya tha, corner me transparent lagane ki koshish ki (chroma-key → VP9 alpha webm `diwali_flow.webm`), par clean nahi aaya (purple scene bg) → **user ne skip bola, remove kar diya**. Future: user transparent-bg ya green-screen video de to clean lagega.
+  - Deploy: 10 HTML + style.css + diya.png + diwali_banner.jpg + diwali_offer1/2/3.jpg. Render-verified desktop+mobile, 0 pageerror. Auto-expire 12 Nov.
 
 **29 September 2026:**
 - **Admin panel me "Developed by Nikhil Raghav" credit (sirf MASTER ko).** admin.html me `#appView` ke andar `<div class="dev-credit masterOnly">Developed by <b>Nikhil Raghav</b></div>` joda. CSS `.dev-credit`: fixed bottom-right corner pill (subtle gray text, "Nikhil Raghav" green bold). `.masterOnly` class ki wajah se onAuthStateChanged (line ~336) me `myRole!=="master"` par `.hide` lag jata hai → sirf **master admin** login par dikhta hai, normal admin ko nahi. Render-verified: master=visible, admin=display:none, 0 real pageerror. Deploy: admin.html.

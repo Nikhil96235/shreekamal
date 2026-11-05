@@ -13,7 +13,7 @@
 <style>
   .gal-wrap{max-width:1200px;margin:0 auto;padding:56px 5% 30px;}
   .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
-  .gal-item{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;background:#f4ede2;aspect-ratio:3/4;
+  .gal-item{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;background:#f4ede2;aspect-ratio:2/3;
     box-shadow:0 6px 20px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06);
     opacity:0;transform:scale(.9) translateY(16px);animation:galPop .55s cubic-bezier(.2,.7,.3,1) forwards;}
   .gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
@@ -38,7 +38,8 @@
   @media(max-width:600px){ .lb-nav{font-size:34px;padding:0 8px;} .lb-img{max-width:94%;} }
 </style>
 </head>
-<body>
+<body class="diwali-on">
+<script>try{if(new Date()>=new Date('2026-11-12T00:00:00')){document.body.classList.remove('diwali-on');}}catch(e){}</script>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
@@ -50,7 +51,7 @@
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="brands.html">Brands</a>
-    <a href="gallery.html">Gallery</a>
+    <a href="gallery.html" class="nav-gallery">Gallery<span class="gallery-offer-badge">🎆 दिवाली धमाका ऑफर</span></a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="contact.html" class="nav-cta">Get Quote →</a>
@@ -73,13 +74,9 @@
 <!-- GALLERY GRID -->
 <div class="gal-wrap">
   <div class="gal-grid" id="galGrid">
-    <div class="gal-item" style="animation-delay:.00s" data-cap="Shree Kamal"><img loading="lazy" src="images/shrikamal.jpg?v=10" alt="Shree Kamal Binola Khal"/><div class="gal-cap">Shree Kamal</div></div>
-    <div class="gal-item" style="animation-delay:.06s" data-cap="Radha Govind"><img loading="lazy" src="images/radha_govind_kachhighani.jpg?v=10" alt="Radha Govind Binola Khal"/><div class="gal-cap">Radha Govind</div></div>
-    <div class="gal-item" style="animation-delay:.12s" data-cap="Radha Govind"><img loading="lazy" src="images/radha_govind_kaithal.jpg?v=10" alt="Radha Govind Binola Khal"/><div class="gal-cap">Radha Govind</div></div>
-    <div class="gal-item" style="animation-delay:.18s" data-cap="Panchratan Shri"><img loading="lazy" src="images/panchratan_shri.jpg?v=10" alt="Panchratan Shri Binola Khal"/><div class="gal-cap">Panchratan Shri</div></div>
-    <div class="gal-item" style="animation-delay:.24s" data-cap="Gaiyya"><img loading="lazy" src="images/gaiyya.jpg?v=10" alt="Gaiyya Super Quality Binola Khal"/><div class="gal-cap">Gaiyya</div></div>
-    <div class="gal-item" style="animation-delay:.30s" data-cap="Butter Milk"><img loading="lazy" src="images/buttermilk.jpg?v=10" alt="Butter Milk Binola Khal"/><div class="gal-cap">Butter Milk</div></div>
-    <div class="gal-item" style="animation-delay:.36s" data-cap="Amrit Kalash"><img loading="lazy" src="images/amrit_kalash.jpg?v=10" alt="Amrit Kalash Kachi Ghani Binola Khal"/><div class="gal-cap">Amrit Kalash</div></div>
+    <div class="gal-item" style="animation-delay:.00s" data-cap="दिवाली धमाका — Radha Govind"><img loading="lazy" src="images/diwali_offer1.jpg?v=1" alt="Diwali Dhamaka Offer — Radha Govind"/><div class="gal-cap">🪔 Radha Govind Offer</div></div>
+    <div class="gal-item" style="animation-delay:.08s" data-cap="दिवाली धमाका — Panchratan"><img loading="lazy" src="images/diwali_offer2.jpg?v=1" alt="Diwali Dhamaka Offer — Panchratan Shri"/><div class="gal-cap">🪔 Panchratan Offer</div></div>
+    <div class="gal-item" style="animation-delay:.16s" data-cap="दिवाली धमाका — Gaiya"><img loading="lazy" src="images/diwali_offer3.jpg?v=1" alt="Diwali Dhamaka Offer — Gaiya Brand"/><div class="gal-cap">🪔 Gaiya Offer</div></div>
   </div>
 </div>
 
